@@ -79,6 +79,8 @@ export type FakeMode = { kind: "state"; state: ExtState } | { kind: "invalid" } 
  * switched, detached or made to post a fresh state from the test through `window.__ext`.
  */
 function fakeExtension(initial: FakeMode) {
+  // A later open() on the same page replaces any fake an earlier one installed.
+  (window as unknown as { __ext?: { detach(): void } }).__ext?.detach();
   let mode = initial;
   let attached = true;
   const ext = { requests: 0, set, swap: (next: FakeMode) => (mode = next), detach: () => (attached = false), post };
@@ -130,6 +132,7 @@ export async function open(page: Page, { ext, clock = "fixed" }: OpenOptions) {
   }
   else await page.clock.setFixedTime(NOW);
   if (ext !== "none") await page.addInitScript(fakeExtension, ext);
+  else await page.addInitScript(() => (window as unknown as { __ext?: { detach(): void } }).__ext?.detach());
   await page.goto(BASE);
   if (clock === "fixed") await page.locator("main[data-status]:not([data-status=loading])").waitFor();
   await page.evaluate(() => document.fonts.ready.then(() => undefined));
