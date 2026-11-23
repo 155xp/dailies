@@ -1,4 +1,5 @@
 import type { DailyRecord } from "../../src/record";
+import { spamlePage } from "./spamle-page";
 
 export type Game = DailyRecord["game"];
 
@@ -22,6 +23,11 @@ export interface GameDef {
   share?: boolean;
   /** Page globals the parser needs, forwarded by the MAIN-world hook. */
   globals?: string[];
+  /**
+   * Values the page keeps only in its own top-level bindings (not on `window`), read by the MAIN-world hook with
+   * each storage write and once at load. Merged into the capture's `page` like `globals`.
+   */
+  pageState?: () => Record<string, unknown> | undefined;
   /** The rank node Spelling Bee updates on every word; the one MutationObserver target. */
   observe?: string;
   /** The game's result screen. Seen with no record, it becomes "played, not logged". */
@@ -119,6 +125,19 @@ export const GAMES: GameDef[] = [
     responses: /^https:\/\/api\.lessgames\.com\/songless\/stats\?/,
     indexedDB: { db: "game-store", store: "sessions" },
     finished: '[role="dialog"][data-state="open"] .chakra-stat__root',
+  },
+  {
+    id: "spamle",
+    name: "Spamle",
+    url: "https://spamle.com/",
+    matches: ["https://spamle.com/*"],
+    keys: /^spamle-v1$/,
+    // Today's board names the page's day; day_totals is every finisher's score, the game's TOP % and spread.
+    responses: /^https:\/\/shgtowaowhafjyrbvpxh\.supabase\.co\/rest\/v1\/(rpc\/day_totals$|scores\?day=eq\.\d{4}-\d{2}-\d{2}&select=player_id,name,total,n,rounds&)/,
+    // Prompt text, answer names and round targets exist only in the page's memory (extension/src/spamle-page.ts).
+    pageState: spamlePage,
+    // Only the finished Daily's screen has the hidden share box.
+    finished: "#shareBox",
   },
 ];
 

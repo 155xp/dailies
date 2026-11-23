@@ -21,6 +21,8 @@ const LOGGED = new Set([
   "krillion/win-2026-11-22",
   "songless/loss-2026-11-22",
   "songless/win-2026-11-22",
+  "spamle/partial-2026-11-23",
+  "spamle/win-2026-11-23",
   "spelling-bee/partial-2026-11-22",
   "spelling-bee/partial-paywall-2026-11-22",
   "travle/loss-2026-11-22",
@@ -30,7 +32,7 @@ const LOGGED = new Set([
 ]);
 
 describe("capture from what the hooks see", () => {
-  it("knows the 9 games in display order", () => {
+  it("knows the 10 games in display order", () => {
     expect(GAMES.map((g) => g.id)).toEqual([
       "krillion",
       "travle",
@@ -41,6 +43,7 @@ describe("capture from what the hooks see", () => {
       "mini",
       "globle",
       "songless",
+      "spamle",
     ]);
   });
 
@@ -85,6 +88,13 @@ describe("capture from what the hooks see", () => {
     expect(allowResponse(by("krillion"), "https://krillion.io/api/submit")).toBe(false);
     expect(allowResponse(by("globle"), "https://globle-game.com/answer?day=2026-11-22")).toBe(false);
     expect(allowResponse(by("mini"), "https://www.nytimes.com/svc/crosswords/v6/puzzle/mini.json")).toBe(false);
+    const supa = "https://shgtowaowhafjyrbvpxh.supabase.co/rest/v1";
+    expect(allowResponse(by("spamle"), `${supa}/rpc/day_totals`)).toBe(true);
+    expect(allowResponse(by("spamle"), `${supa}/scores?day=eq.2026-11-23&select=player_id,name,total,n,rounds&order=total.desc,n.desc&limit=100`)).toBe(true);
+    for (const no of ["/rpc/log_round", "/rpc/my_leagues", "/rpc/submit_score", "/scores?player_id=eq.x&day=lt.2026-11-23&select=day,total"]) {
+      expect(allowResponse(by("spamle"), supa + no), no).toBe(false);
+    }
+    expect(allowResponse(by("spamle"), "https://other.supabase.co/rest/v1/rpc/day_totals")).toBe(false);
   });
 
   it("matches pages to games by the manifest patterns only", () => {
@@ -92,6 +102,7 @@ describe("capture from what the hooks see", () => {
     expect(gameForUrl("https://www.nytimes.com/crosswords/game/mini/2026/11/22")?.id).toBe("mini");
     expect(gameForUrl("https://www.nytimes.com/games/strands")).toBeUndefined();
     expect(gameForUrl("https://lessgames.com/wordless")).toBeUndefined();
+    expect(gameForUrl("https://spamle.com/?from=share")?.id).toBe("spamle");
     expect(gameForUrl("https://evil.example/krillion.io/")).toBeUndefined();
   });
 });

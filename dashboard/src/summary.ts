@@ -1,6 +1,7 @@
 import type { DailyRecord } from "../../src/record";
 import { CONNECTIONS_LEVELS } from "../../src/parsers/connections";
 import { SONGLESS_COLORS } from "../../src/parsers/songless";
+import { SPAMLE_RATINGS, SPAMLE_ROUNDS } from "../../src/parsers/spamle";
 import { WORDLE_COLORS } from "../../src/parsers/wordle";
 import { gameById } from "./games";
 
@@ -30,6 +31,8 @@ export function result(r: DailyRecord): string {
       return plural(r.detail.countries.length, "guess", "guesses");
     case "songless":
       return r.status === "won" ? `Got it on try ${r.detail.board.length}` : "Missed";
+    case "spamle":
+      return r.status === "won" ? `${r.score} points` : `${r.score} points, ${r.detail.rounds.length} of ${SPAMLE_ROUNDS} rounds`;
   }
 }
 
@@ -68,6 +71,9 @@ export function tiles(r: DailyRecord): string[] {
         return (r.detail.heat ?? []).map((h) => GLOBLE[h]);
       case "songless":
         return r.detail.board.map((b) => SONGLESS_COLORS[b.state]!);
+      case "spamle":
+        // One tile per round in its rating color, as the game's own row of squares; the game color with no rating.
+        return r.detail.rounds.map((x) => SPAMLE_RATINGS.find((t) => t.id === x.rating)?.color ?? gameById("spamle").color);
     }
   })();
   return all.slice(0, MAX_TILES);

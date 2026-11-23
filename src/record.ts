@@ -136,6 +136,47 @@ export const songlessRecord = base(
   }),
 );
 
+export const SPAMLE_RARITY = z.enum(["common", "uncommon", "rare", "epic", "legendary"]);
+/** Spamle's round ratings, lowest first: Warm-up, Not bad, Good, Great, Spamtastic. */
+export const SPAMLE_RATING = z.enum(["warm-up", "not-bad", "good", "great", "spamtastic"]);
+
+export const spamleRecord = base(
+  "spamle",
+  z.strictObject({
+    /** Right answers across the finished rounds; each drops one gumball. */
+    gumballs: count,
+    /** Gumballs by rarity: Common, Uncommon, Rare, Epic, Legendary. */
+    rarities: z.array(count).length(5),
+    /** The Daily's finished rounds, in order. Words the page holds only in memory are null without its snapshot. */
+    rounds: z
+      .array(
+        z.strictObject({
+          promptId: z.string(),
+          prompt: z.string().nullable(),
+          /** How many answers the category accepts. */
+          possible: count.nullable(),
+          points: count,
+          /** The category's Great and Spamtastic targets, in points. */
+          great: count.nullable(),
+          top: count.nullable(),
+          rating: SPAMLE_RATING.nullable(),
+          /** Bonus seconds banked, at most 10. */
+          bonus: count,
+          /** Answers typed that did not count. */
+          misses: count,
+          answers: z.array(z.strictObject({ answer: z.string(), rarity: SPAMLE_RARITY, points: z.number().int().min(1).max(5) })),
+        }),
+      )
+      .max(5),
+    /** Other players who finished today's Daily, as the game compares them; null until this Daily is finished. */
+    players: count.nullable(),
+    /** Share of those players this score beat, ties counting half. */
+    betterThan: percent.nullable(),
+    /** Everyone who finished, this player included, in 50-point buckets; the last is 450 and up. */
+    distribution: z.array(count).length(10).nullable(),
+  }),
+);
+
 export const RECORD = z.discriminatedUnion("game", [
   krillionRecord,
   travleRecord,
@@ -146,6 +187,7 @@ export const RECORD = z.discriminatedUnion("game", [
   miniRecord,
   globleRecord,
   songlessRecord,
+  spamleRecord,
 ]);
 
 export type DailyRecord = z.infer<typeof RECORD>;

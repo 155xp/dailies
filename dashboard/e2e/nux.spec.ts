@@ -209,12 +209,12 @@ test.describe("5-nux first-run fixes", () => {
     expect(text).toMatch(/(delet|remov|mov)\w*.*(break|stop|remove)/i);
   });
 
-  test("8. cold load with no answer: the 9 game names and links are on the first paint and no placeholder covers one", async ({ page }, info) => {
+  test("8. cold load with no answer: the 10 game names and links are on the first paint and no placeholder covers one", async ({ page }, info) => {
     await open(page, { ext: { kind: "silent" }, clock: "frozen" });
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
     await page.screenshot({ path: join(import.meta.dirname, "..", "test-results", "screens", `nux-first-paint-${info.project.name}.png`) });
     const links = page.locator(".rows .row a.link");
-    await expect(links).toHaveCount(9);
+    await expect(links).toHaveCount(GAMES.length);
     expect(await links.allInnerTexts()).toEqual(GAMES.map((g) => g.name));
     for (const g of GAMES) await expect(page.locator(`.row[data-game="${g.id}"] a.link`)).toHaveAttribute("href", g.url);
     const names = await links.evaluateAll((els) => els.map((e) => e.getBoundingClientRect().toJSON() as DOMRect));

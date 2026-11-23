@@ -1,0 +1,44 @@
+{
+  "spamle": {
+    "day": "2026-11-23",
+    "prompts": {
+      "genres": {
+        "q": "Music genres",
+        "possible": 1580,
+        "targets": {
+          "ok": 4,
+          "good": 7,
+          "great": 10,
+          "top": 13
+        },
+        "names": {
+          "pop": "Pop",
+          "rock": "Rock",
+          "jazz": "Jazz",
+          "antiphon": "antiphon",
+          "westcoasthiphop": "West Coast hip-hop",
+          "chicagohouse": "Chicago house"
+        }
+      },
+      "pokemoves": {
+        "q": "Pokémon types and moves",
+        "possible": 955,
+        "targets": {
+          "ok": 4,
+          "good": 7,
+          "great": 10,
+          "top": 13
+        },
+        "names": {
+          "fire": "Fire",
+          "water": "Water",
+          "electric": "Electric",
+          "vicegrip": "Vice Grip",
+          "amnesia": "Amnesia",
+          "assist": "Assist",
+          "healorder": "Heal Order"
+        }
+      }
+    }
+  }
+}

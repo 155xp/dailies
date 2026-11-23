@@ -1,0 +1,27 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://shgtowaowhafjyrbvpxh.supabase.co/rest/v1/rpc/log_round",
+      "body": {
+        "p_player": "REDACTED",
+        "p_mode": "daily",
+        "p_prompt": "genres",
+        "p_round": 1,
+        "p_points": 12,
+        "p_answers": 6,
+        "p_wrong": 1,
+        "p_names": [
+          "Pop",
+          "Rock",
+          "Jazz",
+          "antiphon",
+          "West Coast hip-hop",
+          "Chicago house"
+        ]
+      }
+    },
+    "status": 204,
+    "body": ""
+  }
+]

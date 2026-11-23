@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildManifest } from "../../extension/src/manifest";
 
-/** The 9 game patterns from the design spec, Part 2, in display order. */
+/** The 10 game patterns from the design spec, Part 2, in display order. */
 const GAMES = [
   "https://krillion.io/*",
   "https://travle.earth/*",
@@ -12,11 +12,12 @@ const GAMES = [
   "https://www.nytimes.com/crosswords/game/mini*",
   "https://globle-game.com/*",
   "https://lessgames.com/songless*",
+  "https://spamle.com/*",
 ];
 const LOCAL = ["http://localhost/*", "http://127.0.0.1/*"];
 
 describe("manifest", () => {
-  it("lists only the 9 game patterns plus the local dashboard origins", () => {
+  it("lists only the 10 game patterns plus the local dashboard origins", () => {
     const m = buildManifest({ version: "1.0.0" });
     expect(m.host_permissions).toEqual([...GAMES, ...LOCAL]);
     expect(m.content_scripts).toEqual([

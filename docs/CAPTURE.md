@@ -47,4 +47,10 @@ Emoji are written by name. Exact share text is in each case's `share.txt`.
 | Songless | A `percentile` 1 to 99 per category | `/songless/stats` returns only relative weights (`daily.distribution`, points 1 to 6). The modal's "top 19.1% today" is the cumulative weight share. | `fixtures/songless/*/network/stats.json`, `fixtures/songless/win-2026-11-22/dom.html` |
 | Songless | Clip steps 0.13, 0.53, 2, 8, 15 s | 0.1, 0.5, 2, 8, 15 s | `fixtures/songless/*/dom-colors.json` (`clipLabel`) |
 | Songless | Share lists every category | Playing one tab shares one line: `I found the Top Hits song in 8 seconds` and a face, `[Songless #451]`, the squares, then the link | `fixtures/songless/*/share.txt` |
+| Spamle | Share line 2 starts with a domino | It starts with a candy: `Spamle #13`, then candy `53 gumballs · 146 pts · TOP 5%` | `fixtures/spamle/win-2026-11-23/share.txt` |
+| Spamle | Puzzle number is days since 2026-11-11 | Days since, plus one: 2026-11-23 is #13 | `fixtures/spamle/*/meta.json`, `win-2026-11-23/share.txt` |
+| Spamle | A 7 s answer clock | Shown as 7 s; the page's clock is 8 s with the last 2 shown seconds slowed to 3 (page code, `ROUND_MS`) | `docs/games.md` |
+| Spamle | Round ratings ok, good, great, top | Those are the targets; ratings are Warm-up, Not bad, Good, Great, Spamtastic | `fixtures/spamle/*/page.json`, `win-2026-11-23/dom.html` |
+| Spamle | Rarity drops once 10+ real players name an answer | On spamle.com that table stays empty, so rarity is by list position; stored points are used | `docs/games.md` |
+| Spamle | A finished-day percentile may come from the network | Confirmed: `POST /rest/v1/rpc/day_totals`; the parser reproduces TOP 5% | `fixtures/spamle/win-2026-11-23/network/day-totals.json` |
 | Songle | Owner confirmation pending | lessgames has no Songle (`/songle` is 404); Songless is tracked | `docs/games.md` |

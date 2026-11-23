@@ -15,6 +15,7 @@ export const FIXTURE_CASES: Partial<Record<DailyRecord["game"], string>> = {
   "spelling-bee": "partial-paywall-2026-11-22",
   globle: "win-2026-11-22",
   songless: "win-2026-11-22",
+  spamle: "win-2026-11-23",
 };
 
 /** Parse one fixture case with the real parser. */

@@ -1,6 +1,7 @@
 import { mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
+import { GAMES } from "../src/games";
 import { enclosure } from "../../src/parsers/enclose-horse";
 import type { RecordOf } from "../../src/record";
 import { fixtureRecords } from "../fixture-records";
@@ -94,7 +95,7 @@ test.describe("today strip: every tile reaches 3:1 against its row", () => {
           return { game: t.closest(".row")!.getAttribute("data-game"), fill: getComputedStyle(t).backgroundColor, best: Math.round(Math.max(ratio(fill, row), edge) * 100) / 100 };
         });
       });
-      expect(new Set(tiles.map((t) => t.game)).size).toBe(name === "done" ? 9 : STATES.partial.records.length);
+      expect(new Set(tiles.map((t) => t.game)).size).toBe(name === "done" ? GAMES.length : STATES.partial.records.length);
       expect(tiles.filter((t) => t.best < 3)).toEqual([]);
     });
   }

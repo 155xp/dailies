@@ -21,6 +21,8 @@ describe("row summary from real fixture records", () => {
     ["globle", "win-2026-11-22", "9 guesses", 9],
     ["songless", "win-2026-11-22", "Got it on try 4", 4],
     ["songless", "loss-2026-11-22", "Missed", 5],
+    ["spamle", "win-2026-11-23", "146 points", 5],
+    ["spamle", "partial-2026-11-23", "27 points, 2 of 5 rounds", 2],
   ] as const)("%s %s reads %s with %i tiles", (game, dir, text, count) => {
     const r = rec(game, dir);
     expect(result(r)).toBe(text);
@@ -32,6 +34,8 @@ describe("row summary from real fixture records", () => {
     expect(tiles(rec("wordle", "win-2026-11-22")).at(-1)).toBe("#6aaa64");
     expect(tiles(rec("connections", "win-2026-11-22")).slice(1)).toEqual(["#f9df6d", "#a0c35a", "#b0c4ef", "#ba81c5"]);
     expect(tiles(rec("songless", "win-2026-11-22")).at(-1)).toBe("rgb(85, 183, 37)");
+    // One tile per round in the game's round-rating color: Great #5dffb0, Spamtastic #b18cff.
+    expect(tiles(rec("spamle", "partial-2026-11-23"))).toEqual(["#5dffb0", "#b18cff"]);
   });
 
   it("fills the Spelling Bee ladder up to the rank reached", () => {

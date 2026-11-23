@@ -5,10 +5,10 @@ import { open, STATES, withState } from "./harness";
 const phone = (name: string) => name.startsWith("390");
 
 test.describe("3c history", () => {
-  test("9 games by the last 30 days, 12px squares with a 4px gap", async ({ page }) => {
+  test("10 games by the last 30 days, 12px squares with a 4px gap", async ({ page }) => {
     await open(page, { ext: withState(STATES.done) });
     const rows = page.locator(".history [data-history-row]");
-    await expect(rows).toHaveCount(9);
+    await expect(rows).toHaveCount(GAMES.length);
     expect(await rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-history-row")))).toEqual(GAMES.map((g) => g.id));
     const squares = rows.first().locator(".sq");
     await expect(squares).toHaveCount(30);
@@ -30,7 +30,7 @@ test.describe("3c history", () => {
   test("today's column is outlined, so meaning never rests on color alone", async ({ page }) => {
     await open(page, { ext: withState(STATES.done) });
     const today = page.locator(".sq[data-today]");
-    await expect(today).toHaveCount(9);
+    await expect(today).toHaveCount(GAMES.length);
     for (const sq of await today.all()) expect(await sq.evaluate((e) => getComputedStyle(e).boxShadow)).not.toBe("none");
     expect(await page.locator(".sq:not([data-today])").first().evaluate((e) => getComputedStyle(e).boxShadow)).not.toMatch(/0px 0px 0px 2px/);
   });

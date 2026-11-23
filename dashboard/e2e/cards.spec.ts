@@ -52,10 +52,10 @@ const rgb = (hex: string) => {
 const dark = (page: Page) => page.evaluate(() => matchMedia("(prefers-color-scheme: dark)").matches);
 
 test.describe("each game has its own card, drawn from a real fixture", () => {
-  test("all nine cards render in the fixed game order, each titled with a link to its game", async ({ page }) => {
+  test("all ten cards render in the fixed game order, each titled with a link to its game", async ({ page }) => {
     await openCards(page, ALL_NINE);
     const cards = page.locator(".card");
-    await expect(cards).toHaveCount(9);
+    await expect(cards).toHaveCount(GAMES.length);
     expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute("data-game")))).toEqual(GAMES.map((g) => g.id));
     for (const g of GAMES) {
       const a = card(page, g.id).locator(".card-title a");
@@ -66,9 +66,9 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
     }
   });
 
-  test("the default preview shows the eight games with a real result and no Mini card", async ({ page }) => {
+  test("the default preview shows the nine games with a real result and no Mini card", async ({ page }) => {
     await openCards(page);
-    await expect(page.locator(".card")).toHaveCount(8);
+    await expect(page.locator(".card")).toHaveCount(GAMES.length - 1);
     await expect(card(page, "mini")).toHaveCount(0);
   });
 
@@ -274,9 +274,9 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
 });
 
 test.describe("a distribution appears only where the record carries one", () => {
-  test("charts on Krillion, enclose.horse, Travle, Songless, Wordle and Mini; none on Connections, Bee or Globle", async ({ page }) => {
+  test("charts on Krillion, enclose.horse, Travle, Songless, Wordle, Mini and Spamle; none on Connections, Bee or Globle", async ({ page }) => {
     await openCards(page, ALL_NINE);
-    const withChart = ["krillion", "enclose-horse", "travle", "wordle", "mini", "songless"];
+    const withChart = ["krillion", "enclose-horse", "travle", "wordle", "mini", "songless", "spamle"];
     for (const g of GAMES) await expect(card(page, g.id).locator("[data-chart]")).toHaveCount(withChart.includes(g.id) ? 1 : 0);
   });
 

@@ -24,10 +24,10 @@ test.describe("3a shell and today rows", () => {
     if (info.project.name.startsWith("390")) expect(list.x).toBe(20);
   });
 
-  test("nine rows in the fixed game order, each name an <a> to the game in a new tab, at least 44px tall", async ({ page }) => {
+  test("ten rows in the fixed game order, each name an <a> to the game in a new tab, at least 44px tall", async ({ page }) => {
     await open(page, { ext: withState(STATES.partial) });
     const rows = page.locator(".rows > .row");
-    await expect(rows).toHaveCount(9);
+    await expect(rows).toHaveCount(GAMES.length);
     expect(await rows.evaluateAll((els) => els.map((e) => e.getAttribute("data-game")))).toEqual(GAMES.map((g) => g.id));
     for (const g of GAMES) {
       const a = row(page, g.id).locator("a.link").first();

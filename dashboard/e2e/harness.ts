@@ -65,6 +65,8 @@ export const STATES = {
       fixture("spelling-bee", "partial-2026-11-22"),
       fixture("globle", "win-2026-11-22"),
       fixture("songless", "win-2026-11-22"),
+      // Spamle was captured on 2026-11-23, the day after the others; here it is filed on the harness's day.
+      { ...fixture("spamle", "win-2026-11-23"), date: "2026-11-22", puzzleNo: 12 },
     ],
     misses: [miss("mini", "The Mini saved no result while signed out. Sign in and open it once more to retry")],
     lastLogAt: LAST_LOG,

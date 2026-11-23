@@ -2,7 +2,7 @@
 import { gameForUrl } from "./games";
 import { startCapture, type ContentMessage } from "./page";
 
-/** Isolated world on the 9 game pages: capture, and answer the popup's Retry. */
+/** Isolated world on the 10 game pages: capture, and answer the popup's Retry. */
 const game = gameForUrl(location.href);
 if (game) {
   const send = (m: ContentMessage) => {

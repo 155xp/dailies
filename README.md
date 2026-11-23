@@ -17,7 +17,7 @@ Results stay in that browser profile only, so each person, and each profile, kee
 
 ## Games
 
-Krillion, Travle, enclose.horse, Wordle, Connections, Spelling Bee, Mini Crossword, Globle and Songless.
+Krillion, Travle, enclose.horse, Wordle, Connections, Spelling Bee, Mini Crossword, Globle, Songless and Spamle.
 See [docs/games.md](docs/games.md) for what each game records and where.
 
 ## Development

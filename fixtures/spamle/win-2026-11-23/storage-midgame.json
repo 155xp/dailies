@@ -1,0 +1,117 @@
+{
+  "localStorage": {
+    "spamle-dev": "REDACTED",
+    "spamle-edits": {
+      "at": 1795455335348,
+      "map": {
+        "13": [
+          "genres",
+          "pokemoves",
+          "grstart",
+          "hp",
+          "popunder1m"
+        ],
+        "14": [
+          "europe",
+          "mcmobs",
+          "sitcoms",
+          "ballsports",
+          "fruits"
+        ]
+      }
+    },
+    "spamle-leagues": "REDACTED",
+    "spamle-player": "REDACTED",
+    "spamle-v1": {
+      "mode": "daily",
+      "days": {
+        "2026-11-23": {
+          "rounds": [
+            {
+              "p": "genres",
+              "g": [
+                "pop",
+                "rock",
+                "jazz",
+                "antiphon",
+                "westcoasthiphop",
+                "chicagohouse",
+                "outsidermusic",
+                "brazilianjazz",
+                "gumbe",
+                "indigenousmusicofcanada"
+              ],
+              "w": [
+                "qzxv"
+              ],
+              "coin": 1795455338419,
+              "t": 1795455341138,
+              "dl": 1795455366750,
+              "done": true,
+              "s": [
+                1,
+                1,
+                1,
+                3,
+                3,
+                3,
+                3,
+                4,
+                4,
+                5
+              ],
+              "bonus": 10,
+              "inBonus": true,
+              "bdl": 1795455376757
+            },
+            {
+              "p": "pokemoves",
+              "g": [
+                "fire",
+                "water",
+                "electric",
+                "vicegrip",
+                "amnesia",
+                "assist",
+                "healorder",
+                "leafage",
+                "meteorassault",
+                "thunderclap",
+                "iceburn"
+              ],
+              "w": [],
+              "coin": 1795455380528,
+              "t": 1795455383162,
+              "dl": 1795455406761,
+              "done": true,
+              "s": [
+                1,
+                1,
+                1,
+                3,
+                3,
+                3,
+                3,
+                4,
+                4,
+                5,
+                3
+              ],
+              "bonus": 10,
+              "inBonus": true,
+              "bdl": 1795455416772
+            }
+          ],
+          "live": true
+        }
+      },
+      "prac": null,
+      "resets": {
+        "2026-11-11": 1
+      },
+      "trophyChecked": {},
+      "trophies": {},
+      "thinkTip": 1
+    }
+  }
+}

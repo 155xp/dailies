@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applyMiss, applyRecord, recordKey, type State } from "../../extension/src/store";
+import { applyMiss, applyRecord, recordKey, todayRows, type State } from "../../extension/src/store";
 import { PARSERS } from "../../src/parsers";
 import { loadCapture } from "../capture";
 
@@ -101,5 +101,54 @@ describe("misses against today's log", () => {
     const logged = merge(empty(), applyRecord(empty(), win, new Date(2026, 10, 22, 9, 0)));
     const miss = { game: "wordle" as const, date: "2026-11-23", reason: "x", at: new Date(2026, 10, 23, 9, 1).toISOString() };
     expect(applyMiss(logged, miss)?.misses).toEqual({ "wordle:2026-11-23": miss });
+  });
+});
+
+describe("Spamle: a revisit that reads storage before the page's words", () => {
+  it("keeps the logged names, writes nothing, and does not count the old Daily as logged on a later day", () => {
+    const full = loadCapture("spamle", "win-2026-11-23");
+    const named = PARSERS.spamle(full)!;
+    const loggedAt = new Date(2026, 10, 23, 12, 39);
+    const state = merge(empty(), applyRecord(empty(), named, loggedAt));
+    expect(named.detail.rounds[0]!.answers[4]!.answer).toBe("West Coast hip-hop");
+
+    // The next day the page is opened again. An allowlisted response lands before load, so the capture has
+    // storage and network but not the page snapshot: prompts are null and answers fall back to saved keys.
+    const bare = structuredClone(full);
+    Reflect.deleteProperty(bare, "page");
+    const early = PARSERS.spamle(bare)!;
+    expect(early.detail.rounds[0]!.answers[4]!.answer).toBe("westcoasthiphop");
+    const revisit = new Date(2026, 10, 24, 9, 0);
+    expect(applyRecord(state, early, revisit, false)).toBeNull();
+
+    // The load read, with the snapshot again, is the record already stored.
+    expect(applyRecord(state, named, revisit, true)).toBeNull();
+    expect(state.records[recordKey("spamle", "2026-11-23")]!.detail).toEqual(named.detail);
+    expect(state.loggedAt[recordKey("spamle", "2026-11-23")]).toBe(loggedAt.toISOString());
+    expect(state.lastLogAt).toBe(loggedAt.toISOString());
+    expect(todayRows(state, revisit).find((r) => r.game.id === "spamle")?.status).toBe("none");
+  });
+
+  it("still takes a later capture with more finished rounds, keeping the words it already had", () => {
+    // The same play after 2 of 5 rounds, with the snapshot.
+    const full = loadCapture("spamle", "win-2026-11-23");
+    const two = structuredClone(full);
+    const saved = two.localStorage!["spamle-v1"] as { days: Record<string, { rounds: unknown[] }> };
+    saved.days["2026-11-23"]!.rounds = saved.days["2026-11-23"]!.rounds.slice(0, 2);
+    const early = PARSERS.spamle(two)!;
+    expect(early).toMatchObject({ status: "partial", score: 59 });
+    const state = merge(empty(), applyRecord(empty(), early, new Date(2026, 10, 23, 12, 36)));
+
+    // The finished Daily, captured without the snapshot: the two known rounds keep their words.
+    Reflect.deleteProperty(full, "page");
+    const later = PARSERS.spamle(full)!;
+    const at = new Date(2026, 10, 23, 12, 39);
+    const next = merge(state, applyRecord(state, later, at));
+    const stored = next.records[recordKey("spamle", "2026-11-23")] as typeof later;
+    expect(stored).toMatchObject({ status: "won", score: 146 });
+    expect(stored.detail.rounds[0]!.answers[4]!.answer).toBe("West Coast hip-hop");
+    expect(stored.detail.rounds.map((r) => r.prompt)).toEqual(["Music genres", "Pokémon types and moves", null, null, null]);
+    expect(stored.detail.rounds[2]!.answers[0]!.answer).toBe("great");
+    expect(next.loggedAt[recordKey("spamle", "2026-11-23")]).toBe(at.toISOString());
   });
 });

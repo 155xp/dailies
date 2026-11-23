@@ -1,0 +1,121 @@
+{
+  "phase": "intro",
+  "puzzleNo": 13,
+  "today": "2026-11-23",
+  "rarityChip": {
+    "Common": {
+      "c": "#b8b4c8",
+      "i": "#1a1838"
+    },
+    "Uncommon": {
+      "c": "#5ddc6a",
+      "i": "#0b2e12"
+    },
+    "Rare": {
+      "c": "#7cc8ff",
+      "i": "#06263d"
+    },
+    "Epic": {
+      "c": "#b06cff",
+      "i": "#ffffff"
+    },
+    "Legendary": {
+      "c": "#ffd23f",
+      "i": "#3a2600"
+    }
+  },
+  "pointTag": {
+    "Common": "#c9c5da",
+    "Uncommon": "#5ddc6a",
+    "Rare": "#7cc8ff",
+    "Epic": "#c79bff",
+    "Legendary": "#ffd23f"
+  },
+  "shareRarity": [
+    {
+      "name": "Common",
+      "color": "#b8b4c8"
+    },
+    {
+      "name": "Uncommon",
+      "color": "#5ddc6a"
+    },
+    {
+      "name": "Rare",
+      "color": "#7cc8ff"
+    },
+    {
+      "name": "Epic",
+      "color": "#b06cff"
+    },
+    {
+      "name": "Legendary",
+      "color": "#ffd23f"
+    }
+  ],
+  "gumball": {
+    "Common": {
+      "light": "#b8b4c8",
+      "shade": "#7d7894"
+    },
+    "Uncommon": {
+      "light": "#5ddc6a",
+      "shade": "#2f9a3c"
+    },
+    "Rare": {
+      "light": "#7cc8ff",
+      "shade": "#3484c4"
+    },
+    "Epic": {
+      "light": "#b06cff",
+      "shade": "#6e34b8"
+    },
+    "Legendary": {
+      "light": "#ffe680",
+      "shade": "#d9a400"
+    }
+  },
+  "roundRating": [
+    {
+      "name": "Warm-up",
+      "color": "#8e88c9"
+    },
+    {
+      "name": "Not bad",
+      "color": "#ffd23f"
+    },
+    {
+      "name": "Good",
+      "color": "#ff9f1c"
+    },
+    {
+      "name": "Great",
+      "color": "#5dffb0"
+    },
+    {
+      "name": "Spamtastic",
+      "color": "#b18cff"
+    }
+  ],
+  "cssVars": {
+    "--bg": "#0d0b26",
+    "--panel": "#17143f",
+    "--line": "#2f2a6e",
+    "--well": "#0a0920",
+    "--ink": "#efeaff",
+    "--muted": "#a39dda",
+    "--accent": "#ffd23f",
+    "--accent-ink": "#1a1400",
+    "--good": "#5dffb0",
+    "--bad": "#ff5c8a",
+    "--cream": "#f2e6cf",
+    "--t0": "#8e88c9",
+    "--t1": "#ffd23f",
+    "--t2": "#ff9f1c",
+    "--t3": "#5dffb0",
+    "--t4": "#b18cff",
+    "--display": "\"Press Start 2P\", \"Courier New\", monospace",
+    "--body": "\"VT323\", \"Courier New\", monospace"
+  },
+  "doneScreen": false
+}
