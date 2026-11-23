@@ -151,6 +151,28 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
     expect(await bg(bars.nth(2))).toBe(rgb(palette.correct));
   });
 
+  test("Wordle: an unfinished game reads In progress and stays out of the finished-game distribution", async ({ page }) => {
+    const win = byGame("wordle");
+    const partial: RecordOf<"wordle"> = { ...win, date: "2026-11-23", status: "partial", score: 2, detail: { ...win.detail, guesses: win.detail.guesses.slice(0, 2), evaluations: win.detail.evaluations.slice(0, 2) } };
+    await openCards(page, { records: [partial], history: [win, partial] });
+    const c = card(page, "wordle");
+    await expect(c.locator("[data-figure] .figure")).toHaveText("In progress");
+    const bars = c.locator("[data-chart] [data-bar]");
+    await expect(bars.locator("xpath=self::*[@data-own]")).toHaveCount(0);
+    const heights = await bars.evaluateAll((els) => els.map((e) => e.getBoundingClientRect().height));
+    expect(heights.map((h) => h > 0)).toEqual([false, false, true, false, false, false, false]);
+  });
+
+  test("enclose.horse: the enclosed area follows portals, both into a far pocket and out to the edge", async ({ page }) => {
+    const e = byGame("enclose-horse");
+    const board = (map: string): RecordOf<"enclose-horse"> => ({ ...e, detail: { ...e.detail, map, cols: map.indexOf("\n"), rows: map.split("\n").length, walls: [] } });
+    await openCards(page, { records: [board("~~~~~~~\n~H1~1.~\n~~~~~~~")] });
+    const kinds = () => card(page, "enclose-horse").locator("[data-cell]").evaluateAll((els) => els.map((x) => x.getAttribute("data-cell")));
+    expect((await kinds())[12]).toBe("enclosed");
+    await openCards(page, { records: [board("~~~~~\n~H1~1\n~~~~~")] });
+    expect((await kinds()).filter((k) => k === "enclosed")).toEqual([]);
+  });
+
   test("Connections: a row per guess in the group colors, solved groups on their colors, mistakes", async ({ page }) => {
     await openCards(page);
     const record = byGame("connections");
