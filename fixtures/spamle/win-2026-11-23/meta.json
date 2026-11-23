@@ -1,0 +1,15 @@
+{
+  "game": "spamle",
+  "case": "win",
+  "sourceUrl": "https://spamle.com/",
+  "capturedAt": "2026-11-23T17:39:01.000Z",
+  "puzzleId": "Spamle #13 (Eastern day 2026-11-23)",
+  "sources": [
+    "share",
+    "localStorage",
+    "page",
+    "network",
+    "dom"
+  ],
+  "notes": "The full Daily, played through the game's own UI in a fresh signed-out profile: 5 of 5 rounds, 53 gumballs, 146 points, every round Spamtastic; one answer that did not count in round 1. The results screen and share text say TOP 5% of 2429 other finishers (from POST /rest/v1/rpc/day_totals). Spamle has no win or loss; win = all 5 rounds of the Daily played."
+}

@@ -1,0 +1,101 @@
+{
+  "localStorage": {
+    "spamle-dev": "REDACTED",
+    "spamle-edits": {
+      "at": 1795455255519,
+      "map": {
+        "13": [
+          "genres",
+          "pokemoves",
+          "grstart",
+          "hp",
+          "popunder1m"
+        ],
+        "14": [
+          "europe",
+          "mcmobs",
+          "sitcoms",
+          "ballsports",
+          "fruits"
+        ]
+      }
+    },
+    "spamle-leagues": "REDACTED",
+    "spamle-player": "REDACTED",
+    "spamle-v1": {
+      "mode": "daily",
+      "days": {
+        "2026-11-23": {
+          "rounds": [
+            {
+              "p": "genres",
+              "g": [
+                "pop",
+                "rock",
+                "jazz",
+                "antiphon",
+                "westcoasthiphop",
+                "chicagohouse"
+              ],
+              "w": [
+                "qzxv"
+              ],
+              "coin": 1795455258219,
+              "t": 1795455260884,
+              "dl": 1795455277504,
+              "done": true,
+              "s": [
+                1,
+                1,
+                1,
+                3,
+                3,
+                3
+              ],
+              "bonus": 10,
+              "inBonus": true,
+              "bdl": 1795455287511
+            },
+            {
+              "p": "pokemoves",
+              "g": [
+                "fire",
+                "water",
+                "electric",
+                "vicegrip",
+                "amnesia",
+                "assist",
+                "healorder"
+              ],
+              "w": [],
+              "coin": 1795455291322,
+              "t": 1795455293951,
+              "dl": 1795455310782,
+              "done": true,
+              "s": [
+                1,
+                1,
+                1,
+                3,
+                3,
+                3,
+                3
+              ],
+              "bonus": 10,
+              "inBonus": true,
+              "bdl": 1795455320792
+            }
+          ],
+          "live": true
+        }
+      },
+      "prac": null,
+      "resets": {
+        "2026-11-11": 1
+      },
+      "trophyChecked": {},
+      "trophies": {},
+      "thinkTip": 1
+    }
+  }
+}

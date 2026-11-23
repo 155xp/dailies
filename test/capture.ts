@@ -50,10 +50,13 @@ export function loadCapture(game: string, dir: string, file = "storage.json"): C
     if (storage.indexedDB) capture.indexedDB = flattenIndexedDB(storage.indexedDB as Json);
   }
 
+  // Values a game keeps only in page memory, read in the page by the hook (`page.json`, Spamle).
+  if (existsSync(join(base, "page.json"))) capture.page = { ...(readJson(join(base, "page.json")) as Json) };
+
   const net = join(base, "network");
   if (existsSync(net)) {
     capture.responses = [];
-    capture.page = {};
+    capture.page ??= {};
     for (const name of readdirSync(net).sort()) {
       const raw = readJson(join(net, name));
       if (raw && typeof raw === "object" && "gameData" in raw) {

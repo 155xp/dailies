@@ -1,0 +1,14 @@
+{
+  "game": "spamle",
+  "case": "partial",
+  "sourceUrl": "https://spamle.com/",
+  "capturedAt": "2026-11-23T17:35:16.000Z",
+  "puzzleId": "Spamle #13 (Eastern day 2026-11-23)",
+  "sources": [
+    "localStorage",
+    "page",
+    "network",
+    "dom"
+  ],
+  "notes": "2 of 5 rounds of the Daily played, then left on round 2's result screen: 13 gumballs, 27 points (Great, then Spamtastic). No share text: the game's only share control is on the finished-day screen. No percentile: the game compares only finished Dailies."
+}
