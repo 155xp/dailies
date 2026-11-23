@@ -4,6 +4,9 @@ import type { CardProps } from "./frame";
 import { PlaceholderCard } from "./placeholder";
 import { Krillion } from "./krillion";
 import { EncloseHorse } from "./enclose-horse";
+import { Wordle } from "./wordle";
+import { Connections } from "./connections";
+import { SpellingBee } from "./spelling-bee";
 
 export type { CardProps };
 
@@ -12,9 +15,9 @@ export const CARDS: Record<GameId, (props: CardProps) => JSX.Element> = {
   krillion: Krillion,
   travle: PlaceholderCard,
   "enclose-horse": EncloseHorse,
-  wordle: PlaceholderCard,
-  connections: PlaceholderCard,
-  "spelling-bee": PlaceholderCard,
+  wordle: Wordle,
+  connections: Connections,
+  "spelling-bee": SpellingBee,
   mini: PlaceholderCard,
   globle: PlaceholderCard,
   songless: PlaceholderCard,
