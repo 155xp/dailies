@@ -81,7 +81,7 @@ export type FakeMode = { kind: "state"; state: ExtState } | { kind: "invalid" } 
 function fakeExtension(initial: FakeMode) {
   let mode = initial;
   let attached = true;
-  const ext = { requests: 0, set, detach: () => (attached = false), post };
+  const ext = { requests: 0, set, swap: (next: FakeMode) => (mode = next), detach: () => (attached = false), post };
   function post() {
     if (!attached || mode.kind === "silent") return;
     const body = mode.kind === "invalid" ? { records: "not a list" } : { version: "0.0.0", ...mode.state };
