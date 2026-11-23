@@ -1,4 +1,4 @@
-import type { Parser } from "../types";
+import { KRILLION_TIER, type RecordParser } from "../record";
 import { findResponse, storageValue } from "./util";
 
 /** Tier colors from the game's CSS (`--tier-<tier>` on `:root`), default palette. */
@@ -13,6 +13,7 @@ export const KRILLION_TIERS: Record<string, string> = {
 };
 
 interface Answer {
+  promptId: string;
   promptText: string;
   rawAnswer: string | null;
   answer: string | null;
@@ -26,7 +27,17 @@ interface Dive {
   results: Answer[];
 }
 
-export const parseKrillion: Parser = (capture) => {
+/** `/api/answer-popularity` maps every accepted answer to a player count, per prompt. */
+type Popularity = Record<string, Record<string, number>>;
+
+function sharePct(popularity: Popularity | undefined, a: Answer): number | null {
+  const counts = popularity?.[a.promptId];
+  const count = a.answer && a.tier ? counts?.[a.answer] : undefined;
+  if (!counts || count === undefined) return null;
+  return (100 * count) / Object.values(counts).reduce((n, c) => n + c, 0);
+}
+
+export const parseKrillion: RecordParser<"krillion"> = (capture) => {
   const stats = storageValue(capture, "krillion:stats:v1") as
     | { lastPlayedDate?: string; history?: Record<string, Dive> }
     | undefined;
@@ -34,35 +45,33 @@ export const parseKrillion: Parser = (capture) => {
   const dive = date ? stats?.history?.[date] : undefined;
   if (!date || !dive) return null;
 
-  const guesses = dive.results.map((a) => {
-    const mark = a.tier ?? "miss";
+  const pop = findResponse(capture, new RegExp(`/api/answer-popularity\\?date=${date}$`))?.body as
+    | { prompts?: Popularity }
+    | undefined;
+  const complete = findResponse(capture, /\/api\/today\/complete$/);
+  const ranking =
+    (complete?.requestBody as { date?: string } | undefined)?.date === date
+      ? (complete?.body as { betterThan: number; dist: number[] })
+      : undefined;
+
+  const answers = dive.results.map((a) => {
+    const tier = KRILLION_TIER.safeParse(a.tier).data ?? null;
     return {
       prompt: a.promptText,
-      value: a.answer ?? a.rawAnswer ?? "",
-      mark,
-      color: KRILLION_TIERS[mark] ?? KRILLION_TIERS.miss!,
+      answer: a.answer ?? a.rawAnswer,
+      tier,
+      color: KRILLION_TIERS[tier ?? "miss"]!,
       points: a.score,
+      sharePct: sharePct(pop?.prompts, a),
     };
   });
 
-  const complete = findResponse(capture, /\/api\/today\/complete$/);
-  const sent = complete?.requestBody as { date?: string } | undefined;
-  const ranking = sent?.date === date ? (complete?.body as { betterThan: number; dist: number[] }) : undefined;
-
   return {
     game: "krillion",
-    puzzleId: date,
-    puzzleNumber: dive.dayNumber,
     date,
-    outcome: guesses.every((g) => g.mark !== "miss") ? "win" : "partial",
+    puzzleNo: dive.dayNumber,
+    status: answers.every((a) => a.tier) ? "won" : "partial",
     score: dive.score,
-    scoreUnit: "points",
-    maxScore: dive.results.length * 100,
-    guesses,
-    ...(ranking && {
-      percentile: ranking.betterThan,
-      distribution: ranking.dist.map((count, i) => ({ label: String(i), count })),
-    }),
-    ...(capture.share && { shareText: capture.share }),
+    detail: { answers, ...(ranking && { dist: ranking.dist, betterThan: ranking.betterThan }) },
   };
 };
