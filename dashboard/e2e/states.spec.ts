@@ -21,8 +21,19 @@ test.describe("3d states, type and motion", () => {
     });
   }
 
-  test("loading: reserved space with no data, then an answer within 300ms decides the state, without moving rows", async ({ page }, info) => {
+  test("loading: reserved space with no data; no answer within 300ms means not found", async ({ page }) => {
     await open(page, { ext: "none", clock: "frozen" });
+    await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
+    await page.clock.runFor(299);
+    await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
+    await page.clock.runFor(2);
+    await expect(page.locator("main")).toHaveAttribute("data-status", "missing");
+  });
+
+  // Not found now puts the install card above the list (dailies#5 walk), so rows move for that state on purpose;
+  // an answer with today's results must still leave every row where the loading state put it.
+  test("loading: reserved space with no data, then an answer with today's results within 300ms, without moving rows", async ({ page }, info) => {
+    await open(page, { ext: { kind: "silent" }, clock: "frozen" });
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
     await expect(page.locator(".rows .skel")).toHaveCount(9);
     await expect(page.locator(".pill.skel")).toHaveCount(1);
@@ -33,8 +44,8 @@ test.describe("3d states, type and motion", () => {
     const before = await tops();
     await page.clock.runFor(299);
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
-    await page.clock.runFor(2);
-    await expect(page.locator("main")).toHaveAttribute("data-status", "missing");
+    await page.evaluate((s) => (window as never as { __ext: { set(m: unknown): void } }).__ext.set({ kind: "state", state: s }), STATES.partial);
+    await expect(page.locator("main")).toHaveAttribute("data-status", "connected");
     expect(await tops()).toEqual(before);
   });
 

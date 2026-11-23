@@ -49,7 +49,7 @@ test.describe("3b extension states", () => {
     await open(page, { ext: withState(STATES.empty) });
     await expect(page.locator(".rows .status")).toHaveText(Array(9).fill("Not played yet"));
     await expect(page.locator(".pill")).toHaveText("Extension connected");
-    await expect(page.locator("h2")).toHaveText(["History"]);
+    await expect(page.locator("h2")).toHaveText(["Today", "History"]);
   });
 
   test("error: Couldn't read today's results with Try again, which recovers", async ({ page }) => {

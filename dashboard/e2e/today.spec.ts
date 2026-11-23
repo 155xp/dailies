@@ -6,11 +6,12 @@ const row = (page: import("@playwright/test").Page, id: string) => page.locator(
 const fine = (name: string) => !name.startsWith("390");
 
 test.describe("3a shell and today rows", () => {
-  test("title Today with the date, the extension pill at its right, in a left-aligned 1200px column", async ({ page }, info) => {
+  test("page title Dailies with the extension pill at its right; Today with the date over a left-aligned 1200px column", async ({ page }, info) => {
     await open(page, { ext: withState(STATES.partial) });
     const title = page.getByRole("heading", { level: 1 });
-    await expect(title).toHaveText("Today");
-    await expect(page.locator(".head .meta").first()).toHaveText("Sunday, November 22");
+    await expect(title).toHaveText("Dailies");
+    await expect(page.getByRole("heading", { level: 2, name: "Today" })).toBeVisible();
+    await expect(page.locator(".today-head .meta")).toHaveText("Sunday, November 22");
     const t = (await title.boundingBox())!;
     const pill = (await page.locator(".pill").boundingBox())!;
     expect(pill.x).toBeGreaterThan(t.x + t.width);
