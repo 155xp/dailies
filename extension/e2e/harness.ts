@@ -76,7 +76,7 @@ export async function serveFixture(context: BrowserContext, f: Fixture) {
 }
 
 function fixturePage(f: Fixture): string {
-  const data = JSON.stringify({ storage: f.storage, idb: f.idb, dom: f.dom, responses: f.responses.map(({ body: _b, ...r }) => r) });
+  const data = JSON.stringify({ storage: f.storage, idb: f.idb, dom: f.dom, responses: f.responses.map((r) => ({ url: r.url, method: r.method, requestBody: r.requestBody })) });
   return `<!doctype html><meta charset="utf-8"><title>fixture</title><body><main id="game">Playing</main>
 <script>${f.gameData ? `window.gameData = ${JSON.stringify(f.gameData)};` : ""}
 const FIX = ${data.replace(/</g, "\\u003c")};

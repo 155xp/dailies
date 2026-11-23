@@ -9,7 +9,7 @@ const WORK = new Set(["TimerInstall", "TimerFire", "FunctionCall", "EvaluateScri
 
 async function trace(cdp: CDPSession, ms: number) {
   const events: { name: string; ts: number; args?: { data?: { url?: string; type?: string } } }[] = [];
-  cdp.on("Tracing.dataCollected", (e) => events.push(...(e.value as typeof events)));
+  cdp.on("Tracing.dataCollected", (e) => events.push(...(e.value as unknown as typeof events)));
   await cdp.send("Tracing.start", { categories: "devtools.timeline,v8.execute", transferMode: "ReportEvents" });
   await new Promise((r) => setTimeout(r, ms));
   const done = new Promise((r) => cdp.once("Tracing.tracingComplete", r));

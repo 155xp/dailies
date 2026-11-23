@@ -59,7 +59,9 @@ describe("capture from what the hooks see", () => {
           Object.entries(full.localStorage ?? {}).map(([k, v]) => [k, typeof v === "string" ? v : JSON.stringify(v)]),
         );
         const responses = (full.responses ?? []).filter((r) => allowResponse(def, r.url));
-        const record = captureFrom(def, { storage, responses, page: full.page ?? {}, indexedDB: full.indexedDB ?? {} });
+        // The share text arrives through the clipboard or share-sheet hook when the player shares.
+        const share = def.share && full.share !== undefined ? { share: full.share } : {};
+        const record = captureFrom(def, { ...share, storage, responses, page: full.page ?? {}, indexedDB: full.indexedDB ?? {} });
 
         if (!LOGGED.has(id)) {
           expect(record).toBeNull();

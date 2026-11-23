@@ -12,7 +12,10 @@
     "dev:site": "vite dashboard",
     "build:site": "vite build dashboard",
     "typecheck:site": "tsc --noEmit -p dashboard",
-    "test:site": "playwright test -c dashboard/playwright.config.ts"
+    "test:site": "playwright test -c dashboard/playwright.config.ts",
+    "build:ext": "tsx extension/build.ts",
+    "typecheck:ext": "tsc --noEmit -p extension",
+    "test:ext": "playwright test -c extension/playwright.config.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
