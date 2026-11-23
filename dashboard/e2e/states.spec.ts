@@ -106,7 +106,7 @@ test.describe("3d states, type and motion", () => {
     await expect(disclosure).toHaveAttribute("aria-expanded", "true");
     const card = page.locator('.row[data-game="wordle"] .card');
     await expect(card.getByRole("link", { name: "Wordle" })).toHaveAttribute("target", "_blank");
-    await expect(card.locator(".figure")).toHaveText("3");
+    await expect(card.locator(".figure")).toHaveText("3/6");
     const anim = await card.evaluate((e) => { const s = getComputedStyle(e.parentElement!); return [s.animationName, s.animationDuration, s.animationTimingFunction]; });
     expect(anim).toEqual(["rise", "0.2s", "cubic-bezier(0.23, 1, 0.32, 1)"]);
     expect(await audit(page)).toEqual(CLEAN);

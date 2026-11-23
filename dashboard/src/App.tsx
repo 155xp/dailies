@@ -6,6 +6,7 @@ import { useExtension, type ExtensionState, type Miss } from "./bridge";
 import { CARDS } from "./cards";
 import { GAMES, type Game } from "./games";
 import { History } from "./HistoryGrid";
+import { Install } from "./Install";
 import { localDay, longDay } from "./history";
 import { result, tiles } from "./summary";
 
@@ -37,6 +38,7 @@ export function App() {
           <p className="meta">{longDay(today)}</p>
         </div>
         <Pill status={ext.status} lastLogAt={ext.lastLogAt} today={today} onClick={ext.request} />
+        <p className="meta local">Results stay in this browser only, with no sign-in and no upload.</p>
       </header>
 
       <ul className="rows">
@@ -47,7 +49,7 @@ export function App() {
 
       {ext.status === "loading" && <div className="history-skel skel" aria-hidden="true" />}
       {connected && <History log={log} today={today} />}
-      {ext.status === "missing" && <Install />}
+      {ext.status === "missing" && <Install check={ext.request} checking={ext.waiting} />}
       {ext.status === "error" && (
         <section className="notice" data-panel>
           <p>Couldn't read today's results</p>
@@ -135,23 +137,5 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
         </div>
       )}
     </li>
-  );
-}
-
-function Install() {
-  return (
-    <section className="notice install" data-panel>
-      <h2 className="section-title">Install the extension</h2>
-      <p className="quiet">Dailies reads your results from a small browser extension. Nothing leaves your browser.</p>
-      <ul className="steps">
-        <li>Download the extension and unzip it.</li>
-        <li>In Chrome, open chrome://extensions and turn on Developer mode.</li>
-        <li>Choose Load unpacked and pick the unzipped folder.</li>
-        <li>Come back to this page. It finds the extension on its own.</li>
-      </ul>
-      <a className="primary" href={__EXTENSION_URL__} download>
-        Download the extension
-      </a>
-    </section>
   );
 }
