@@ -1,0 +1,382 @@
+/* Per-game result cards. Game colors live only inside tiles and charts. */
+:root {
+  --bar: var(--ink-6);
+  --wordle-correct: #6aaa64;
+  --wordle-present: #c9b458;
+  --wordle-absent: #787c7e;
+  --wordle-ink: #000;
+  --wordle-absent-ink: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bar: #4a4945;
+    --wordle-correct: #538d4e;
+    --wordle-present: #b59f3b;
+    --wordle-absent: #3a3a3c;
+    --wordle-absent-ink: #fff;
+  }
+}
+
+.card {
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  border-radius: 8px;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* Game colored tiles: in dark, a 0.5px edge one step above the card. */
+.tile {
+  display: block;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+  font-style: normal;
+}
+
+.fig {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.figure {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.punct {
+  font-variant-numeric: normal;
+}
+
+.caption {
+  color: var(--ink-11);
+}
+
+/* Charts: whole on the first frame, 8px inner padding, nothing animates. */
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.plot {
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--ink-3);
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+
+.bars {
+  position: relative;
+  display: grid;
+  align-items: end;
+  height: 72px;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+
+.slot {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.slot > [data-bar] {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.slot > [data-own] {
+  box-shadow: inset 0 2px 0 var(--ink-12);
+}
+
+.slot > [data-active]:not([data-own]) {
+  outline: 1px solid var(--ink-10);
+  outline-offset: 1px;
+}
+
+.rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink-12);
+}
+
+/* Krillion */
+.krill {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.krill-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 16px;
+}
+
+.krill-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 12px;
+}
+
+.tier-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+}
+
+.swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+/* enclose.horse: board redrawn from the map. Sampled grass and water, the player's walls in ink. */
+.board {
+  display: grid;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.board > i {
+  position: relative;
+  background: #1b6b3a;
+}
+
+.board > [data-cell="water"] {
+  background: #062f48;
+}
+
+.board > .in {
+  background: color-mix(in srgb, #fff0b3 20%, #1b6b3a);
+}
+
+.board > [data-cell="wall"] {
+  background: var(--ink-12);
+}
+
+.board > [data-cell="fixed"] {
+  background: #777474;
+}
+
+.board > [data-cell="horse"]::after,
+.board > [data-cell="item"]::after {
+  content: "";
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.board > [data-cell="item"]::after {
+  inset: 32%;
+  background: #f1c40f;
+}
+
+.board > [data-glyph="C"]::after {
+  background: #e5484d;
+}
+
+.board > [data-glyph="S"]::after {
+  background: #bdbdbd;
+}
+
+.medal {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: #21201c;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Wordle */
+.wordle {
+  display: grid;
+  grid-template-columns: repeat(5, 44px);
+  gap: 5px;
+}
+
+.wordle > i {
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: var(--wordle-ink);
+  box-shadow: inset 0 0 0 1px var(--ink-6);
+}
+
+.wordle > [data-mark="correct"] {
+  background: var(--wordle-correct);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+.wordle > [data-mark="present"] {
+  background: var(--wordle-present);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+.wordle > [data-mark="absent"] {
+  background: var(--wordle-absent);
+  color: var(--wordle-absent-ink);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Connections */
+.conn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.conn-row {
+  display: grid;
+  grid-template-columns: repeat(4, 24px);
+  gap: 4px;
+}
+
+.conn-row > i {
+  height: 24px;
+  border-radius: 4px;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.group {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #000;
+}
+
+/* Spelling Bee */
+.ladder-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ladder {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 4px;
+  max-width: 320px;
+}
+
+.ladder > i {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ink-4);
+  box-shadow: none;
+}
+
+.ladder > [data-on] {
+  background: #f7da21;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Globle: wraps every 8 guesses, as the game's share does */
+.globle {
+  display: grid;
+  grid-template-columns: repeat(8, 28px);
+  gap: 4px;
+}
+
+.globle > i {
+  height: 28px;
+  border-radius: 4px;
+}
+
+.globle > [data-heat="unknown"] {
+  background: var(--ink-4);
+}
+
+/* Travle */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.chip {
+  font-size: 13px;
+  line-height: 20px;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Songless */
+.song {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.song-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 44px);
+  gap: 4px;
+}
+
+.song-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.song-step > i {
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.song-step > [data-state="unused"] {
+  background: var(--ink-4);
+  box-shadow: none;
+}
+
+/* The cards preview: a 2-column flow at desktop widths, each card hugging its content. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 16px 20px 20px;
+  }
+}
