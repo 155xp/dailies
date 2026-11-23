@@ -63,7 +63,7 @@ Fields for a finished dive (all in `krillion:stats:v1.history[date]`, proof `*/s
 | time | none (only the signed receipt's `issuedAt`, redacted) |
 | hints | none |
 | percentile | `POST /api/today/complete` returns `{sample, betterThan, dist[20]}`; shown as "better than 90%" (`*/network/today-complete.json`). Not stored locally. |
-| answer popularity | `GET /api/answer-popularity?date=` (trimmed copy in `*/network/answer-popularity.trimmed.json`) |
+| answer popularity | `GET /api/answer-popularity?date=` maps each answer to a player count per prompt (`*/network/answer-popularity.json`) |
 
 `krillion:game:v1` holds the dive in progress and is deleted when the dive ends (`*/storage-midgame.json`).
 `krillion:player:v1` is the anonymous player id (redacted).
@@ -314,8 +314,7 @@ How the extension reads it once the player is signed in on their own browser: a 
 stats either calls the same `latests` endpoint with the player's own cookies (`credentials: "include"`) or
 observes the page's own requests. It must drop the account id before saving anything.
 
-## Spec check (colors and save locations)
+## Capture check
 
-The design spec marks game colors and save locations as UNVERIFIED. The values above are the ones observed in
-the fixtures. This section has to be finished against the spec text, which could not be read while these
-fixtures were captured, so no item is marked confirmed or corrected yet.
+Every UNVERIFIED item from the design research (key names, selectors, colors, where the result is saved) is
+confirmed, corrected or left UNVERIFIED in [CAPTURE.md](CAPTURE.md), with a fixture source for each row.
