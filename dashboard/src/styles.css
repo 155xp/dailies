@@ -1,0 +1,156 @@
+/* Tokens: roles from the tactile recipe on a warm 12-step neutral (sand). */
+:root {
+  color-scheme: light dark;
+  --ground: rgb(98.5% 98.3% 97.9%);
+  --surface: #fff;
+  --ink-3: #f1f0ef;
+  --ink-4: #e9e8e6;
+  --ink-5: #e2e1de;
+  --ink-6: #dad9d6;
+  --ink-10: #6d6d67;
+  --ink-11: #63635e;
+  --ink-12: #21201c;
+  --red-11: #ce2c31;
+  --shadow-ink: 33 32 28;
+  --shadow-button: 0 1px 2px 0 rgb(var(--shadow-ink) / 0.12), 0 0 0 1px rgb(var(--shadow-ink) / 0.08);
+  --shadow-card: 0 0 0 1px rgb(var(--shadow-ink) / 0.07), 0 1px 2px 0 rgb(var(--shadow-ink) / 0.12),
+    0 3px 4px -2px rgb(var(--shadow-ink) / 0.08);
+  --shadow-tip: 0 0 0 1px rgb(var(--shadow-ink) / 0.08), 0 1px 2px 0 rgb(var(--shadow-ink) / 0.12),
+    0 4px 8px -4px rgb(var(--shadow-ink) / 0.16);
+  --primary-bg: var(--ink-12);
+  --primary-fg: #fdfdfc;
+  --primary-hover: color-mix(in srgb, var(--ink-12) 93%, #fff);
+  --row-hover: var(--ink-3);
+  --tile-edge: transparent;
+  --line: var(--ink-6);
+  --focus-ring: var(--ink-10);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --font: "Schibsted Grotesk", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: rgb(7.5% 7.5% 8%);
+    --surface: #1b1b1a;
+    --ink-3: #222221;
+    --ink-4: #2a2a28;
+    --ink-5: #31312e;
+    --ink-6: #3b3a37;
+    --ink-10: #8f8e87;
+    --ink-11: #b5b3ad;
+    --ink-12: #eeeeec;
+    --red-11: #ff9592;
+    --shadow-button: 0 0 0 0.5px var(--ink-6), 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-card: 0 0 0 0.5px var(--ink-6), 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 3px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-tip: 0 0 0 0.5px #494844, 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 8px -4px rgb(0 0 0 / 0.5);
+    --primary-fg: #111110;
+    --primary-hover: color-mix(in srgb, var(--ink-12) 93%, #000);
+    --row-hover: #1b1b1a;
+    --tile-edge: var(--ink-5);
+    --line: #2a2a28;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink-12);
+  font: 400 17px/26px var(--font);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.meta {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ink-11);
+}
+
+/* Layout: a 1200px data column, left-aligned. */
+.page {
+  max-width: calc(1200px + 96px);
+  padding: 48px 48px 64px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.link {
+  color: var(--ink-11);
+  text-decoration: underline 1px transparent;
+  text-underline-offset: 3px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition:
+    color 150ms var(--ease),
+    text-decoration-color 150ms var(--ease);
+}
+
+.link svg {
+  flex: none;
+  color: var(--ink-10);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--ink-12);
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 32px 20px 48px;
+  }
+}

@@ -1,0 +1,33 @@
+name: Dashboard
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck:site
+      - run: pnpm build:site
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:site
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-screens
+          path: |
+            dashboard/test-results
+            dashboard/playwright-report
+          if-no-files-found: ignore
