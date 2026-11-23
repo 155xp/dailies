@@ -27,11 +27,11 @@ export function Wordle({ record, history }: CardProps) {
       </div>
       {counts.some((n) => n > 0) && (
         <Bars
-        label="Your guess distribution"
-        bars={counts.map((n, i) => ({ label: i === 6 ? "X" : plural(i + 1, "guess", "guesses"), value: n }))}
-        own={slot(r)}
-        ownColor="var(--wordle-correct)"
-        readout={(b) => `${b.label}: ${plural(b.value, "game")}`}
+          label="Your guess distribution"
+          bars={counts.map((n, i) => ({ label: i === 6 ? "X" : plural(i + 1, "guess", "guesses"), value: n }))}
+          own={slot(r)}
+          ownColor="var(--wordle-correct)"
+          readout={(b) => `${b.label}: ${plural(b.value, "game")}`}
         />
       )}
     </Card>
