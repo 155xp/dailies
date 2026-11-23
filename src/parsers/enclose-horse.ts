@@ -1,4 +1,4 @@
-import type { Parser } from "../types";
+import type { RecordOf, RecordParser } from "../record";
 import { findResponse, storageValue } from "./util";
 
 /** Points for items inside the pen: cherry, golden apple, bee swarm. */
@@ -37,10 +37,12 @@ export function enclosure(map: string[], walls: number[]): { cells: number[]; sc
   return { cells, score: escaped ? 0 : score, escaped };
 }
 
-/** The game's medal cut-offs, by share of the optimal score. */
-export function medal(score: number, optimal: number): string {
+type Medal = RecordOf<"enclose-horse">["detail"]["medal"];
+
+/** The game's medal cut-offs, by share of the optimal score, named as its result screen keys them. */
+export function medal(score: number, optimal: number): Medal {
   const pct = score >= optimal ? 100 : (score / optimal) * 100;
-  return pct >= 100 ? "diamond" : pct >= 90 ? "gold" : pct >= 80 ? "silver" : "bronze";
+  return pct >= 100 ? "perfect" : pct >= 90 ? "gold" : pct >= 80 ? "silver" : "bronze";
 }
 
 interface Level {
@@ -52,51 +54,51 @@ interface Level {
 }
 
 interface Submitted {
-  score: number;
   rank: number;
   percentile: number;
   stats: { histogram: { minScore: number; maxScore: number; count: number }[] };
 }
 
-export const parseEncloseHorse: Parser = (capture) => {
+export const parseEncloseHorse: RecordParser<"enclose-horse"> = (capture) => {
   const level = findResponse(capture, /\/api\/daily\/\d{4}-\d{2}-\d{2}$/)?.body as Level | undefined;
   const subs = storageValue(capture, "enclose_submissions") as Record<string, { walls: number[]; score: number }> | undefined;
   const mine = level && subs?.[level.id];
   if (!level || !mine) return null;
 
-  const map = level.map.split("\n");
+  const rows = level.map.split("\n");
   const server = findResponse(capture, new RegExp(`/api/levels/${level.id}/submit$`))?.body as Submitted | undefined;
 
   return {
     game: "enclose-horse",
-    puzzleId: level.id,
-    puzzleNumber: level.dayNumber,
     date: level.dailyDate,
-    outcome: mine.score >= level.optimalScore ? "win" : "partial",
+    puzzleNo: level.dayNumber,
+    status: mine.score >= level.optimalScore ? "won" : "partial",
     score: mine.score,
-    scoreUnit: "points",
-    maxScore: level.optimalScore,
-    guesses: [],
-    rankLabel: medal(mine.score, level.optimalScore),
-    ...(server && {
-      rank: server.rank,
-      percentile: server.percentile,
-      distribution: server.stats.histogram.map((b) => ({
-        label: b.minScore === b.maxScore ? String(b.minScore) : `${b.minScore}-${b.maxScore}`,
-        count: b.count,
-      })),
-    }),
-    layout: {
-      cols: map[0]?.length ?? 0,
-      rows: map.length,
-      map,
-      placed: mine.walls,
-      enclosed: enclosure(map, mine.walls).cells,
+    detail: {
+      map: level.map,
+      cols: rows[0]?.length ?? 0,
+      rows: rows.length,
+      walls: mine.walls,
+      score: mine.score,
+      optimal: level.optimalScore,
+      medal: medal(mine.score, level.optimalScore),
+      histogram: server?.stats.histogram ?? null,
+      rank: server?.rank ?? null,
+      percentile: server?.percentile ?? null,
     },
-    ...(capture.share && { shareText: capture.share }),
   };
 };
 
-export function drawBoard(_detail: unknown): string {
-  throw new Error("not implemented");
+/**
+ * Text redraw of a finished board: `#` player wall, `+` enclosed grass, `.` open grass,
+ * items upper case inside the pen and lower case outside, other tiles as the map has them.
+ */
+export function drawBoard(detail: Pick<RecordOf<"enclose-horse">["detail"], "map" | "walls">): string {
+  const rows = detail.map.split("\n");
+  const inside = new Set(enclosure(rows, detail.walls).cells);
+  const walls = new Set(detail.walls);
+  const cols = rows[0]?.length ?? 0;
+  const draw = (tile: string, i: number) =>
+    walls.has(i) ? "#" : tile === "." ? (inside.has(i) ? "+" : ".") : "CGS".includes(tile) ? (inside.has(i) ? tile : tile.toLowerCase()) : tile;
+  return rows.map((row, r) => [...row].map((t, c) => draw(t, r * cols + c)).join("")).join("\n") + "\n";
 }

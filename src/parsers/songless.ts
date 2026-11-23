@@ -1,4 +1,4 @@
-import type { Parser } from "../types";
+import type { RecordParser } from "../record";
 import { findResponse } from "./util";
 
 /** Attempt row colors, from the game's computed board styles. */
@@ -17,7 +17,11 @@ interface Session {
   timestamp: string;
   state: string;
   game: string;
-  gameData: { guesses: number; board: { state: string; artist?: string; track?: string }[] };
+  gameData: {
+    guesses: number;
+    board: { state: string; artist?: string; track?: string }[];
+    answer?: { artist: string; track: string };
+  };
 }
 
 /** Distribution points are 1 to 5 attempts and 6 for failed; weights are relative. */
@@ -27,7 +31,12 @@ function topPercent(dist: { point: number; weight: number }[], point: number): n
   return Math.round((atLeast / total) * 1000) / 10;
 }
 
-export const parseSongless: Parser = (capture) => {
+/** Songless #1 was 2025-08-29, the first day in its archive (`network/archive-categories.json`). */
+const FIRST_DAY = Date.UTC(2025, 7, 29);
+
+type AttemptState = "correct" | "present" | "incorrect" | "skipped";
+
+export const parseSongless: RecordParser<"songless"> = (capture) => {
   const sessions = (capture.indexedDB?.["game-store/sessions"] ?? []) as Session[];
   const s = sessions
     .filter((x) => x.game === "songless" && x.state !== "ongoing")
@@ -39,26 +48,19 @@ export const parseSongless: Parser = (capture) => {
   const statsUrl = new RegExp(`/songless/stats\\?challengeDate=${s.challengeDate}&categoryId=${s.categoryId}$`);
   const stats = findResponse(capture, statsUrl)?.body as { daily?: { distribution: { point: number; weight: number }[] } } | undefined;
   const dist = stats?.daily?.distribution;
-  const number = capture.share?.match(/\[Songless #(\d+)\]/)?.[1];
 
   return {
     game: "songless",
-    puzzleId: `${s.challengeDate}/${s.categoryId}`,
-    ...(number && { puzzleNumber: Number(number) }),
     date: s.challengeDate,
-    outcome: won ? "win" : "loss",
+    puzzleNo: Math.round((Date.parse(s.challengeDate) - FIRST_DAY) / 86_400_000) + 1,
+    status: won ? "won" : "lost",
     score: s.gameData.guesses,
-    scoreUnit: "attempts",
-    maxScore: MAX_ATTEMPTS,
-    guesses: s.gameData.board.map((b) => ({
-      value: b.artist && b.track ? `${b.artist} - ${b.track}` : "",
-      mark: b.state,
-      color: SONGLESS_COLORS[b.state] ?? "",
-    })),
-    ...(dist && {
-      topPercent: topPercent(dist, won ? s.gameData.guesses : MAX_ATTEMPTS + 1),
-      distribution: dist.map((d) => ({ label: d.point > MAX_ATTEMPTS ? "failed" : String(d.point), count: d.weight })),
-    }),
-    ...(capture.share && { shareText: capture.share }),
+    detail: {
+      categoryId: s.categoryId,
+      board: s.gameData.board.map((b) => ({ state: b.state as AttemptState, artist: b.artist ?? null, track: b.track ?? null })),
+      answer: s.gameData.answer ? { artist: s.gameData.answer.artist, track: s.gameData.answer.track } : null,
+      topPercent: dist ? topPercent(dist, won ? s.gameData.guesses : MAX_ATTEMPTS + 1) : null,
+      distribution: dist ? dist.map((d) => d.weight) : null,
+    },
   };
 };
