@@ -164,7 +164,9 @@ test.describe("Travle map", () => {
       expect(b.x + b.width).toBeLessThanOrEqual(W + 0.5);
       expect(b.y + b.height).toBeLessThanOrEqual(H + 0.5);
     }
-    const span = (lo: (b: (typeof boxes)[0]) => number, hi: (b: (typeof boxes)[0]) => number) => Math.max(...boxes.map(hi)) - Math.min(...boxes.map(lo));
+    // Since dailies#15 the frame fits the guesses as well as the route, so the span is measured over both.
+    const frame = [...boxes, ...(await Promise.all(travleWin.detail.guesses.map((g) => bbox(map.locator(`path[data-country="${g.country}"]`)))))];
+    const span = (lo: (b: (typeof boxes)[0]) => number, hi: (b: (typeof boxes)[0]) => number) => Math.max(...frame.map(hi)) - Math.min(...frame.map(lo));
     expect(Math.max(span((b) => b.x, (b) => b.x + b.width) / W, span((b) => b.y, (b) => b.y + b.height) / H)).toBeGreaterThan(0.8);
   });
 

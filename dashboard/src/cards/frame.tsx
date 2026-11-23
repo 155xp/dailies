@@ -37,15 +37,16 @@ export function Card({ game, geo, single, children }: { game: GameId; geo?: stri
 }
 
 /**
- * The two columns a wide card splits into. The right one takes the chart first, then its caption. A card with no
+ * The two columns a wide card splits into. The right one takes the chart first, then its caption, then any `Side` part. A card with no
  * chart keeps its figure and drawing on the left and moves the lines after them to the right, so neither half is empty.
  */
 function split(children: ReactNode): [ReactNode[], ReactNode[]] {
   const parts = Children.toArray(children);
   const is = (part: ReactNode, type: unknown) => isValidElement(part) && part.type === type;
+  const lead = parts.filter((p) => is(p, Side));
   const chart = parts.filter((p) => is(p, Bars));
   const captions = parts.filter((p) => is(p, Caption));
-  if (chart.length || captions.length) return [parts.filter((p) => !is(p, Bars) && !is(p, Caption)), [...chart, ...captions]];
+  if (lead.length || chart.length || captions.length) return [parts.filter((p) => !is(p, Side) && !is(p, Bars) && !is(p, Caption)), [...chart, ...captions, ...lead]];
   return parts.length > 2 ? [parts.slice(0, 2), parts.slice(2)] : [parts, []];
 }
 
@@ -62,6 +63,9 @@ export function Figure({ game, value, label }: { game: GameId; value: string; la
     </div>
   );
 }
+
+/** A part a card sends to its right column, under the chart. */
+export const Side = ({ children }: { children: ReactNode }) => <>{children}</>;
 
 export const Caption = ({ children }: { children: string }) => (
   <p className="meta caption" data-caption>
