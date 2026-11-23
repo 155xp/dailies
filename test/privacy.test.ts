@@ -79,7 +79,7 @@ const BINARY = /\.(png|jpe?g|gif|webp|ico|webm|mp4|zip|woff2?|ttf)$/i;
 describe("privacy", () => {
   it("the matchers catch each kind of personal info and pass the allowed names", () => {
     // Built from pieces so this file does not trip its own scan.
-    const bad = ["/" + "home/someone/dailies", "C:" + "\\Users\\someone", "some.one" + "@" + "mail.example.org", "192.168" + ".1.20", "my-laptop" + ".local", "dashboard.my-own-site" + ".dev"];
+    const bad = ["/" + "home/someone/dailies", "C:" + "\\Users\\someone", "some.one" + "@" + "mail.example" + ".org", "192.168" + ".1.20", "my-laptop" + ".local", "dashboard.my-own-site" + ".dev"];
     for (const b of bad) expect(findPersonalInfo("x.md", b), b).not.toEqual([]);
     const fine = ["https://www.nytimes.com/games/wordle/index.html", "http://127.0.0.1/", "react@19.3.1", "test.info().project", "re.test(s)", "capture.page?.gameData", "capture.page = {};", "record.test.ts", "/home/<user>"];
     for (const f of fine) expect(findPersonalInfo("x.md", f), f).toEqual([]);
