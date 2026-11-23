@@ -155,14 +155,22 @@ test.describe("microinteractions on the unfinished card", () => {
     test(`Details opens with ${reduced ? "a 150ms fade under reduced motion" : "the 200ms card-slot rise"} and closes again`, async ({ page }) => {
       if (reduced) await page.emulateMedia({ reducedMotion: "reduce" });
       await openDashboard(page);
+      // Record the slot's animations the moment it is inserted: read after the click, a slow run can find them finished.
+      await page.evaluate(() => {
+        const w = window as unknown as { __slot?: unknown[] };
+        new MutationObserver((_, ob) => {
+          const el = document.querySelector(".card-slot");
+          if (!el) return;
+          ob.disconnect();
+          w.__slot = el.getAnimations().map((a) => ({
+            name: (a as CSSAnimation).animationName,
+            duration: (a.effect!.getTiming().duration as number),
+            props: [...new Set((a.effect as KeyframeEffect).getKeyframes().flatMap((k) => Object.keys(k).filter((p) => !["offset", "easing", "composite", "computedOffset"].includes(p))))].sort(),
+          }));
+        }).observe(document.body, { childList: true, subtree: true });
+      });
       await details(page).click();
-      const anims = await page.locator(".card-slot").evaluate((el) =>
-        el.getAnimations().map((a) => ({
-          name: (a as CSSAnimation).animationName,
-          duration: (a.effect!.getTiming().duration as number),
-          props: [...new Set((a.effect as KeyframeEffect).getKeyframes().flatMap((k) => Object.keys(k).filter((p) => !["offset", "easing", "composite", "computedOffset"].includes(p))))].sort(),
-        })),
-      );
+      const anims = await page.waitForFunction(() => (window as unknown as { __slot?: unknown[] }).__slot).then((h) => h.jsonValue());
       expect(anims).toEqual([reduced ? { name: "fade", duration: 150, props: ["opacity"] } : { name: "rise", duration: 200, props: ["opacity", "transform"] }]);
       await expect(details(page)).toHaveAttribute("aria-expanded", "true");
       await settle(page);
@@ -188,6 +196,8 @@ test.describe("microinteractions on the unfinished card", () => {
     expect(await ring()).toEqual({ visible: true, outline: expect.not.stringMatching(/^none$/), text: "Globle" });
     const c = card(page);
     await ready(c);
+    // The map settles in over 200ms once its chunk lands, after the settle above; measure where the pins come to rest.
+    await settle(page);
     // Card size and pin spots relative to the card, since hovering may scroll the page.
     const still = async () => {
       const m = await c.evaluate(measure);
