@@ -20,8 +20,8 @@ export function storageMatch(capture: Capture, pattern: RegExp): unknown {
 }
 
 /** The last response whose URL matches `pattern`, so later polls win over earlier ones. */
-export function findResponse(capture: Capture, pattern: RegExp): CapturedResponse | undefined {
-  return capture.responses?.filter((r) => pattern.test(r.url)).at(-1);
+export function findResponse(capture: Capture, pattern: RegExp, method?: string): CapturedResponse | undefined {
+  return capture.responses?.filter((r) => pattern.test(r.url) && (!method || r.method === method)).at(-1);
 }
 
 /** The latest saved state of an NYT game, signed in (`/<account id>`) or out (`/ANON`). */
