@@ -4,7 +4,8 @@ This file records, for every game `dailies` tracks, what the game itself saves f
 Every field listed here is backed by a captured fixture under `fixtures/<game>/`. A field with no fixture is
 marked "from game code, not captured" or "none".
 
-All captures were made on 2026-11-22 (US Eastern evening) in a fresh, signed-out headless Chromium profile.
+All captures were made on 2026-11-22 (US Eastern evening) in a fresh, signed-out headless Chromium profile;
+Spamle, added later, was captured the same way on 2026-11-23 (US Eastern midday).
 Preference order for sources: the game's own share text, then its localStorage / IndexedDB state, then its
 network responses, and only then the DOM.
 
@@ -28,6 +29,7 @@ Emoji in share text are described by name in this document. The exact bytes are 
 | Mini Crossword (NYT) | https://www.nytimes.com/crosswords/game/mini | nothing signed out (gated) | gated (x2) | none signed out |
 | Globle | https://globle-game.com | localStorage `guesses`, `statistics` | win, partial | none |
 | Songless (lessgames) | https://lessgames.com/songless | IndexedDB `game-store` / `sessions` | win, loss | yes, today only (`/songless/stats`) |
+| Spamle | https://spamle.com/ | localStorage `spamle-v1`, plus words from page memory | win, partial | yes, finished Daily only (`/rest/v1/rpc/day_totals`) |
 
 Songle: not tracked. lessgames.com lists Wordless, Songless, Spelling Bee, More/less, Clueless and Guessless
 (sitemap adds Mapless), and `https://lessgames.com/songle` returns 404. Other things named Songle are an iOS
@@ -295,6 +297,82 @@ Colors (`dom-colors.json`): correct rgb(85,183,37), right artist wrong song rgb(
 rgb(198,33,33), skipped rgb(48,52,54).
 
 Where results are saved: IndexedDB `game-store`, store `sessions`. localStorage holds settings only.
+
+## Spamle
+
+- URL used: `https://spamle.com/` ("Name as many as you can. Rarer answers are worth more!"). Only the Daily is
+  tracked: 5 categories a day. Not tracked: Practice, the Archive (replays of past Dailies), the tutorial.
+- Puzzle id: the US Eastern date (`today` in the page is `America/New_York`), numbered from Daily #1 on 2026-11-11:
+  2026-11-23 is Spamle #13 (`dayNo`, share text `Spamle #13`). New prompts at midnight Eastern.
+- How a round runs (from the page code): 10 s to think (tap to skip), then a 7 s answer clock that each right
+  answer resets. The clock really runs 8 s: it shows 7.0 and its last 2 shown seconds take 3 real seconds. Each
+  right answer also banks bonus seconds equal to its points, up to 10 s, spent once when the clock runs out;
+  answers in bonus time score but add no time. A right answer still in the box at zero counts.
+- Capture: share (clipboard), localStorage, page memory, network, DOM. No IndexedDB. Both cases were played
+  through the game's own page in a fresh signed-out profile, typing answers into its box.
+- Cases: `win-2026-11-23` (all 5 rounds, 53 gumballs, 146 points, TOP 5%), `partial-2026-11-23` (2 of 5 rounds,
+  13 gumballs, 27 points). Spamle has no win or loss; as with Krillion, "win" is the whole Daily played and
+  "partial" is fewer rounds. A round still running is left out until it ends.
+
+Fields (proof `*/storage.json` unless noted):
+
+| Field | Where |
+|---|---|
+| the day's rounds | `spamle-v1.days[<Eastern date>].rounds[]`, in play order |
+| Daily played live | `days[date].live: true`, set when a Daily round ends; Archive replays never set it, so the parser takes the latest live day |
+| round finished | `rounds[i].done` |
+| prompt | `rounds[i].p`, an id (`genres`). The text ("Music genres") is only in page memory: `page.json` |
+| right answers | `rounds[i].g`, normalized keys in the order given (`westcoasthiphop`); display names ("West Coast hip-hop") only in page memory |
+| points per answer, rarity | `rounds[i].s[j]`, 1 to 5 = Common, Uncommon, Rare, Epic, Legendary; written with each answer |
+| answers that did not count | `rounds[i].w`, the typed text (the record keeps only the count) |
+| bonus banked | `rounds[i].bonus` (seconds, at most 10) |
+| round points, day score | sum of `s`; the day's score counts finished rounds only (`dayTotal`), 146 and 27 |
+| gumballs | count of `g` over finished rounds (share text "53 gumballs") |
+| round rating and targets | not stored; the page's `targets(P[id])` gives `{ok, good, great, top}` and the rating is the highest reached: Warm-up, Not bad, Good, Great, Spamtastic (`page.json`, `win-2026-11-23/dom.html`) |
+| possible answers | not stored; `P[id].ans.length` (`page.json`) |
+| percentile | `POST /rest/v1/rpc/day_totals` returns every other finisher's total for the page's day (`*/network/day-totals.json`, 2,429 numbers). Better than = (below + ties / 2) / n; shown as `TOP max(1, 100 - better)%`, "#1 TODAY" when every other total is lower, "FIRST TO FINISH" with none. The parser reproduces TOP 5%. |
+| distribution | the same totals plus this player in 50-point buckets, the last 450 and up: the game's "where you landed" hill |
+| which day the totals are for | `day_totals` takes no date. The leaderboard call in the same page names it (`/rest/v1/scores?day=eq.<date>&select=...`, `*/network/scores-board.trimmed.json`); totals count only when it matches the record's day |
+| time, hints, streak | none recorded (the streak on screen is counted from `days`) |
+
+Page memory (`*/page.json`): Spamle saves ids only. The extension's page-world hook reads, for the latest live
+Daily's prompts only, the prompt text, the number of possible answers, the targets and the names of the answers
+given, from the page's own top-level `P` and `targets` (`extension/src/spamle-page.ts`). It does this with each
+`spamle-v1` write and once at load. Without it a record still saves, with prompt ids and answer keys in place of
+words; a later read fills them in.
+
+Colors (`win-2026-11-23/colors.json`, computed in the page):
+
+| Rarity | Points | Color (`.r1`-`.r5`, `RAR`) | Gumball shade (`BALL`) | Share emoji |
+|---|---|---|---|---|
+| Common | 1 | #b8b4c8 | #7d7894 | white circle |
+| Uncommon | 2 | #5ddc6a | #2f9a3c | green circle |
+| Rare | 3 | #7cc8ff | #3484c4 | blue circle |
+| Epic | 4 | #b06cff | #6e34b8 | purple circle |
+| Legendary | 5 | #ffd23f | #d9a400 (ball body #ffe680) | yellow circle |
+
+Round ratings (`--t0`-`--t4`): Warm-up #8e88c9, Not bad #ffd23f, Good #ff9f1c, Great #5dffb0, Spamtastic #b18cff;
+the share and results screen draw them as white, yellow, orange, green and purple squares. The page is dark only
+(`--bg` #0d0b26) and set in Press Start 2P and VT323.
+
+Rarity comes from where an answer sits in its category's list (best known first): top 10% Common, next 15%
+Uncommon (capped at 40 and 100 answers on big lists), next 40% Rare, next 25% Epic, last 10% Legendary; the last
+answer is always Legendary and the one before at least Epic. The page code also lowers an answer's rarity once 10
+or more players have named it often, but on spamle.com that table stays empty (a code comment says it feeds
+another build of the game), so there rarity is by list position. The record keeps the points the game saved.
+
+Share text: `Spamle #13`, then a candy and `53 gumballs · 146 pts · TOP 5%`, five lines `<emoji> <n> <Rarity>`,
+then `spamle.com/?from=share`. The only share control is "Copy my result" on the finished Daily; a partial day has
+none. The rank part is left out when there is no TOP % or #1.
+
+Where results are saved: localStorage `spamle-v1` (all days, durable). Other keys are not read: `spamle-player`
+(anonymous id and secret), `spamle-dev` (device id), `spamle-leagues`, `spamle-yest` (yesterday's popular answers),
+`spamle-edits` (the schedule). Ids are redacted in the fixtures. Signed out, without a leaderboard name, the score
+is not submitted to the board; each finished round is logged (`/rpc/log_round`, `network/log-round.json`).
+
+UNVERIFIED: a player with a leaderboard name or account who played on another device gets that day's rounds copied
+in with `?0`-style keys and no `live` flag. Such a day is not logged on the second device; the first one logs it.
+"#1 TODAY" and "FIRST TO FINISH" are from the page code, not captured.
 
 ## NYT games: signed-in players
 
