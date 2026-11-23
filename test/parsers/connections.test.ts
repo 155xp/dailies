@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { parseConnections } from "../../src/parsers/connections";
+import { CONNECTIONS_LEVELS, parseConnections } from "../../src/parsers/connections";
 import { loadCapture } from "../capture";
 
-const SQUARE: Record<string, string> = { "🟨": "yellow", "🟩": "green", "🟦": "blue", "🟪": "purple" };
+const SQUARE: Record<string, number> = { "🟨": 0, "🟩": 1, "🟦": 2, "🟪": 3 };
 
-function shareRows(share: string): string[][] {
+function shareRows(share: string): number[][] {
   return share
     .split("\n")
     .filter((l) => /^[🟨🟩🟦🟪]{4}$/u.test(l))
-    .map((l) => [...l].map((c) => SQUARE[c] ?? "?"));
+    .map((l) => [...l].map((c) => SQUARE[c] ?? -1));
 }
 
 describe("parseConnections", () => {
@@ -18,43 +18,33 @@ describe("parseConnections", () => {
   it("reads a win with one mistake", () => {
     expect(parseConnections(win)).toMatchObject({
       game: "connections",
-      puzzleId: "1370",
-      puzzleNumber: 1260,
       date: "2026-11-22",
-      outcome: "win",
+      puzzleNo: 1260,
+      status: "won",
       score: 1,
-      scoreUnit: "mistakes",
-      maxScore: 4,
+      detail: { mistakes: 1 },
     });
   });
 
-  it("keeps every guess in order with its words and group colors", () => {
-    const [first, second] = parseConnections(win)?.guesses ?? [];
-    expect(first).toMatchObject({ value: "SEA, GUM, HOST, MASS", mark: "one away" });
-    expect(first?.parts?.map((p) => [p.value, p.mark, p.color])).toEqual([
-      ["SEA", "yellow", "#f9df6d"],
-      ["GUM", "blue", "#b0c4ef"],
-      ["HOST", "yellow", "#f9df6d"],
-      ["MASS", "yellow", "#f9df6d"],
-    ]);
-    expect(second).toMatchObject({ value: "SEA, SLEW, HOST, MASS", mark: "correct" });
+  it("keeps every guess in order with its words", () => {
+    const words = parseConnections(win)?.detail.guesses.map((g) => g.words.join(", "));
+    expect(words?.slice(0, 2)).toEqual(["SEA, GUM, HOST, MASS", "SEA, SLEW, HOST, MASS"]);
   });
 
   it("matches the share text row for row", () => {
     for (const capture of [win, loss]) {
-      const rows = parseConnections(capture)?.guesses.map((g) => g.parts?.map((p) => p.mark));
-      expect(rows).toEqual(shareRows(capture.share ?? ""));
+      expect(parseConnections(capture)?.detail.guesses.map((g) => g.levels)).toEqual(shareRows(capture.share ?? ""));
     }
+  });
+
+  it("exports the game's group colors by level", () => {
+    expect(CONNECTIONS_LEVELS.map((l) => l.color)).toEqual(["#f9df6d", "#a0c35a", "#b0c4ef", "#ba81c5"]);
   });
 
   it("reads a loss with four mistakes", () => {
     const r = parseConnections(loss);
-    expect(r).toMatchObject({ outcome: "loss", score: 4 });
-    expect(r?.guesses.map((g) => g.mark)).toEqual(["correct", "one away", "one away", "one away", "incorrect"]);
-  });
-
-  it("reports no distribution signed out (fixtures/connections/win-2026-11-22/dom.html)", () => {
-    expect(parseConnections(win)?.distribution).toBeUndefined();
+    expect(r).toMatchObject({ status: "lost", score: 4 });
+    expect(r?.detail.guesses.map((g) => g.correct)).toEqual([true, false, false, false, false]);
   });
 
   it("returns null when there is no Connections state", () => {

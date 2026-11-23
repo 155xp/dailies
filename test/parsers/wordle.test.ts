@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseWordle } from "../../src/parsers/wordle";
+import { WORDLE_COLORS, parseWordle } from "../../src/parsers/wordle";
 import { loadCapture } from "../capture";
 
 const SQUARE: Record<string, string> = { "🟩": "correct", "🟨": "present", "⬜": "absent", "⬛": "absent" };
@@ -17,54 +17,38 @@ describe("parseWordle", () => {
   const loss = loadCapture("wordle", "loss-2026-11-22");
 
   it("reads a win from storage and the puzzle response", () => {
-    const r = parseWordle(win);
-    expect(r).toMatchObject({
+    expect(parseWordle(win)).toMatchObject({
       game: "wordle",
-      puzzleId: "4823",
-      puzzleNumber: 1982,
       date: "2026-11-22",
-      outcome: "win",
+      puzzleNo: 1982,
+      status: "won",
       score: 3,
-      scoreUnit: "guesses",
-      maxScore: 6,
+      detail: { guesses: ["under", "spend", "upend"], hardMode: false },
     });
-    expect(r?.guesses.map((g) => g.value)).toEqual(["under", "spend", "upend"]);
-    expect(r?.guesses.map((g) => g.mark)).toEqual(["incorrect", "incorrect", "correct"]);
   });
 
   it("grades every letter the same way the share text does", () => {
     for (const capture of [win, loss]) {
-      const r = parseWordle(capture);
-      expect(r?.guesses.map((g) => g.parts?.map((p) => p.mark))).toEqual(shareMarks(capture.share ?? ""));
+      expect(parseWordle(capture)?.detail.evaluations).toEqual(shareMarks(capture.share ?? ""));
     }
   });
 
-  it("uses the game's tile colors", () => {
-    const first = parseWordle(win)?.guesses[0]?.parts;
-    expect(first?.map((p) => [p.value, p.color])).toEqual([
-      ["u", "#6aaa64"],
-      ["n", "#c9b458"],
-      ["d", "#c9b458"],
-      ["e", "#c9b458"],
-      ["r", "#787c7e"],
-    ]);
+  it("exports the game's light-mode tile colors", () => {
+    expect(WORDLE_COLORS).toEqual({ correct: "#6aaa64", present: "#c9b458", absent: "#787c7e" });
   });
 
   it("reads a loss", () => {
-    const r = parseWordle(loss);
-    expect(r).toMatchObject({ outcome: "loss", score: 6, puzzleId: "4823" });
-    expect(r?.guesses.map((g) => g.value)).toEqual(["crane", "moist", "blimp", "hound", "fudge", "weary"]);
+    expect(parseWordle(loss)).toMatchObject({
+      status: "lost",
+      score: 6,
+      detail: { guesses: ["crane", "moist", "blimp", "hound", "fudge", "weary"] },
+    });
   });
 
   it("falls back to share squares when the puzzle response is missing", () => {
     const r = parseWordle({ ...win, responses: [] });
-    expect(r?.guesses[0]?.parts?.map((p) => p.mark)).toEqual(["correct", "present", "present", "present", "absent"]);
-    expect(r?.puzzleNumber).toBe(1982);
-  });
-
-  it("reports no distribution signed out (fixtures/wordle/win-2026-11-22/dom.html)", () => {
-    expect(parseWordle(win)?.distribution).toBeUndefined();
-    expect(parseWordle(win)?.percentile).toBeUndefined();
+    expect(r?.detail.evaluations[0]).toEqual(["correct", "present", "present", "present", "absent"]);
+    expect(r?.puzzleNo).toBe(1982);
   });
 
   it("returns null when there is no Wordle state", () => {
