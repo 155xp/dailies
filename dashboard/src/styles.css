@@ -80,13 +80,15 @@ h1,
 h2,
 h3,
 p,
-ul {
+ul,
+ol {
   margin: 0;
   padding: 0;
   font: inherit;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
 }
 
@@ -117,30 +119,30 @@ button {
   padding: 48px 48px 64px;
 }
 
-.head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 48px;
-  margin-bottom: 24px;
-}
-
-.head > div {
-  flex: none;
-}
-
-/* The local-only note takes its own line under the title and date, without widening the title column. */
+/* The page title and the extension pill share a line; what Dailies does sits under them, full width. */
 .head {
   display: grid;
   grid-template-columns: max-content minmax(0, max-content);
-  row-gap: 2px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px 16px;
+  margin-bottom: 32px;
 }
 
-.local {
+.what {
   grid-column: 1 / -1;
+  max-width: 720px;
   contain: inline-size;
   text-wrap: pretty;
+}
+
+/* Today: its title and date over the rows, with the one-line nudge between them once connected. */
+.today-head {
+  margin-bottom: 12px;
+}
+
+.hint {
+  margin-bottom: 12px;
 }
 
 .title {
@@ -376,6 +378,7 @@ button {
 
 .install {
   max-width: 800px;
+  margin: 0 0 40px;
 }
 
 .steps {
@@ -407,8 +410,21 @@ button {
   grid-area: text;
 }
 
-.step > :is(a, button) {
+.step > :is(a, button, .act) {
   grid-area: action;
+}
+
+/* An action with a short note beside it; the note drops under the button when there is no room. */
+.act {
+  justify-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.act > .meta {
+  flex: 1 1 200px;
 }
 
 .shot {
@@ -596,6 +612,25 @@ button {
   }
 }
 
+/* Blocks that come and go with the extension's state: in 200ms with a 4px rise, out 120ms. */
+.enter {
+  transition:
+    opacity 200ms var(--ease),
+    transform 200ms var(--ease);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.enter[data-leaving] {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition-duration: 120ms;
+  pointer-events: none;
+}
+
 /* Hover: color only, fine pointers only. */
 @media (hover: hover) and (pointer: fine) {
   .line:hover {
@@ -642,7 +677,7 @@ button {
   }
 
   .head {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
   .pill {
@@ -738,6 +773,21 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .card-slot {
     animation: fade 150ms var(--ease);
+  }
+
+  .enter,
+  .enter[data-leaving] {
+    transition: opacity 150ms var(--ease);
+  }
+
+  .enter[data-leaving] {
+    transform: none;
+  }
+
+  .enter {
+    @starting-style {
+      transform: none;
+    }
   }
 
   .pill:active,

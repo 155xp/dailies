@@ -5,7 +5,7 @@ import { BASE, serve } from "./harness";
 test("the built site loads from a nested path on any host, with no other requests", async ({ page }) => {
   const external = await serve(page);
   await page.goto(BASE);
-  await expect(page.getByRole("heading", { level: 1, name: "Today" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Dailies" })).toBeVisible();
   const links = page.locator(".row a.link");
   await expect(links).toHaveCount(9);
   expect(await links.allTextContents()).toEqual(GAMES.map((g) => g.name));

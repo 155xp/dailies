@@ -6,13 +6,15 @@ type Ext = { __ext: { set(m: unknown): void; swap(m: unknown): void } };
 const steps = (page: Page) => page.locator(".install .step");
 
 test.describe("5a install steps", () => {
-  test("Extension not found shows exactly 3 plain-word steps, each with a link or button and a screenshot", async ({ page }, info) => {
+  test("Extension not found shows exactly 4 plain-word steps, the first three each with a link or button and a screenshot", async ({ page }, info) => {
     await open(page, { ext: "none" });
     await expect(page.locator(".pill")).toHaveText("Extension not found");
-    await expect(steps(page)).toHaveCount(3);
+    await expect(steps(page)).toHaveCount(4);
     await expect(steps(page).nth(0)).toContainText(/Download the extension.*unzip/);
     await expect(steps(page).nth(1)).toContainText(/chrome:\/\/extensions.*Developer mode/);
     await expect(steps(page).nth(2)).toContainText(/Load unpacked/);
+    await expect(steps(page).nth(3)).toContainText(/pin Dailies/);
+    await expect(steps(page).nth(3).locator("a, button, img")).toHaveCount(0);
 
     const download = steps(page).nth(0).getByRole("link", { name: "Download the extension" });
     await expect(download).toHaveAttribute("href", /(^|\/)dailies-extension\.zip$/);
@@ -69,7 +71,7 @@ test.describe("5a install steps", () => {
 
   test("a late state from the content script swaps the steps for today's rows without a reload", async ({ page }) => {
     await open(page, { ext: { kind: "silent" } });
-    await expect(steps(page)).toHaveCount(3);
+    await expect(steps(page)).toHaveCount(4);
     await page.evaluate(() => ((window as unknown as { sameDocument: number }).sameDocument = 1));
     // The extension is installed now and its content script announces itself, unasked.
     await page.evaluate((s) => (window as never as Ext).__ext.set({ kind: "state", state: s }), STATES.partial);
@@ -82,7 +84,7 @@ test.describe("5a install steps", () => {
 
   test("with no fake at all, a state posted later by a newly injected content script is picked up", async ({ page }) => {
     await open(page, { ext: "none" });
-    await expect(steps(page)).toHaveCount(3);
+    await expect(steps(page)).toHaveCount(4);
     await page.evaluate((s) => window.postMessage({ source: "dailies-extension", type: "state", version: "0.1.0", ...s }, location.origin), STATES.empty);
     await expect(page.locator(".install")).toHaveCount(0);
     await expect(page.locator(".rows .status")).toHaveText(Array(9).fill("Not played yet"));

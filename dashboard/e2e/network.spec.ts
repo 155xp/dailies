@@ -3,7 +3,8 @@ import { BASE, open, ORIGIN, STATES, withState, type OpenOptions } from "./harne
 
 type Ext = { __ext: { set(m: unknown): void } };
 
-const NOTE = "Results stay in this browser only, with no sign-in and no upload.";
+/** The local-only note, merged into the line under the title that says what Dailies does (dailies#5 walk). */
+const NOTE = "Logs your daily word and map games from their own sites, in this browser only, with no sign-in and no upload.";
 
 const SCENES: Record<string, OpenOptions> = {
   loading: { ext: "none", clock: "frozen" },
@@ -30,7 +31,7 @@ test.describe("5b local only", () => {
       const urls = record(page);
       const { external } = await open(page, opts);
       if (name !== "loading") {
-        const note = page.locator(".local");
+        const note = page.locator(".what");
         await expect(note).toHaveText(NOTE);
         const [h1, n] = [(await page.locator("h1").boundingBox())!, (await note.boundingBox())!];
         expect(n.y).toBeGreaterThan(h1.y + h1.height - 1);
@@ -54,7 +55,7 @@ test.describe("5b local only", () => {
     await page.waitForTimeout(400);
     await page.evaluate((s) => (window as never as Ext).__ext.set({ kind: "state", state: s }), STATES.done);
     await expect(page.locator("main")).toHaveAttribute("data-status", "connected");
-    await expect(page.locator(".local")).toHaveText(NOTE);
+    await expect(page.locator(".what")).toHaveText(NOTE);
     expect(offOrigin(urls)).toEqual([]);
     expect(external).toEqual([]);
   });
