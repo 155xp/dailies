@@ -381,3 +381,57 @@
     padding: 16px 20px 20px;
   }
 }
+
+/* Spelling Bee hive: flat-topped hexagons, the center letter on the Bee yellow. */
+.card .hive {
+  position: relative;
+  width: 148px;
+  height: 152px;
+}
+
+.card .hive > i {
+  position: absolute;
+  width: 56px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-style: normal;
+  color: var(--ink-12);
+  background: var(--ink-4);
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+
+.card .hive > [data-center] {
+  background: #f7da21;
+  color: #000;
+}
+
+.card .bee-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  color: var(--ink-11);
+}
+
+/* One weight: a pangram is marked by ink and a thin underline. */
+.card .bee-words > [data-pangram] {
+  color: var(--ink-12);
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
+}
+
+/* Mini: the 5 by 5 outline only, since the record holds no letters. */
+.card .mini-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 28px);
+  grid-auto-rows: 28px;
+  gap: 1px;
+  width: fit-content;
+  background: var(--ink-6);
+  box-shadow: 0 0 0 1px var(--ink-10);
+}
+
+.card .mini-grid > i {
+  background: var(--surface);
+}
