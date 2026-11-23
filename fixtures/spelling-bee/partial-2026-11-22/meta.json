@@ -1,0 +1,13 @@
+{
+  "game": "spelling-bee",
+  "case": "partial",
+  "sourceUrl": "https://www.nytimes.com/puzzles/spelling-bee",
+  "capturedAt": "2026-11-23T00:13:33.807Z",
+  "puzzleId": "9300 (printDate 2026-11-22)",
+  "sources": [
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Signed out, 4 four-letter words (4 pts, rank Good Start). No share text exists at this rank signed out; stats modal asks for a free account."
+}

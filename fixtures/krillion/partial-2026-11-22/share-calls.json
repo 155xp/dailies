@@ -1,0 +1,12 @@
+[
+  {
+    "method": "navigator.clipboard.writeText",
+    "value": "Krillion #130 🦐\n50\n\n🫧⬛⬛🐟⬛⬛🫧"
+  },
+  {
+    "method": "navigator.share",
+    "value": {
+      "text": "Krillion #130 🦐\n50\n\n🫧⬛⬛🐟⬛⬛🫧"
+    }
+  }
+]

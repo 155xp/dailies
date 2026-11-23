@@ -1,0 +1,431 @@
+{
+  "tiles": [
+    {
+      "row": "Row 1",
+      "tiles": [
+        {
+          "letter": "c",
+          "state": "absent",
+          "aria": "1st letter, C, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "r",
+          "state": "absent",
+          "aria": "2nd letter, R, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "a",
+          "state": "absent",
+          "aria": "3rd letter, A, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "n",
+          "state": "correct",
+          "aria": "4th letter, N, correct",
+          "bg": "rgb(106, 170, 100)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "e",
+          "state": "present",
+          "aria": "5th letter, E, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "row": "Row 2",
+      "tiles": [
+        {
+          "letter": "m",
+          "state": "absent",
+          "aria": "1st letter, M, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "o",
+          "state": "absent",
+          "aria": "2nd letter, O, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "i",
+          "state": "absent",
+          "aria": "3rd letter, I, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "s",
+          "state": "absent",
+          "aria": "4th letter, S, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "t",
+          "state": "absent",
+          "aria": "5th letter, T, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "row": "Row 3",
+      "tiles": [
+        {
+          "letter": "b",
+          "state": "absent",
+          "aria": "1st letter, B, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "l",
+          "state": "absent",
+          "aria": "2nd letter, L, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "i",
+          "state": "absent",
+          "aria": "3rd letter, I, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "m",
+          "state": "absent",
+          "aria": "4th letter, M, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "p",
+          "state": "present",
+          "aria": "5th letter, P, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "row": "Row 4",
+      "tiles": [
+        {
+          "letter": "h",
+          "state": "absent",
+          "aria": "1st letter, H, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "o",
+          "state": "absent",
+          "aria": "2nd letter, O, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "u",
+          "state": "present",
+          "aria": "3rd letter, U, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "n",
+          "state": "correct",
+          "aria": "4th letter, N, correct",
+          "bg": "rgb(106, 170, 100)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "d",
+          "state": "correct",
+          "aria": "5th letter, D, correct",
+          "bg": "rgb(106, 170, 100)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "row": "Row 5",
+      "tiles": [
+        {
+          "letter": "f",
+          "state": "absent",
+          "aria": "1st letter, F, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "u",
+          "state": "present",
+          "aria": "2nd letter, U, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "d",
+          "state": "present",
+          "aria": "3rd letter, D, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "g",
+          "state": "absent",
+          "aria": "4th letter, G, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "e",
+          "state": "present",
+          "aria": "5th letter, E, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "row": "Row 6",
+      "tiles": [
+        {
+          "letter": "w",
+          "state": "absent",
+          "aria": "1st letter, W, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "e",
+          "state": "present",
+          "aria": "2nd letter, E, present in another position",
+          "bg": "rgb(201, 180, 88)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "a",
+          "state": "absent",
+          "aria": "3rd letter, A, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "r",
+          "state": "absent",
+          "aria": "4th letter, R, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        },
+        {
+          "letter": "y",
+          "state": "absent",
+          "aria": "5th letter, Y, absent",
+          "bg": "rgb(120, 124, 126)",
+          "border": "rgb(255, 255, 255)",
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    }
+  ],
+  "keyboard": [
+    {
+      "key": "q",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "w",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "e",
+      "state": "present",
+      "bg": "rgb(201, 180, 88)"
+    },
+    {
+      "key": "r",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "t",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "y",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "u",
+      "state": "present",
+      "bg": "rgb(201, 180, 88)"
+    },
+    {
+      "key": "i",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "o",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "p",
+      "state": "present",
+      "bg": "rgb(201, 180, 88)"
+    },
+    {
+      "key": "a",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "s",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "d",
+      "state": "correct",
+      "bg": "rgb(106, 170, 100)"
+    },
+    {
+      "key": "f",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "g",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "h",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "j",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "k",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "l",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "↵",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "z",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "x",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "c",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "v",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    },
+    {
+      "key": "b",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "n",
+      "state": "correct",
+      "bg": "rgb(106, 170, 100)"
+    },
+    {
+      "key": "m",
+      "state": "absent",
+      "bg": "rgb(120, 124, 126)"
+    },
+    {
+      "key": "←",
+      "state": null,
+      "bg": "rgb(211, 214, 218)"
+    }
+  ],
+  "cssVariables": {
+    "--green": "#6aaa64",
+    "--yellow": "",
+    "--darkendGreen": "",
+    "--darkendYellow": "",
+    "--gray": "#979797",
+    "--color-correct": "#6aaa64",
+    "--color-present": "#c9b458",
+    "--color-absent": "#787c7e",
+    "--key-bg-correct": "#6aaa64",
+    "--key-bg-present": "#c9b458",
+    "--key-bg-absent": "#787c7e",
+    "--color-tone-1": "#000",
+    "--color-tone-4": "#d3d6da"
+  }
+}

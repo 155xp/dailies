@@ -1,0 +1,8 @@
+{
+  "url": "https://www.nytimes.com/svc/games/state/crossword_mini/latests?puzzle_ids=24756",
+  "method": "GET",
+  "status": 403,
+  "body": {
+    "error": "forbidden"
+  }
+}

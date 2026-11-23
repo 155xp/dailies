@@ -1,0 +1,137 @@
+[
+  {
+    "action": "page loaded",
+    "clipLabelAfter": "0.1 seconds",
+    "idbSessions": []
+  },
+  {
+    "action": "guess: Always Be My Baby - Mariah Carey",
+    "clipLabelAfter": "0.5 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:24:35.975Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 1,
+          "board": [
+            {
+              "state": "present",
+              "artist": "Mariah Carey",
+              "track": "Always Be My Baby"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "guess: Blinding Lights - The Weeknd",
+    "clipLabelAfter": "2 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:24:35.975Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 2,
+          "board": [
+            {
+              "id": "LoXA-tyDl6eZDUAvsOvej",
+              "artist": "Mariah Carey",
+              "track": "Always Be My Baby",
+              "state": "present"
+            },
+            {
+              "id": "R9yQLelzIfK_7eHA83h0V",
+              "artist": "The Weeknd",
+              "track": "Blinding Lights",
+              "state": "incorrect"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "8 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:24:35.975Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 3,
+          "board": [
+            {
+              "id": "LoXA-tyDl6eZDUAvsOvej",
+              "artist": "Mariah Carey",
+              "track": "Always Be My Baby",
+              "state": "present"
+            },
+            {
+              "id": "R9yQLelzIfK_7eHA83h0V",
+              "artist": "The Weeknd",
+              "track": "Blinding Lights",
+              "state": "incorrect"
+            },
+            {
+              "state": "skipped"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "guess: We Belong Together - Mariah Carey",
+    "clipLabelAfter": "8 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:24:35.975Z",
+        "state": "won",
+        "game": "songless",
+        "gameData": {
+          "guesses": 4,
+          "board": [
+            {
+              "id": "LoXA-tyDl6eZDUAvsOvej",
+              "artist": "Mariah Carey",
+              "track": "Always Be My Baby",
+              "state": "present"
+            },
+            {
+              "id": "R9yQLelzIfK_7eHA83h0V",
+              "artist": "The Weeknd",
+              "track": "Blinding Lights",
+              "state": "incorrect"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "id": "QOLaJUL1bskNBCdEtHkEd",
+              "artist": "Mariah Carey",
+              "track": "We Belong Together",
+              "state": "correct"
+            }
+          ],
+          "answer": {
+            "artist": "Mariah Carey",
+            "track": "We Belong Together",
+            "sc": "255783320"
+          }
+        }
+      }
+    ]
+  }
+]

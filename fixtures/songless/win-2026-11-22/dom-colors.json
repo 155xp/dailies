@@ -1,0 +1,293 @@
+{
+  "_note": "getComputedStyle values. Board row background = per-attempt state; timeline label = current clip length.",
+  "boardRowsPerStep": [
+    {
+      "action": "page loaded",
+      "clipLabel": "0.1 seconds",
+      "rows": [
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "guess: Always Be My Baby - Mariah Carey",
+      "clipLabel": "0.5 seconds",
+      "rows": [
+        {
+          "text": "Always Be My Baby - Mariah Carey",
+          "bg": "rgb(218, 195, 22)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(22, 24, 25)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "guess: Blinding Lights - The Weeknd",
+      "clipLabel": "2 seconds",
+      "rows": [
+        {
+          "text": "Always Be My Baby - Mariah Carey",
+          "bg": "rgb(218, 195, 22)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(22, 24, 25)"
+        },
+        {
+          "text": "Blinding Lights - The Weeknd",
+          "bg": "rgb(198, 33, 33)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "8 seconds",
+      "rows": [
+        {
+          "text": "Always Be My Baby - Mariah Carey",
+          "bg": "rgb(218, 195, 22)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(22, 24, 25)"
+        },
+        {
+          "text": "Blinding Lights - The Weeknd",
+          "bg": "rgb(198, 33, 33)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "guess: We Belong Together - Mariah Carey",
+      "clipLabel": "8 seconds",
+      "rows": [
+        {
+          "text": "Always Be My Baby - Mariah Carey",
+          "bg": "rgb(218, 195, 22)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(22, 24, 25)"
+        },
+        {
+          "text": "Blinding Lights - The Weeknd",
+          "bg": "rgb(198, 33, 33)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "We Belong Together - Mariah Carey",
+          "bg": "rgb(85, 183, 37)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    }
+  ],
+  "modal": {
+    "title": "You Won!",
+    "headerBg": "rgb(85, 183, 37)",
+    "text": [
+      "You Won!",
+      "THE SONG WAS",
+      "We Belong Together - Mariah Carey",
+      "Today",
+      "All time",
+      "Solved in",
+      "4",
+      "Average",
+      "5.3",
+      "Guess Distribution",
+      "Nov 22, 2026",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "X",
+      "You've placed in the top 19.1% today.",
+      "0:00 / 3:21",
+      "Share",
+      "Next"
+    ],
+    "distributionBars": [
+      {
+        "row": "1",
+        "widthPx": 12,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "2",
+        "widthPx": 16.9,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "3",
+        "widthPx": 12.5,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "4",
+        "widthPx": 33.9,
+        "fillAttr": "var(--chakra-colors-green-solid)",
+        "fill": "rgb(85, 183, 37)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "5",
+        "widthPx": 25.9,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "X",
+        "widthPx": 292.7,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      }
+    ]
+  },
+  "modalAllTime": {
+    "text": [
+      "You Won!",
+      "THE SONG WAS",
+      "We Belong Together - Mariah Carey",
+      "Today",
+      "All time",
+      "Played",
+      "1",
+      "Average",
+      "4.0",
+      "Best Streak",
+      "1",
+      "Guess Distribution",
+      "All time",
+      "1",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "X",
+      "You've placed in the top 19.1% today.",
+      "0:00 / 3:21",
+      "Share",
+      "Next"
+    ],
+    "distributionBars": [
+      {
+        "row": "",
+        "widthPx": 292.7,
+        "fillAttr": "var(--chakra-colors-green-solid)",
+        "fill": "rgb(85, 183, 37)",
+        "cls": "recharts-rectangle"
+      }
+    ]
+  }
+}

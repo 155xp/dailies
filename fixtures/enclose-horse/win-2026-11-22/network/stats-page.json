@@ -1,0 +1,438 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.enclose.horse/api/stats/2026-11-22",
+    "headers": {}
+  },
+  "status": 200,
+  "response": {
+    "date": "2026-11-22",
+    "dayNumber": 328,
+    "isWeekly": false,
+    "levelId": "uwtFBO",
+    "bonusLevelId": "VU7OQX",
+    "name": "Contraption",
+    "gridSize": {
+      "cols": 15,
+      "rows": 13
+    },
+    "budget": 13,
+    "optimalScore": 49,
+    "lakes": 25,
+    "waterPct": 44,
+    "medalPcts": {
+      "diamond": 38.5,
+      "gold": 42.2,
+      "silver": 11.3,
+      "bronze": 8
+    },
+    "difficultyRating": 3,
+    "scoreRange": {
+      "min": -1,
+      "max": 49
+    },
+    "histogram": [
+      {
+        "score": -1,
+        "count": 2
+      },
+      {
+        "score": 1,
+        "count": 91
+      },
+      {
+        "score": 2,
+        "count": 18
+      },
+      {
+        "score": 3,
+        "count": 3
+      },
+      {
+        "score": 4,
+        "count": 5
+      },
+      {
+        "score": 5,
+        "count": 5
+      },
+      {
+        "score": 7,
+        "count": 2
+      },
+      {
+        "score": 9,
+        "count": 1
+      },
+      {
+        "score": 10,
+        "count": 1
+      },
+      {
+        "score": 11,
+        "count": 1
+      },
+      {
+        "score": 13,
+        "count": 2
+      },
+      {
+        "score": 15,
+        "count": 1
+      },
+      {
+        "score": 16,
+        "count": 7
+      },
+      {
+        "score": 17,
+        "count": 5
+      },
+      {
+        "score": 18,
+        "count": 2
+      },
+      {
+        "score": 19,
+        "count": 3
+      },
+      {
+        "score": 20,
+        "count": 3
+      },
+      {
+        "score": 21,
+        "count": 5
+      },
+      {
+        "score": 22,
+        "count": 3
+      },
+      {
+        "score": 23,
+        "count": 2
+      },
+      {
+        "score": 24,
+        "count": 5
+      },
+      {
+        "score": 25,
+        "count": 12
+      },
+      {
+        "score": 26,
+        "count": 5
+      },
+      {
+        "score": 27,
+        "count": 11
+      },
+      {
+        "score": 28,
+        "count": 12
+      },
+      {
+        "score": 29,
+        "count": 14
+      },
+      {
+        "score": 30,
+        "count": 13
+      },
+      {
+        "score": 31,
+        "count": 26
+      },
+      {
+        "score": 32,
+        "count": 36
+      },
+      {
+        "score": 33,
+        "count": 40
+      },
+      {
+        "score": 34,
+        "count": 64
+      },
+      {
+        "score": 35,
+        "count": 95
+      },
+      {
+        "score": 36,
+        "count": 97
+      },
+      {
+        "score": 37,
+        "count": 156
+      },
+      {
+        "score": 38,
+        "count": 228
+      },
+      {
+        "score": 39,
+        "count": 396
+      },
+      {
+        "score": 40,
+        "count": 776
+      },
+      {
+        "score": 41,
+        "count": 371
+      },
+      {
+        "score": 42,
+        "count": 96
+      },
+      {
+        "score": 43,
+        "count": 374
+      },
+      {
+        "score": 44,
+        "count": 314
+      },
+      {
+        "score": 45,
+        "count": 226
+      },
+      {
+        "score": 46,
+        "count": 168
+      },
+      {
+        "score": 47,
+        "count": 577
+      },
+      {
+        "score": 48,
+        "count": 6233
+      },
+      {
+        "score": 49,
+        "count": 6565
+      }
+    ],
+    "bonusStats": {
+      "bonusType": "bitterdivorce",
+      "medalPcts": {
+        "diamond": 15.3,
+        "gold": 22,
+        "silver": 23.1,
+        "bronze": 39.5
+      },
+      "optimalScore": 36,
+      "difficultyRating": 5,
+      "histogram": [
+        {
+          "score": 0,
+          "count": 1
+        },
+        {
+          "score": 2,
+          "count": 71
+        },
+        {
+          "score": 4,
+          "count": 6
+        },
+        {
+          "score": 6,
+          "count": 5
+        },
+        {
+          "score": 8,
+          "count": 4
+        },
+        {
+          "score": 10,
+          "count": 12
+        },
+        {
+          "score": 12,
+          "count": 6
+        },
+        {
+          "score": 14,
+          "count": 12
+        },
+        {
+          "score": 16,
+          "count": 19
+        },
+        {
+          "score": 18,
+          "count": 40
+        },
+        {
+          "score": 20,
+          "count": 156
+        },
+        {
+          "score": 22,
+          "count": 315
+        },
+        {
+          "score": 24,
+          "count": 609
+        },
+        {
+          "score": 26,
+          "count": 89
+        },
+        {
+          "score": 28,
+          "count": 436
+        },
+        {
+          "score": 30,
+          "count": 323
+        },
+        {
+          "score": 32,
+          "count": 718
+        },
+        {
+          "score": 34,
+          "count": 993
+        },
+        {
+          "score": 36,
+          "count": 690
+        }
+      ],
+      "totalNormal": 4505,
+      "totalEasy": 316,
+      "easyMode": {
+        "medalPcts": {
+          "diamond": 57.3,
+          "gold": 18.4,
+          "silver": 12.7,
+          "bronze": 11.7
+        },
+        "histogram": [
+          {
+            "score": 2,
+            "count": 2
+          },
+          {
+            "score": 16,
+            "count": 1
+          },
+          {
+            "score": 18,
+            "count": 2
+          },
+          {
+            "score": 20,
+            "count": 1
+          },
+          {
+            "score": 22,
+            "count": 6
+          },
+          {
+            "score": 24,
+            "count": 14
+          },
+          {
+            "score": 26,
+            "count": 2
+          },
+          {
+            "score": 28,
+            "count": 9
+          },
+          {
+            "score": 30,
+            "count": 7
+          },
+          {
+            "score": 32,
+            "count": 33
+          },
+          {
+            "score": 34,
+            "count": 58
+          },
+          {
+            "score": 36,
+            "count": 181
+          }
+        ]
+      }
+    },
+    "totalNormal": 17072,
+    "totalEasy": 717,
+    "easyMode": {
+      "medalPcts": {
+        "diamond": 68.6,
+        "gold": 25.7,
+        "silver": 4.5,
+        "bronze": 1.3
+      },
+      "histogram": [
+        {
+          "score": 33,
+          "count": 2
+        },
+        {
+          "score": 37,
+          "count": 1
+        },
+        {
+          "score": 38,
+          "count": 2
+        },
+        {
+          "score": 39,
+          "count": 4
+        },
+        {
+          "score": 40,
+          "count": 11
+        },
+        {
+          "score": 41,
+          "count": 10
+        },
+        {
+          "score": 42,
+          "count": 2
+        },
+        {
+          "score": 43,
+          "count": 3
+        },
+        {
+          "score": 44,
+          "count": 6
+        },
+        {
+          "score": 45,
+          "count": 7
+        },
+        {
+          "score": 46,
+          "count": 8
+        },
+        {
+          "score": 47,
+          "count": 6
+        },
+        {
+          "score": 48,
+          "count": 163
+        },
+        {
+          "score": 49,
+          "count": 492
+        }
+      ]
+    }
+  }
+}

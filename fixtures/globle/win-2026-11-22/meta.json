@@ -1,0 +1,14 @@
+{
+ "game": "globle",
+ "case": "win",
+ "sourceUrl": "https://globle-game.com",
+ "capturedAt": "2026-11-23T00:17:00Z",
+ "puzzleId": "2026-11-22",
+ "sources": [
+  "share",
+  "localStorage",
+  "network",
+  "dom"
+ ],
+ "notes": "Won 2026-11-22 (Afghanistan) in 9 guesses: Brazil China Germany Vietnam Kazakhstan India Pakistan Iran Afghanistan."
+}

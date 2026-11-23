@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.nytimes.com/svc/games/state/connections/latests?puzzle_ids=1370"
+  },
+  "status": 403,
+  "body": {
+    "error": "forbidden"
+  }
+}

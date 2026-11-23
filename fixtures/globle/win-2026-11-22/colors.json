@@ -1,0 +1,80 @@
+{
+ "source": "computed in-page by calling the game's own colour module (colour-*.js export g = polygonCapColor(guessFeature, answerFeature, isDark, colours)) and distance fn (index-*.js export $ = closest-border distance in metres); the globe is a three.js canvas so there is no DOM/CSS colour to read",
+ "scale": "d3 scaleSequential domain [15e6 m, 0] over interpolateOrRd (light theme, colours=Default) or interpolateBuPu (dark theme); exact answer = 'green'; territories without a country = #BBBBBB",
+ "emojiRule": "ratio = distM / 15e6; answer -> 🟩, ratio < 0.1 -> 🟥, < 0.25 -> 🟧, < 0.5 -> 🟨, else ⬜; rows of 8",
+ "answer": "Afghanistan",
+ "guesses": [
+  {
+   "name": "Brazil",
+   "closestBorderDistM": 10889770.893,
+   "ratio": 0.726,
+   "colourLight": "rgb(254, 228, 192)",
+   "colourDark": "rgb(217, 231, 241)",
+   "emoji": "⬜"
+  },
+  {
+   "name": "China",
+   "closestBorderDistM": 0,
+   "ratio": 0.0,
+   "colourLight": "rgb(127, 0, 0)",
+   "colourDark": "rgb(77, 0, 75)",
+   "emoji": "🟥"
+  },
+  {
+   "name": "Germany",
+   "closestBorderDistM": 4039902.972,
+   "ratio": 0.2693,
+   "colourLight": "rgb(251, 149, 98)",
+   "colourDark": "rgb(145, 155, 201)",
+   "emoji": "🟨"
+  },
+  {
+   "name": "Vietnam",
+   "closestBorderDistM": 3087384.874,
+   "ratio": 0.2058,
+   "colourLight": "rgb(247, 126, 84)",
+   "colourDark": "rgb(141, 134, 190)",
+   "emoji": "🟧"
+  },
+  {
+   "name": "Kazakhstan",
+   "closestBorderDistM": 310100.481,
+   "ratio": 0.0207,
+   "colourLight": "rgb(183, 12, 8)",
+   "colourDark": "rgb(125, 26, 127)",
+   "emoji": "🟥"
+  },
+  {
+   "name": "India",
+   "closestBorderDistM": 216559.866,
+   "ratio": 0.0144,
+   "colourLight": "rgb(175, 7, 5)",
+   "colourDark": "rgb(120, 20, 120)",
+   "emoji": "🟥"
+  },
+  {
+   "name": "Pakistan",
+   "closestBorderDistM": 0,
+   "ratio": 0.0,
+   "colourLight": "rgb(127, 0, 0)",
+   "colourDark": "rgb(77, 0, 75)",
+   "emoji": "🟥"
+  },
+  {
+   "name": "Iran",
+   "closestBorderDistM": 0,
+   "ratio": 0.0,
+   "colourLight": "rgb(127, 0, 0)",
+   "colourDark": "rgb(77, 0, 75)",
+   "emoji": "🟥"
+  },
+  {
+   "name": "Afghanistan",
+   "closestBorderDistM": 0,
+   "ratio": 0.0,
+   "colourLight": "green",
+   "colourDark": "green",
+   "emoji": "🟩"
+  }
+ ]
+}

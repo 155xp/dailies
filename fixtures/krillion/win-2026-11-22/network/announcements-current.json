@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://krillion.io/api/announcements/current"
+  },
+  "response": {
+    "announcement": null,
+    "expiresAt": "2026-11-23T00:14:13.022Z"
+  }
+}

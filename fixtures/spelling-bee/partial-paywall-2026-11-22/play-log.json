@@ -1,0 +1,39 @@
+{
+  "_note": "Words typed via keyboard in order, toast text shown, and rank/score shown in the progress bar ~1.4s after each Enter. Empty rank/value means the paywall replaced the board.",
+  "log": [
+    {
+      "word": "pothead",
+      "toast": "Pangram!",
+      "rank": "Moving Up",
+      "value": "14",
+      "locked": false
+    },
+    {
+      "word": "ahead",
+      "toast": "Nice!",
+      "rank": "Good",
+      "value": "19",
+      "locked": false
+    },
+    {
+      "word": "deadhead",
+      "toast": "Awesome!",
+      "rank": "Good",
+      "value": "27",
+      "locked": false
+    },
+    {
+      "word": "deadheaded",
+      "toast": "Awesome!",
+      "rank": "",
+      "value": "",
+      "locked": true
+    },
+    {
+      "word": "death",
+      "rank": "",
+      "value": "",
+      "locked": true
+    }
+  ]
+}

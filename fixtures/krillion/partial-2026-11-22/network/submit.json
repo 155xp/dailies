@@ -1,0 +1,199 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p1",
+        "answer": "Toyota",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Toyota",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Banana",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Moby Dick",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Moby Dick",
+        "previewCorrection": false,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p4",
+        "answer": "Slingshot",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Slingshot",
+      "tier": "schooler",
+      "score": 30,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p6",
+        "answer": "Happiness",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p6",
+        "answer": "Happiness",
+        "previewCorrection": false,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p7",
+        "answer": "Sideline",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Sideline",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "playerId": "REDACTED",
+        "runId": "REDACTED",
+        "promptId": "p5",
+        "answer": ""
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "playerId": "REDACTED",
+        "runId": "REDACTED",
+        "promptId": "p3",
+        "answer": ""
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  }
+]

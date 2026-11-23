@@ -1,0 +1,24 @@
+{
+  "localStorage": {
+    "enclose_progress": {
+      "uwtFBO": {
+        "walls": [
+          117,
+          143,
+          164,
+          176
+        ],
+        "savedAt": 1795393119898,
+        "bestWalls": [
+          117,
+          143,
+          164,
+          176
+        ],
+        "bestScore": 10
+      }
+    }
+  },
+  "indexedDB": {},
+  "_note": "enclose_progress just before pressing Submit (other keys omitted)"
+}

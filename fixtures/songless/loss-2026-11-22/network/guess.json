@@ -1,0 +1,87 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://api.lessgames.com/songless/guess",
+      "body": {
+        "challengeDate": "2026-11-22",
+        "categoryId": 0,
+        "roundIndex": 0,
+        "songId": null
+      }
+    },
+    "status": 200,
+    "response": {
+      "state": "skipped"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://api.lessgames.com/songless/guess",
+      "body": {
+        "challengeDate": "2026-11-22",
+        "categoryId": 0,
+        "roundIndex": 1,
+        "songId": null
+      }
+    },
+    "status": 200,
+    "response": {
+      "state": "skipped"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://api.lessgames.com/songless/guess",
+      "body": {
+        "challengeDate": "2026-11-22",
+        "categoryId": 0,
+        "roundIndex": 2,
+        "songId": null
+      }
+    },
+    "status": 200,
+    "response": {
+      "state": "skipped"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://api.lessgames.com/songless/guess",
+      "body": {
+        "challengeDate": "2026-11-22",
+        "categoryId": 0,
+        "roundIndex": 3,
+        "songId": null
+      }
+    },
+    "status": 200,
+    "response": {
+      "state": "skipped"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://api.lessgames.com/songless/guess",
+      "body": {
+        "challengeDate": "2026-11-22",
+        "categoryId": 0,
+        "roundIndex": 4,
+        "songId": null
+      }
+    },
+    "status": 200,
+    "response": {
+      "state": "skipped",
+      "answer": {
+        "artist": "Mariah Carey",
+        "track": "We Belong Together",
+        "sc": "255783320"
+      }
+    }
+  }
+]

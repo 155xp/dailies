@@ -1,0 +1,25 @@
+{
+ "request": {
+  "method": "GET",
+  "url": "https://auth.teuteuf.fr/travle/scores/travle%3A1439"
+ },
+ "response": {
+  "lb": "travle:1439",
+  "scores": [
+   1227,
+   553,
+   12741,
+   712,
+   3849,
+   186,
+   15227,
+   675,
+   4075,
+   518,
+   1615,
+   433,
+   722,
+   369
+  ]
+ }
+}

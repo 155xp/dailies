@@ -1,0 +1,15 @@
+{
+ "request": {
+  "method": "GET",
+  "url": "https://globle-game.com/answer?day=2026-11-22&list=197&timeZone=America%2FNew_York"
+ },
+ "response": {
+  "message": "Mystery country retrieved.",
+  "answer": "U2FsdGVkX18tQkNx8RV7sSAow+QEQtyQz/8jn53ZTfk="
+ },
+ "decoded": {
+  "method": "CryptoJS.AES.decrypt(answer, passphrase from Game chunk) -> index into bundled 197-feature country list",
+  "index": 122,
+  "NAME": "Afghanistan"
+ }
+}

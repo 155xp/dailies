@@ -1,0 +1,49 @@
+{
+  "localStorage": {
+    "enclose_seen_help": "1",
+    "enclose_submissions": {
+      "uwtFBO": {
+        "walls": [
+          1,
+          15,
+          18,
+          45,
+          90,
+          132,
+          135,
+          164,
+          181,
+          183,
+          186,
+          189,
+          191
+        ],
+        "score": 49,
+        "isEasy": false
+      },
+      "VU7OQX": {
+        "walls": [
+          1,
+          11,
+          15,
+          18,
+          23,
+          45,
+          73,
+          90,
+          119,
+          136,
+          164,
+          171,
+          176
+        ],
+        "score": 36,
+        "isEasy": false
+      }
+    },
+    "fencing_player_id": "REDACTED",
+    "enclose_progress": {},
+    "enclose_bonus_dismissed_bitterdivorce": "1"
+  },
+  "indexedDB": {}
+}

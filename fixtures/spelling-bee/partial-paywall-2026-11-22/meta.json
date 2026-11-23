@@ -1,0 +1,13 @@
+{
+  "game": "spelling-bee",
+  "case": "partial",
+  "sourceUrl": "https://www.nytimes.com/puzzles/spelling-bee",
+  "capturedAt": "2026-11-23T00:13:29.694Z",
+  "puzzleId": "9300 (printDate 2026-11-22)",
+  "sources": [
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Signed out highest reachable: pangram + 3 words = 37 pts, rank Solid; reaching Solid replaces the board with a Subscribe to keep playing paywall, so Genius/Queen Bee are not reachable signed out."
+}

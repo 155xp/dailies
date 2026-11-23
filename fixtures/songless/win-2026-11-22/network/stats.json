@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.lessgames.com/songless/stats?challengeDate=2026-11-22&categoryId=0"
+  },
+  "status": 200,
+  "response": {
+    "daily": {
+      "distribution": [
+        {
+          "point": 1,
+          "weight": 0.041
+        },
+        {
+          "point": 2,
+          "weight": 0.0579
+        },
+        {
+          "point": 3,
+          "weight": 0.0426
+        },
+        {
+          "point": 4,
+          "weight": 0.1158
+        },
+        {
+          "point": 5,
+          "weight": 0.0885
+        },
+        {
+          "point": 6,
+          "weight": 1
+        }
+      ]
+    },
+    "allTime": {
+      "distribution": [],
+      "winStreak": null
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "game": "connections",
+  "case": "win",
+  "sourceUrl": "https://www.nytimes.com/games/connections",
+  "capturedAt": "2026-11-23T00:22:34.214Z",
+  "puzzleId": "1370 (API id / puzzleId in storage); displayed as No. 1260 / share \"Puzzle #1260\"; printDate 2026-11-22",
+  "sources": [
+    "share",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Won with 1 mistake (first guess one away), groups solved yellow, green, blue, purple. Signed out: no stats."
+}

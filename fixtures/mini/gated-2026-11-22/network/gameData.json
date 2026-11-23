@@ -1,0 +1,8 @@
+{
+  "_source": "inline window.gameData on the game page HTML",
+  "gameData": {
+    "filename": "mini/2026-11-22",
+    "stream": "mini",
+    "assetBasePath": "/games-assets/v2"
+  }
+}

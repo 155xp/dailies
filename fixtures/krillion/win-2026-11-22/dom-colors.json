@@ -1,0 +1,406 @@
+{
+  "_note": "Computed styles read with getComputedStyle in the live page. Tier colors come from CSS custom properties --tier-<tier> on :root (colorblind mode overrides them under :root.colorblind).",
+  "cssTierVars": {
+    ":root": {
+      "--tier-plankton": "#8fa3c4",
+      "--tier-tooclever": "#ff9f43",
+      "--tier-schooler": "#4de3ff",
+      "--tier-rare": "#ff5252",
+      "--tier-deepcut": "#9d7bff",
+      "--tier-krillion": "#ffd166",
+      "--tier-miss": "#3d4f6e",
+      "--tier-miss-lit": "#5d739c",
+      "--tier-krillion-notebook": "#c29a2e"
+    },
+    ":root.colorblind": {
+      "--tier-plankton": "#d7e1f2",
+      "--tier-tooclever": "#ffb35c",
+      "--tier-schooler": "#7deaff",
+      "--tier-rare": "#ff7bac",
+      "--tier-deepcut": "#bfa7ff",
+      "--tier-krillion": "#ffe08a",
+      "--tier-miss": "#a3b6d6",
+      "--tier-miss-lit": "#b6c8e4",
+      "--tier-krillion-notebook": "#805600"
+    }
+  },
+  "finishedScreenRows": [
+    {
+      "text": "1 | NAME A CAR BRAND | Sears | 35,900 other players chose this | 100 | +",
+      "scoreStyle": "color: var(--tier-krillion);",
+      "scoreColor": "rgb(255, 209, 102)",
+      "icon": "/tiers/krillion.png"
+    },
+    {
+      "text": "2 | NAME A BOOK SERIES (1,000+ GOODREADS RATINGS ON ANY ONE BOOK) | Discworld | 6,007 other players chose this | 30 | +",
+      "scoreStyle": "color: var(--tier-schooler);",
+      "scoreColor": "rgb(77, 227, 255)",
+      "icon": "/tiers/schooler.png"
+    },
+    {
+      "text": "3 | NAME AN AREA IN AN AIRPORT | Jet bridge | 20,617 other players chose this | 60 | +",
+      "scoreStyle": "color: var(--tier-rare);",
+      "scoreColor": "rgb(255, 82, 82)",
+      "icon": "/tiers/rare.png"
+    },
+    {
+      "text": "4 | NAME A WEAPON YOU THROW OR A WEAPON THAT LAUNCHES A PROJECTILE (NO GUNS) | Trebuchet | 258,101 other players chose this | 60 | +",
+      "scoreStyle": "color: var(--tier-rare);",
+      "scoreColor": "rgb(255, 82, 82)",
+      "icon": "/tiers/rare.png"
+    },
+    {
+      "text": "5 | NAME A RESTAURANT CHAIN WHERE YOU BUILD YOUR OWN BOWL | Chipotle | 508,041 other players chose this | 10 | +",
+      "scoreStyle": "color: var(--tier-plankton);",
+      "scoreColor": "rgb(143, 163, 196)",
+      "icon": "/tiers/plankton.png"
+    },
+    {
+      "text": "6 | NAME A CHRONIC MEDICAL CONDITION | Sarcoidosis | 5,277 other players chose this | 60 | +",
+      "scoreStyle": "color: var(--tier-rare);",
+      "scoreColor": "rgb(255, 82, 82)",
+      "icon": "/tiers/rare.png"
+    },
+    {
+      "text": "7 | NAME A PART OF THE FIELD OR COURT IN BASKETBALL, SOCCER, AMERICAN FOOTBALL, CRICKET, OR RUGBY | Silly mid-on | 6,216 other players chose this | 85 | +",
+      "scoreStyle": "color: var(--tier-deepcut);",
+      "scoreColor": "rgb(157, 123, 255)",
+      "icon": "/tiers/deepcut.png"
+    }
+  ],
+  "percentileText": "better than 90% of today's players",
+  "perRoundFeedback": [
+    {
+      "round": 0,
+      "landedClass": "ds-landed perched",
+      "landedStyle": "top: 2000px; --tc: var(--tier-krillion);",
+      "tcVarResolved": "#ffd166",
+      "tierNameColor": "rgb(255, 209, 102)",
+      "pointsColor": "rgb(255, 209, 102)",
+      "text": [
+        "ONE IN A KRILLION",
+        "“Sears”",
+        "+100 PTS · sink 1,000m",
+        "Sears once sold a car by mail through its catalog."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "438m",
+        "text": "DEPTH\n438m\nPROMPT 2 OF 7\nSCORE\n98"
+      }
+    },
+    {
+      "round": 2,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 3800px; --tc: var(--tier-rare);",
+      "tcVarResolved": "#ff5252",
+      "tierNameColor": "rgb(255, 82, 82)",
+      "pointsColor": "rgb(255, 82, 82)",
+      "text": [
+        "RARE",
+        "“Jet bridge”",
+        "+60 PTS · sink 600m",
+        "Genuinely uncommon. Nice pull."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "1,900m",
+        "text": "DEPTH\n1,900m\nPROMPT 4 OF 7\nSCORE\n190"
+      }
+    },
+    {
+      "round": 3,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 5000px; --tc: var(--tier-rare);",
+      "tcVarResolved": "#ff5252",
+      "tierNameColor": "rgb(255, 82, 82)",
+      "pointsColor": "rgb(255, 82, 82)",
+      "text": [
+        "RARE",
+        "“Trebuchet”",
+        "+60 PTS · sink 600m",
+        "Genuinely uncommon. Nice pull."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "2,500m",
+        "text": "DEPTH\n2,500m\nPROMPT 5 OF 7\nSCORE\n250"
+      }
+    },
+    {
+      "round": 4,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 5200px; --tc: var(--tier-plankton);",
+      "tcVarResolved": "#8fa3c4",
+      "tierNameColor": "rgb(143, 163, 196)",
+      "pointsColor": "rgb(143, 163, 196)",
+      "text": [
+        "PLANKTON",
+        "“Chipotle”",
+        "+10 PTS · sink 100m",
+        "The answer everyone blurts out."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "2,600m",
+        "text": "DEPTH\n2,600m\nPROMPT 6 OF 7\nSCORE\n260"
+      }
+    },
+    {
+      "round": 5,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 6400px; --tc: var(--tier-rare);",
+      "tcVarResolved": "#ff5252",
+      "tierNameColor": "rgb(255, 82, 82)",
+      "pointsColor": "rgb(255, 82, 82)",
+      "text": [
+        "RARE",
+        "“Sarcoidosis”",
+        "+60 PTS · sink 600m",
+        "Genuinely uncommon. Nice pull."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        }
+      ],
+      "hud": {
+        "depth": "3,200m",
+        "text": "DEPTH\n3,200m\nPROMPT 7 OF 7\nSCORE\n320"
+      }
+    },
+    {
+      "round": 6,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 8100px; --tc: var(--tier-deepcut);",
+      "tcVarResolved": "#9d7bff",
+      "tierNameColor": "rgb(157, 123, 255)",
+      "pointsColor": "rgb(157, 123, 255)",
+      "text": [
+        "DEEP CUT",
+        "“Silly mid-on”",
+        "+85 PTS · sink 850m",
+        "True obscurity. Few go this deep."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        }
+      ],
+      "hud": {
+        "depth": "4,050m",
+        "text": "DEPTH\n4,050m\nDIVE COMPLETE\nSCORE\n405"
+      }
+    }
+  ],
+  "answerAttempts": [
+    {
+      "round": 0,
+      "typed": "Sears",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 1,
+      "typed": "Discworld",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 2,
+      "typed": "Jet bridge",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 3,
+      "typed": "Trebuchet",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 4,
+      "typed": "Chipotle",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 5,
+      "typed": "Sarcoidosis",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 6,
+      "typed": "Silly mid-on",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+ "request": {
+  "method": "POST",
+  "url": "https://auth.teuteuf.fr/travle/scores/travle%3A1439",
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "body": {
+   "score_ix": 10
+  },
+  "bodySource": "reconstructed from game JS zt() (request body not recorded in this run)"
+ },
+ "response": {
+  "message": "Score Submitted"
+ }
+}

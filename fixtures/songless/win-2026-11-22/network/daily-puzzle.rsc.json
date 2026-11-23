@@ -1,0 +1,47 @@
+{
+  "_note": "Not a separate fetch: embedded in the Next.js RSC flight payload inside the HTML of GET https://lessgames.com/songless (self.__next_f.push). No title/artist; categoryId 0=Top Hits,1=Pop,2=Rock,3=Hip Hop,4=EDM (tab order). scTrackUrn matches answer.sc in the final guess response.",
+  "request": {
+    "method": "GET",
+    "url": "https://lessgames.com/songless"
+  },
+  "payload": {
+    "categories": [
+      {
+        "categoryId": 0,
+        "fileUrl": "https://cdn.lessgames.com/songs/fjq7g9yktmva.aac",
+        "itunesPreviewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ec/a2/03/eca20372-e62e-a279-2fe9-118f19f03157/mzaf_3519549200001384487.plus.aac.p.m4a",
+        "scTrackUrn": "255783320",
+        "scLeadInMs": null
+      },
+      {
+        "categoryId": 1,
+        "fileUrl": "https://cdn.lessgames.com/songs/0xpr2c8946d4.aac",
+        "itunesPreviewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/37/fe/07/37fe074e-8df3-0630-726e-25ead207519a/mzaf_13052700416842954395.plus.aac.p.m4a",
+        "scTrackUrn": "1091968930",
+        "scLeadInMs": null
+      },
+      {
+        "categoryId": 2,
+        "fileUrl": "https://cdn.lessgames.com/songs/j08lxv8wq29t.aac",
+        "itunesPreviewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f8/cb/2b/f8cb2b60-8221-8533-e592-1bffeae024f4/mzaf_6154872027012411616.plus.aac.p.m4a",
+        "scTrackUrn": "255987547",
+        "scLeadInMs": null
+      },
+      {
+        "categoryId": 3,
+        "fileUrl": "https://cdn.lessgames.com/songs/26hovuoiof50.aac",
+        "itunesPreviewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bb/dd/6a/bbdd6a92-b322-1c35-8dc7-8eb7d84f72b8/mzaf_14355345747730153074.plus.aac.p.m4a",
+        "scTrackUrn": "258025313",
+        "scLeadInMs": null
+      },
+      {
+        "categoryId": 4,
+        "fileUrl": "https://cdn.lessgames.com/songs/o6s5cnwvzuhe.aac",
+        "itunesPreviewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/72/39/05/72390523-e45d-0e6f-1402-0d827896cc4a/mzaf_12858742014089079215.plus.aac.p.m4a",
+        "scTrackUrn": "260999169",
+        "scLeadInMs": null
+      }
+    ],
+    "date": "2026-11-22"
+  }
+}

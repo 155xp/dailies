@@ -1,0 +1,44 @@
+{
+  "progressValueBubble": {
+    "css": "rgb(247, 218, 33) #f7da21",
+    "selector": ".sb-progress-value background",
+    "meaning": "current score bubble on the rank bar; text = score"
+  },
+  "progressDotReached": {
+    "css": "rgb(247, 218, 33) #f7da21",
+    "selector": ".sb-progress-dot.completed::after background",
+    "meaning": "rank threshold already reached",
+    "dataField": "rank in games-state-spelling_bee/*.states[].data.rank (or recompute from answers)"
+  },
+  "progressDotUnreached": {
+    "css": "rgb(235, 235, 235) #ebebeb",
+    "selector": ".sb-progress-dot:not(.completed)::after background",
+    "meaning": "rank threshold not yet reached"
+  },
+  "progressLine": {
+    "css": "rgb(235, 235, 235) #ebebeb",
+    "selector": ".sb-progress-line background"
+  },
+  "hiveCenter": {
+    "css": "rgb(247, 218, 33) #f7da21",
+    "selector": ".hive-cell.center polygon.cell-fill fill",
+    "meaning": "required center letter",
+    "dataField": "gameData.today.centerLetter"
+  },
+  "hiveOuter": {
+    "css": "rgb(231, 231, 231) #e7e7e7",
+    "selector": ".hive-cell.outer polygon.cell-fill fill",
+    "dataField": "gameData.today.outerLetters"
+  },
+  "pangramWord": {
+    "css": "color rgb(18, 18, 18), font-weight 700",
+    "selector": ".sb-anagram.pangram",
+    "meaning": "pangram in found-word list (bold only, no color)",
+    "dataField": "gameData.today.pangrams"
+  },
+  "normalWord": {
+    "css": "color rgb(18, 18, 18), font-weight 500",
+    "selector": ".sb-anagram"
+  },
+  "_source": "getComputedStyle in headless Chromium, light theme, signed out, 2026-11-22 puzzle"
+}

@@ -1,0 +1,179 @@
+[
+  {
+    "request": {
+      "method": "GET",
+      "url": "https://api.lessgames.com/songless/search?query=always+be+my+baby"
+    },
+    "status": 200,
+    "response": [
+      {
+        "id": "LoXA-tyDl6eZDUAvsOvej",
+        "artist": "Mariah Carey",
+        "track": "Always Be My Baby"
+      },
+      {
+        "id": "c-0xv3yW2NNrR4aolOfbg",
+        "artist": "The Ronettes",
+        "track": "Be My Baby"
+      },
+      {
+        "id": "DFRZ63vjkTDbwbsIYQii9",
+        "artist": "Pet Shop Boys",
+        "track": "Always on My Mind"
+      },
+      {
+        "id": "EnC9NbTOeRlEvQCYJ2gpu",
+        "artist": "Forrest Frank",
+        "track": "ALWAYS"
+      },
+      {
+        "id": "KfdFqF_VESI-9Mf3q6rev",
+        "artist": "Bon Jovi",
+        "track": "Always"
+      },
+      {
+        "id": "6Ft7OzKPhrToxRZBmW7Ni",
+        "artist": "Foghat",
+        "track": "My Babe"
+      },
+      {
+        "id": "VHQEJkXs2TxEkK87LHNpI",
+        "artist": "Mariah the Scientist",
+        "track": "Always n Forever (feat. Lil Baby)"
+      },
+      {
+        "id": "_3V6NBhH5N11ZP0VomfbX",
+        "artist": "50 Cent",
+        "track": "Baby By Me"
+      },
+      {
+        "id": "rNwhtq03yiZnsOhQXSbkg",
+        "artist": "Corona",
+        "track": "Baby Baby"
+      },
+      {
+        "id": "Na77E84guZ8DRHnylLLdq",
+        "artist": "Ja Rule",
+        "track": "Always On Time"
+      }
+    ]
+  },
+  {
+    "request": {
+      "method": "GET",
+      "url": "https://api.lessgames.com/songless/search?query=blinding+lights"
+    },
+    "status": 200,
+    "response": [
+      {
+        "id": "R9yQLelzIfK_7eHA83h0V",
+        "artist": "The Weeknd",
+        "track": "Blinding Lights"
+      },
+      {
+        "id": "7RG7nSDLfP83PunVe7_y3",
+        "artist": "Ellie Goulding",
+        "track": "Lights"
+      },
+      {
+        "id": "wRzWC525dGxQbQbTXT8re",
+        "artist": "Journey",
+        "track": "Lights"
+      },
+      {
+        "id": "dmzNhsOGAFavRZnZzEAdZ",
+        "artist": "Kanye West",
+        "track": "Flashing Lights"
+      },
+      {
+        "id": "c3ZEiKa1AYmYt90Uoe7tV",
+        "artist": "Korn",
+        "track": "Blind"
+      },
+      {
+        "id": "NXy3c03VA2JrZvFGFEKvo",
+        "artist": "Arctic Monkeys",
+        "track": "Crying Lightning"
+      },
+      {
+        "id": "l0C4VQvyKUwI875DvYhyp",
+        "artist": "Simple Minds",
+        "track": "See The Lights"
+      },
+      {
+        "id": "Qsu6xDyOBTE7ChyKroBAR",
+        "artist": "Galantis",
+        "track": "Lighter"
+      },
+      {
+        "id": "QpvVyecxot1_aHmHHKlfx",
+        "artist": "Drake",
+        "track": "Hotline Bling"
+      },
+      {
+        "id": "EJ7BCAEBVz5NXDKQJYy5g",
+        "artist": "Kanye West",
+        "track": "All Of The Lights"
+      }
+    ]
+  },
+  {
+    "request": {
+      "method": "GET",
+      "url": "https://api.lessgames.com/songless/search?query=we+belong+together"
+    },
+    "status": 200,
+    "response": [
+      {
+        "id": "QOLaJUL1bskNBCdEtHkEd",
+        "artist": "Mariah Carey",
+        "track": "We Belong Together"
+      },
+      {
+        "id": "97_jJnhRcYP77c_pFSykL",
+        "artist": "Mark Ambor",
+        "track": "Belong Together"
+      },
+      {
+        "id": "YBC8vjz3BAMNObUYl2VoT",
+        "artist": "John Travolta",
+        "track": "We Go Together"
+      },
+      {
+        "id": "gim5Sy97jBjmXaNpicsbt",
+        "artist": "Pat Benatar",
+        "track": "We Belong"
+      },
+      {
+        "id": "JU98oaaf1HLouJFQsgPig",
+        "artist": "Big Mountain",
+        "track": "Get Together"
+      },
+      {
+        "id": "edoqP2RZ7ruNUrRpZSK5Q",
+        "artist": "Avicii",
+        "track": "Lonely Together"
+      },
+      {
+        "id": "lOYMq9eKg35kvceh-O35M",
+        "artist": "The Beatles",
+        "track": "Come Together"
+      },
+      {
+        "id": "Ih8ue6KWwA7oFtHpTH-CF",
+        "artist": "PARTYNEXTDOOR",
+        "track": "Belong to the City"
+      },
+      {
+        "id": "RhtADK8kgHYlgWxX8rYfS",
+        "artist": "Darude",
+        "track": "Closer Together"
+      },
+      {
+        "id": "BRqpPr37XXEs-kJQqqq0i",
+        "artist": "The Turtles",
+        "track": "Happy Together"
+      }
+    ]
+  }
+]

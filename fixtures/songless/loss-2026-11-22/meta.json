@@ -1,0 +1,15 @@
+{
+  "game": "songless",
+  "case": "loss",
+  "sourceUrl": "https://lessgames.com/songless",
+  "capturedAt": "2026-11-23T00:23:24.671Z",
+  "puzzleId": "Songless #451, challengeDate 2026-11-22, categoryId 0 (Top Hits)",
+  "sources": [
+    "share",
+    "indexedDB",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Top Hits daily, 5 skips then out of attempts (last button is Give up). Answer revealed: We Belong Together - Mariah Carey. 74.3% of players failed."
+}

@@ -1,0 +1,13 @@
+{
+ "game": "globle",
+ "case": "partial",
+ "sourceUrl": "https://globle-game.com/game",
+ "capturedAt": "2026-11-23T00:24:00Z",
+ "puzzleId": "2026-11-22",
+ "sources": [
+  "localStorage",
+  "network",
+  "dom"
+ ],
+ "notes": "Unsolved 2026-11-22 after 4 guesses (Canada Egypt Russia Turkiye); Share button disabled, statistics untouched."
+}
