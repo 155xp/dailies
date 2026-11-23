@@ -14,22 +14,22 @@ const GAMES = [
   "https://lessgames.com/songless*",
   "https://spamle.com/*",
 ];
-const LOCAL = ["http://localhost/*", "http://127.0.0.1/*"];
+const DASH = ["https://dailies.enci.dev/*"];
 
 describe("manifest", () => {
-  it("lists only the 10 game patterns plus the local dashboard origins", () => {
-    const m = buildManifest({ version: "1.0.0" });
-    expect(m.host_permissions).toEqual([...GAMES, ...LOCAL]);
+  it("lists only the 10 game patterns plus the configured dashboard origin", () => {
+    const m = buildManifest({ version: "1.0.0", dashboardOrigins: "https://dailies.enci.dev" });
+    expect(m.host_permissions).toEqual([...GAMES, ...DASH]);
     expect(m.content_scripts).toEqual([
       { matches: GAMES, js: ["hook.js"], run_at: "document_start", world: "MAIN" },
       { matches: GAMES, js: ["content.js"], run_at: "document_start" },
-      { matches: LOCAL, js: ["bridge.js"], run_at: "document_idle" },
+      { matches: DASH, js: ["bridge.js"], run_at: "document_idle" },
     ]);
   });
 
   it("adds dashboard origins from DAILIES_DASHBOARD_ORIGINS to the bridge only", () => {
     const m = buildManifest({ version: "1.0.0", dashboardOrigins: " https://a.example , https://b.example:8443/ " });
-    const dash = [...LOCAL, "https://a.example/*", "https://b.example:8443/*"];
+    const dash = ["https://a.example/*", "https://b.example:8443/*"];
     expect(m.host_permissions).toEqual([...GAMES, ...dash]);
     expect(m.content_scripts?.[0]?.matches).toEqual(GAMES);
     expect(m.content_scripts?.[2]?.matches).toEqual(dash);
@@ -42,7 +42,7 @@ describe("manifest", () => {
   });
 
   it("asks for storage and scripting only: no alarms, tabs, webRequest or all-urls access", () => {
-    const m = buildManifest({ version: "1.0.0" });
+    const m = buildManifest({ version: "1.0.0", dashboardOrigins: "https://dailies.enci.dev" });
     // scripting: on install or update, inject the bridge into dashboard tabs that were already open.
     expect(m.permissions).toEqual(["storage", "scripting"]);
     expect(m.optional_permissions).toBeUndefined();
@@ -51,7 +51,7 @@ describe("manifest", () => {
   });
 
   it("uses an MV3 service worker, never a persistent background page", () => {
-    const m = buildManifest({ version: "1.0.0" });
+    const m = buildManifest({ version: "1.0.0", dashboardOrigins: "https://dailies.enci.dev" });
     expect(m.manifest_version).toBe(3);
     expect(m.background).toEqual({ service_worker: "background.js", type: "module" });
   });

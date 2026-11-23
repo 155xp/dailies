@@ -3,7 +3,7 @@ import { Cdp } from "./cdp";
 import { DIST } from "./harness";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-const DASHBOARD = "http://localhost:5173/";
+const DASHBOARD = "https://dailies.enci.dev/";
 const PAGE = `<!doctype html><title>dashboard</title><script>
 window.__states = [];
 addEventListener("message", (e) => e.data && e.data.source === "dailies-extension" && window.__states.push(e.data));
