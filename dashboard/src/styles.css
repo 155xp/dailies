@@ -606,6 +606,67 @@ button {
   animation: tip-in 150ms var(--ease);
 }
 
+/* Settings: a plain labelled switch at the end of the page. */
+.setting {
+  margin-top: 48px;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.setting label {
+  cursor: pointer;
+}
+
+.switch {
+  --knob: #fff;
+  appearance: none;
+  flex: none;
+  position: relative;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+  border-radius: 999px;
+  background: var(--ink-5);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--knob);
+  box-shadow: var(--shadow-button);
+  transition: transform 200ms var(--ease);
+}
+
+.switch:checked {
+  background: var(--primary-bg);
+}
+
+.switch:checked::before {
+  transform: translateX(16px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .switch {
+    --knob: var(--ink-11);
+    background: var(--ink-6);
+  }
+
+  .switch:checked {
+    --knob: var(--surface);
+    background: var(--primary-bg);
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -820,6 +881,23 @@ button {
     flex-direction: column;
     gap: 8px;
   }
+
+  /* An iPhone switch: 51 by 31, the knob 4px in. */
+  .switch {
+    width: 51px;
+    height: 31px;
+  }
+
+  .switch::before {
+    top: 4px;
+    left: 4px;
+    width: 23px;
+    height: 23px;
+  }
+
+  .switch:checked::before {
+    transform: translateX(20px);
+  }
 }
 
 /* Reduced motion: travel and scale become a 150ms fade; presses do not scale. */
@@ -852,5 +930,9 @@ button {
   .hist-label:active,
   .line:has(.disclosure:active) {
     transform: none;
+  }
+
+  .switch::before {
+    transition: none;
   }
 }

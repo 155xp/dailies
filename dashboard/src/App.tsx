@@ -8,6 +8,7 @@ import { GAMES, type Game } from "./games";
 import { History } from "./HistoryGrid";
 import { Install } from "./Install";
 import { localDay, longDay } from "./history";
+import { PaletteSetting } from "./palette";
 import { usePresence } from "./presence";
 import { result, tiles } from "./summary";
 
@@ -73,6 +74,7 @@ export function App() {
           </button>
         </section>
       )}
+      {connected && <PaletteSetting />}
     </main>
   );
 }

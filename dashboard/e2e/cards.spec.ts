@@ -192,7 +192,7 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
     for (const [i, level] of record.detail.solved.entries()) {
       expect(await bg(groups.nth(i))).toBe(rgb(colors[level]!));
       const words = record.detail.guesses.find((g) => g.correct && g.levels[0] === level)!.words;
-      await expect(groups.nth(i)).toHaveText(words.join(", "));
+      await expect(groups.nth(i).locator(".words")).toHaveText(words.join(", "));
     }
     await expect(c.locator("[data-figure] .figure")).toHaveText("1");
     await expect(c.locator("[data-figure] .figure-label")).toHaveText("Mistake");

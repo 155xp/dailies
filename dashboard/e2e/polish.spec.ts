@@ -21,8 +21,26 @@ async function openCards(page: Page, records = [horse]) {
 /** The spec's tint: 20% of the gold medal color (#fff0b3) over the sampled grass (#1b6b3a). */
 const mix = (a: number, b: number) => Math.round(0.2 * a + 0.8 * b);
 const TINT = `rgb(${mix(0xff, 0x1b)}, ${mix(0xf0, 0x6b)}, ${mix(0xb3, 0x3a)})`;
+/**
+ * The board is a layered SVG (dailies#13): the tint is its own layer, one rect per cell over that cell's ground.
+ * A cell counts as tinted when its rect, at its fill opacity, composites over the ground beneath to exactly TINT.
+ */
 const tinted = (page: Page) =>
-  page.locator('.card[data-game="enclose-horse"] [data-board] > *').evaluateAll((els, tint) => els.flatMap((e, i) => (getComputedStyle(e).backgroundColor === tint ? [i] : [])), TINT);
+  page.locator('.card[data-game="enclose-horse"] [data-board] g[data-layer="tint"] [data-tint]').evaluateAll(
+    (els, tint) =>
+      els
+        .flatMap((e) => {
+          const at = Number(e.getAttribute("data-at"));
+          const ground = e.closest("svg")!.querySelector(`g[data-layer="ground"] [data-at="${at}"]`)!;
+          const parse = (c: string) => c.match(/[\d.]+/g)!.slice(0, 3).map(Number);
+          const [top, under] = [parse(getComputedStyle(e).fill), parse(getComputedStyle(ground).fill)];
+          const a = Number(getComputedStyle(e).fillOpacity) * Number(getComputedStyle(e).opacity);
+          const mixed = `rgb(${top.map((v, i) => Math.round(a * v + (1 - a) * under[i]!)).join(", ")})`;
+          return mixed === tint ? [at] : [];
+        })
+        .sort((x, y) => x - y),
+    TINT,
+  );
 
 test.describe("enclose.horse: the enclosed area is tinted", () => {
   test("the fixture board tints exactly the cells the walls enclose around the horse, and they score the record's score", async ({ page }) => {
@@ -38,7 +56,7 @@ test.describe("enclose.horse: the enclosed area is tinted", () => {
 
   test("an escaped board, with no walls placed, tints nothing", async ({ page }) => {
     await openCards(page, [{ ...horse, detail: { ...horse.detail, walls: [] } }]);
-    await expect(page.locator('.card[data-game="enclose-horse"] [data-board] > *')).toHaveCount(horse.detail.cols * horse.detail.rows);
+    await expect(page.locator('.card[data-game="enclose-horse"] [data-board] g[data-layer="ground"] [data-cell]')).toHaveCount(horse.detail.cols * horse.detail.rows);
     expect(await tinted(page)).toEqual([]);
   });
 });

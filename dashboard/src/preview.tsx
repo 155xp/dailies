@@ -6,6 +6,7 @@ import fixtures from "virtual:card-fixtures";
 import type { DailyRecord } from "../../src/record";
 import { CARDS } from "./cards";
 import { GAMES } from "./games";
+import "./palette";
 
 /** Tests may hand the preview other records through `window.__CARDS__`; by default it draws the fixtures. */
 interface Preview {
