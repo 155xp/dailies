@@ -494,8 +494,8 @@
   --geo-land: var(--ink-4);
   --travle-perfect: #3a8f45;
   --travle-near-perfect: #6b8714;
-  --travle-good: #bd6407;
-  --travle-poor: #d0392f;
+  --travle-good: #e0590b;
+  --travle-poor: #a51d2d;
   --heat-correct: #1f7a35;
   --heat-hot: #d1242f;
   --heat-warm: #c2500f;
@@ -577,7 +577,6 @@
   fill: var(--ink-12);
   stroke-width: 1.5px;
 }
-.card .geo-map [data-route],
 .card .geo-map line {
   fill: none;
   stroke: var(--ink-11);
@@ -596,6 +595,103 @@
   fill: var(--ink-12);
   stroke-width: 3px;
   paint-order: stroke;
+}
+
+/* Travle: the game's start and end colors; the player's chain in ink over a casing in the card color. */
+:root {
+  --travle-start: #b47109;
+  --travle-end: #45707a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --travle-start: #d3869b;
+    --travle-end: #7daea3;
+  }
+}
+.card[data-game="travle"] .geo-sil svg {
+  fill: var(--travle-end);
+}
+.card .geo-map [data-role="start"] {
+  fill: var(--travle-start);
+}
+.card .geo-map [data-role="end"] {
+  fill: var(--travle-end);
+}
+.card .geo-map [data-role="missing"] {
+  fill: none;
+  stroke: var(--ink-12);
+  stroke-width: 1.5px;
+  stroke-dasharray: 3 2;
+}
+.card .geo-map .travle-outline {
+  fill: none;
+  stroke: var(--ink-12);
+  stroke-width: 2px;
+  opacity: 0;
+  transition: opacity 150ms var(--ease);
+}
+.card .geo-map .travle-outline[data-on] {
+  opacity: 1;
+}
+.card .geo-map .travle-casing,
+.card .geo-map [data-route],
+.card .geo-map [data-gap] {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 5px;
+  stroke-linecap: round;
+}
+.card .geo-map [data-route],
+.card .geo-map [data-gap] {
+  stroke: var(--ink-12);
+  stroke-width: 2px;
+}
+.card .geo-map [data-gap] {
+  stroke-linecap: butt;
+  stroke-dasharray: 4 3;
+}
+.card[data-game="travle"] .geo-map :is(circle, text, .travle-outline, .travle-casing, [data-route], [data-gap]) {
+  pointer-events: none;
+}
+.card .travle-legend {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -8px;
+  padding: 0;
+  list-style: none;
+}
+.card .travle-legend li {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 6px;
+}
+.card .travle-legend li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--ink-3);
+  opacity: 0;
+  transition: opacity 150ms var(--ease);
+}
+.card .travle-legend li[data-active]::before {
+  opacity: 1;
+}
+.card .travle-legend [data-swatch] {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+.card .travle-legend .geo-hold {
+  width: 72px;
+  height: 12px;
 }
 
 /* Globle globe: a square box up to 400px, centered; the circle holds its place while the chunks load. */

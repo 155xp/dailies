@@ -4,7 +4,7 @@
  */
 import { geoArea, geoAzimuthalEqualArea, geoCentroid, geoDistance, geoGraticule10, geoNaturalEarth1, geoOrthographic, geoPath } from "d3-geo";
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
-import { feature } from "topojson-client";
+import { feature, neighbors } from "topojson-client";
 import atlas from "world-atlas/countries-110m.json";
 
 type Shape = Feature<Polygon | MultiPolygon, { name: string }>;
@@ -64,6 +64,10 @@ export function resolve(name: string): Country | null {
   }
   return cache.get(key)!;
 }
+
+const BORDERS = neighbors((topo.objects.countries as unknown as { geometries: Parameters<typeof neighbors>[0] }).geometries);
+/** Whether two countries share a land border in the atlas. */
+export const touches = (a: Country, b: Country) => BORDERS[SHAPES.indexOf(a.feature)]?.includes(SHAPES.indexOf(b.feature)) ?? false;
 
 export const distanceKm = (a: Country, b: Country) => geoDistance(a.center, b.center) * 6371;
 export const roundKm = (km: number) => Math.round(km / 100) * 100;
