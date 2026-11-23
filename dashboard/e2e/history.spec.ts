@@ -48,13 +48,16 @@ test.describe("3c history", () => {
     }
   });
 
-  test("current and best streak sit at the right of the History title, and each game shows its own streak", async ({ page }) => {
+  test("current and best streak across all games sit at the right of the History title (under it at 390), and each game shows its own streak", async ({ page }, info) => {
     await open(page, { ext: withState(STATES.done) });
     const title = (await page.getByRole("heading", { name: "History" }).boundingBox())!;
-    for (const label of ["Current streak 1", "Best streak 1"]) {
+    for (const label of ["Current streak, all games 1", "Best streak, all games 1"]) {
       const fig = (await page.locator(`[data-value="${label}"]`).boundingBox())!;
-      expect(fig.x).toBeGreaterThan(title.x + title.width);
-      expect(Math.abs(fig.y - title.y)).toBeLessThan(24);
+      if (phone(info.project.name)) expect(fig.y).toBeGreaterThanOrEqual(title.y + title.height);
+      else {
+        expect(fig.x).toBeGreaterThan(title.x + title.width);
+        expect(Math.abs(fig.y - title.y)).toBeLessThan(24);
+      }
     }
     for (const g of GAMES) await expect(page.locator(`[data-history-row="${g.id}"] .streak`)).toHaveText("Streak 1");
   });

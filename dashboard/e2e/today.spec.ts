@@ -57,13 +57,16 @@ test.describe("3a shell and today rows", () => {
     expect(red).not.toBe(ink);
   });
 
-  test("rows never reorder or move when statuses change", async ({ page }) => {
+  test("rows never reorder when statuses change, and at desktop widths never move", async ({ page }, info) => {
     await open(page, { ext: withState(STATES.partial) });
-    const tops = () => page.locator(".rows > .row").evaluateAll((els) => els.map((e) => [e.getAttribute("data-game"), Math.round(e.getBoundingClientRect().top)]));
+    const tops = () => page.locator(".rows > .row").evaluateAll((els) => els.map((e) => [e.getAttribute("data-game"), Math.round(e.getBoundingClientRect().top)] as const));
     const before = await tops();
     await page.evaluate((s) => (window as never as { __ext: { set(m: unknown): void } }).__ext.set({ kind: "state", state: s }), STATES.done);
     await expect(row(page, "globle").locator(".status")).toHaveText("Played");
-    expect(await tops()).toEqual(before);
+    const after = await tops();
+    expect(after.map(([g]) => g)).toEqual(before.map(([g]) => g));
+    // At 390 a Not played yet row is one line (dailies#3), so a row grows by its second line when a result arrives.
+    if (fine(info.project.name)) expect(after).toEqual(before);
   });
 
   test("game links: underline and ink step on hover over 150ms, 2px focus-visible ring", async ({ page }, info) => {
