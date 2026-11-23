@@ -34,6 +34,7 @@ test.describe("3d states, type and motion", () => {
   // Not found now puts the install card above the list (dailies#5 walk), so rows move for that state on purpose;
   // an answer with today's results must still leave every row where the loading state put it.
   test("loading: reserved space with no data, then an answer with today's results within 300ms, without moving rows", async ({ page }, info) => {
+    await page.addInitScript(() => localStorage.setItem("dailies-shell", JSON.stringify({ date: "2026-11-22", state: "connected", played: ["krillion", "travle", "wordle", "connections", "spelling-bee"] })));
     await open(page, { ext: { kind: "silent" }, clock: "frozen" });
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
     await expect(page.locator(".rows .skel")).toHaveCount(GAMES.length);
