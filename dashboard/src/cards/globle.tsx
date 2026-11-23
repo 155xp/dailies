@@ -76,6 +76,7 @@ export function Globle({ record, history }: CardProps) {
           {streak}
         </AnswerRow>
       )}
+      {!won && streak}
       <MapBox ready={!!view} label={label ?? ""}>
         {(w, h) => {
           const m = (geo as Geo).mapView(w, h, view!.guesses.map((g) => g.c), view!.answer?.center[0]);
@@ -111,7 +112,6 @@ export function Globle({ record, history }: CardProps) {
           );
         }}
       </MapBox>
-      {!won && streak}
     </Card>
   );
 }
