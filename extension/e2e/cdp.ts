@@ -21,6 +21,14 @@ export class Cdp {
     private out: Writable,
   ) {
     let buf = "";
+    let stderr = "";
+    proc.stderr?.on("data", (c: Buffer) => (stderr = (stderr + c.toString()).slice(-4000)));
+    // A dead browser resets the pipes; the exit handler below reports why.
+    for (const fd of [3, 4]) (proc.stdio[fd] as Readable | Writable).on("error", () => {});
+    proc.on("exit", (code) => {
+      for (const p of this.pending.values()) p.reject(new Error(`Chromium exited (${code}): ${stderr}`));
+      this.pending.clear();
+    });
     (proc.stdio[4] as Readable).on("data", (chunk: Buffer) => {
       buf += chunk.toString();
       for (let i = buf.indexOf("\0"); i >= 0; i = buf.indexOf("\0")) {
@@ -41,6 +49,8 @@ export class Cdp {
       chromium.executablePath(),
       [
         "--headless",
+        // As Playwright does on Linux: CI runners block the setuid and namespace sandboxes.
+        "--no-sandbox",
         "--remote-debugging-pipe",
         `--user-data-dir=${mkdtempSync(join(tmpdir(), "dailies-cdp-"))}`,
         `--disable-extensions-except=${extensionDir}`,
@@ -49,7 +59,7 @@ export class Cdp {
         "--no-default-browser-check",
         "about:blank",
       ],
-      { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] },
+      { stdio: ["ignore", "ignore", "pipe", "pipe", "pipe"] },
     );
     return new Cdp(proc, proc.stdio[3] as Writable);
   }
