@@ -1,0 +1,43 @@
+<div class="modal-overlay visible" id="resultsOverlay" style="padding-bottom: 115px;">
+            
+            <div style="position: relative;">
+                <canvas id="resultsClose" style="position: absolute; top: -40px; right: 0px; cursor: pointer; width: 40px; height: 40px;" width="40" height="40"></canvas>
+                <div class="wiggly-modal" id="wigglyModal" style="position: relative; width: 500px; max-width: calc(-40px + 100vw); max-height: calc(100dvh - 195px); display: flex; flex-direction: column; background: rgb(255, 255, 255); clip-path: polygon(1.15% 1%, 33.52% 0.59%, 66.36% 1.01%, 99.08% 0.77%, 98.36% 49.68%, 98.69% 99%, 66.79% 99.33%, 33.05% 98.91%, 0.96% 99.02%, 1.47% 50.2%);">
+                    <canvas class="wiggly-modal-bg" style="display: block; position: absolute; top: 0px; left: 0px; z-index: 0; pointer-events: none; width: 500px; height: 779px;" width="500" height="779"></canvas>
+                    <div class="wiggly-modal-scroll" style="overflow-y: auto; flex: 1; min-height: 0; position: relative; z-index: 2;">
+                        <div class="wiggly-modal-content" id="resultsContent" style="position: relative; z-index: 1; padding: 20px 32px; color: #000; font-family: 'Schoolbell', cursive;"><h2 class="results-title" style="font-size: 24px; margin: 8px 0 12px; text-align: center;">Bitter Divorce - Day 328</h2>
+                <div id="colorBand" style="background: #d4f4ff; padding: 10px 32px 8px; margin: 0 -32px 4px -32px; text-align: center;">
+                    <div style="font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;">Your Score</div>
+                    <div class="result-score-num" style="font-size: 80px; font-weight: bold; color: #000; line-height: 1; margin-bottom: 4px;"><span class="dancing-digit" data-seed="0" style="display: inline-block; margin: 0px 1px; transform: translate(-0.354486px, -0.316624px);">3</span><span class="dancing-digit" data-seed="1" style="display: inline-block; margin: 0px 1px; transform: translate(0.294262px, -0.551781px);">6</span></div>
+                    <div class="result-tier-label" style="font-size: 28px; font-weight: bold; color: #000; letter-spacing: 1px;">💎 PERFECT! 💎</div>
+                </div>
+            
+                <div style="text-align: center; font-size: 14px; color: #888; margin-bottom: 6px; margin-top: 10px;">
+                    🥈29+ · 🥇33+ · 💎36
+                </div>
+            
+            <div class="hist-section" style="margin: 0 auto 16px; width: 85%; min-width: 200px;">
+                <div class="hist-title" style="font-size: 15px; color: #666; text-transform: uppercase; text-align: center; letter-spacing: 1.5px; margin-bottom: 32px;">Score Distribution</div>
+                <div style="position: relative;">
+                    <div id="histTooltipCount" style="position: absolute; font-size: 11px; color: #f1c40f; background: #fff; padding: 1px 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); pointer-events: none; display: none; transform: translateX(-50%);"></div>
+                    <div id="histYouLabel" style="position: absolute; left: 97.36842105263158%; top: 30.303030303030294%; transform: translate(-50%, -100%); font-size: 14px; font-weight: bold; color: #3498db; pointer-events: none; padding-bottom: 4px; text-align: center; line-height: 1;"><span class="you-text" style="display: inline-block; transform: translate(-0.233232px, 0.227925px);">You</span><br><span class="you-arrow" style="display: inline-block; font-size: 12px; transform: translate(-1.48276px, 2.36487px);">▼</span></div>
+                    <svg id="histSvg" viewBox="0 0 19 80" preserveAspectRatio="none" style="width: 100%; height: 120px; display: block;">
+                        <rect class="hist-bar" x="0" y="79" width="1" height="1" fill="#ccc" data-score="0" data-count="1"></rect><rect class="hist-bar" x="1" y="74.26262626262626" width="1" height="5.737373737373738" fill="#ccc" data-score="2" data-count="71"></rect><rect class="hist-bar" x="2" y="79" width="1" height="1" fill="#ccc" data-score="4" data-count="6"></rect><rect class="hist-bar" x="3" y="79" width="1" height="1" fill="#ccc" data-score="6" data-count="5"></rect><rect class="hist-bar" x="4" y="79" width="1" height="1" fill="#ccc" data-score="8" data-count="4"></rect><rect class="hist-bar" x="5" y="79" width="1" height="1" fill="#ccc" data-score="10" data-count="12"></rect><rect class="hist-bar" x="6" y="79" width="1" height="1" fill="#ccc" data-score="12" data-count="6"></rect><rect class="hist-bar" x="7" y="79" width="1" height="1" fill="#ccc" data-score="14" data-count="12"></rect><rect class="hist-bar" x="8" y="78.46464646464646" width="1" height="1.5353535353535352" fill="#ccc" data-score="16" data-count="19"></rect><rect class="hist-bar" x="9" y="76.76767676767676" width="1" height="3.2323232323232327" fill="#ccc" data-score="18" data-count="40"></rect><rect class="hist-bar" x="10" y="67.39393939393939" width="1" height="12.606060606060606" fill="#ccc" data-score="20" data-count="156"></rect><rect class="hist-bar" x="11" y="54.54545454545455" width="1" height="25.454545454545453" fill="#ccc" data-score="22" data-count="315"></rect><rect class="hist-bar" x="12" y="30.949494949494955" width="1" height="49.050505050505045" fill="#ccc" data-score="24" data-count="607"></rect><rect class="hist-bar" x="13" y="72.8080808080808" width="1" height="7.191919191919192" fill="#ccc" data-score="26" data-count="89"></rect><rect class="hist-bar" x="14" y="44.84848484848485" width="1" height="35.15151515151515" fill="#ccc" data-score="28" data-count="435"></rect><rect class="hist-bar" x="15" y="53.898989898989896" width="1" height="26.1010101010101" fill="#ccc" data-score="30" data-count="323"></rect><rect class="hist-bar" x="16" y="21.97979797979798" width="1" height="58.02020202020202" fill="#ccc" data-score="32" data-count="718"></rect><rect class="hist-bar" x="17" y="0" width="1" height="80" fill="#ccc" data-score="34" data-count="990"></rect><rect class="hist-bar" x="18" y="24.242424242424235" width="1" height="55.757575757575765" fill="#3498db" data-score="36" data-count="690"></rect>
+                    </svg>
+                </div>
+                <div style="position: relative; font-size: 11px; color: #999; margin-top: 2px; height: 14px;">
+                    <span id="histTooltipScore" style="position: absolute; top: 0; color: #f1c40f; background: #fff; padding: 0 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); display: none; white-space: nowrap; transform: translateX(-50%);"></span>
+                </div>
+            </div>
+        <div style="text-align: center; margin-top: 2px;"><a href="/stats/2026-11-22" style="color: #555; font-size: 15px; text-decoration: none;">See full stats →</a></div>
+                <div id="shareBtnContainer" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px;"><canvas width="100" height="44" style="cursor: pointer; width: 100px; height: 44px;"></canvas><canvas width="130" height="44" style="cursor: pointer; width: 130px; height: 44px;"></canvas></div>
+                <div id="upNext" style="margin-top: 14px;">
+            <div class="up-next-label" style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 10px;">Up next</div>
+            <div id="upNextNotes" style="display: flex; flex-direction: column; gap: 7px;"><canvas width="436" height="62" style="cursor: pointer; width: 436px; height: 62px;"></canvas><div style="display: flex; gap: 10px;"><canvas width="213" height="62" style="cursor: pointer; width: 213px; height: 62px;"></canvas><canvas width="213" height="62" style="cursor: pointer; width: 213px; height: 62px;"></canvas></div></div>
+        </div>
+            </div>
+                    </div>
+                    <div id="resultsFooter" style="position: relative; z-index: 2; display: none;"></div>
+                </div>
+            </div>
+        </div>

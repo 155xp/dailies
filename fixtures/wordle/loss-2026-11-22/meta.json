@@ -1,0 +1,14 @@
+{
+  "game": "wordle",
+  "case": "loss",
+  "sourceUrl": "https://www.nytimes.com/games/wordle/index.html",
+  "capturedAt": "2026-11-23T00:12:04.908Z",
+  "puzzleId": "4823 (puzzleId in storage/API id); displayed as No. 1982 / share \"Wordle 1,982\"; printDate 2026-11-22",
+  "sources": [
+    "share",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Lost X/6 with 6 wrong guesses. Signed out: no stats, stats modal is a regiwall."
+}

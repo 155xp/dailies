@@ -1,0 +1,293 @@
+{
+  "_note": "getComputedStyle values. Board row background = per-attempt state; timeline label = current clip length.",
+  "boardRowsPerStep": [
+    {
+      "action": "page loaded",
+      "clipLabel": "0.1 seconds",
+      "rows": [
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "0.5 seconds",
+      "rows": [
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "2 seconds",
+      "rows": [
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "8 seconds",
+      "rows": [
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "15 seconds",
+      "rows": [
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "",
+          "bg": "rgb(22, 24, 25)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    },
+    {
+      "action": "skip",
+      "clipLabel": "15 seconds",
+      "rows": [
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        },
+        {
+          "text": "Skipped",
+          "bg": "rgb(48, 52, 54)",
+          "border": "rgb(48, 52, 54)",
+          "color": "rgb(236, 236, 236)"
+        }
+      ]
+    }
+  ],
+  "modal": {
+    "title": "Game Over",
+    "headerBg": "rgb(198, 33, 33)",
+    "text": [
+      "Game Over",
+      "THE SONG WAS",
+      "We Belong Together - Mariah Carey",
+      "Today",
+      "All time",
+      "Solved in",
+      "X",
+      "Average",
+      "5.3",
+      "Guess Distribution",
+      "Nov 22, 2026",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "X",
+      "You and 74.3% of others failed today's game",
+      "0:00 / 3:21",
+      "Share",
+      "Next"
+    ],
+    "distributionBars": [
+      {
+        "row": "1",
+        "widthPx": 12,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "2",
+        "widthPx": 16.9,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "3",
+        "widthPx": 12.5,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "4",
+        "widthPx": 33.9,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "5",
+        "widthPx": 25.9,
+        "fillAttr": "var(--chakra-colors-gray-emphasized)",
+        "fill": "rgb(66, 69, 72)",
+        "cls": "recharts-rectangle"
+      },
+      {
+        "row": "X",
+        "widthPx": 292.7,
+        "fillAttr": "var(--chakra-colors-red-solid)",
+        "fill": "rgb(198, 33, 33)",
+        "cls": "recharts-rectangle"
+      }
+    ]
+  },
+  "modalAllTime": null
+}

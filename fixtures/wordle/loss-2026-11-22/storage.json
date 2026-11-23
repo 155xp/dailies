@@ -1,0 +1,40 @@
+{
+  "localStorage": {
+    "games-state-wordleV2/ANON": {
+      "states": [
+        {
+          "puzzleId": "4823",
+          "data": {
+            "boardState": [
+              "crane",
+              "moist",
+              "blimp",
+              "hound",
+              "fudge",
+              "weary"
+            ],
+            "currentRowIndex": 6,
+            "status": "FAIL",
+            "hardMode": false,
+            "isPlayingArchive": false
+          },
+          "schemaVersion": "0.52.0",
+          "timestamp": 1795392702,
+          "printDate": "2026-11-22"
+        }
+      ]
+    },
+    "wordle-has-played": 1,
+    "nyt-wordle-darkmode": false,
+    "nyt-wordle-refresh": true,
+    "nyt-elf-limiter": {
+      "count": 1,
+      "timestamp": 1795392706481
+    },
+    "badge-preview-11-25": {
+      "timestamps": []
+    }
+  },
+  "indexedDB": {},
+  "_note": "Only the game's own keys. indexedDB.databases() returned no databases. Omitted non-game keys seen: statsig.*, ALS_DATA, iterate_hq, aps:*, __bm_*, _gcl_ls, pz-version (all analytics/ads/experimentation)."
+}

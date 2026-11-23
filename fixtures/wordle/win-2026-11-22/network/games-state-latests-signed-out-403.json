@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.nytimes.com/svc/games/state/wordleV2/latests?puzzle_ids=4823"
+  },
+  "status": 403,
+  "body": {
+    "error": "forbidden"
+  }
+}

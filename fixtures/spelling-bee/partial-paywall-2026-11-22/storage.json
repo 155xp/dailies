@@ -1,0 +1,29 @@
+{
+  "localStorage": {
+    "games-state-spelling_bee/ANON": {
+      "states": [
+        {
+          "puzzleId": "9300",
+          "data": {
+            "answers": [
+              "pothead",
+              "ahead",
+              "deadhead",
+              "deadheaded"
+            ],
+            "isRevealed": false,
+            "rank": "Solid",
+            "isPlayingArchive": false
+          },
+          "schemaVersion": "0.52.0",
+          "timestamp": 1795392796,
+          "printDate": "2026-11-22"
+        }
+      ]
+    },
+    "spelling-bee-has-played": 1,
+    "pz-version": ""
+  },
+  "indexedDB": {},
+  "_note": "Only game-owned keys kept. indexedDB.databases() returned no databases. Signed-in players get key games-state-spelling_bee/<regiId> instead of /ANON (per game JS, not captured here)."
+}

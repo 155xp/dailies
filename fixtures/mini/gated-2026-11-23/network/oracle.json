@@ -1,0 +1,22 @@
+{
+  "url": "https://www.nytimes.com/svc/crosswords/v2/oracle/mini.json",
+  "method": "GET",
+  "status": 200,
+  "body": {
+    "status": "OK",
+    "results": {
+      "current": {
+        "puzzle_id": 24762,
+        "print_date": "2026-11-23",
+        "published": "2026-11-22 18:00:00",
+        "time_delta": 0
+      },
+      "next": {
+        "puzzle_id": 24759,
+        "print_date": "2026-11-24",
+        "published": "2026-11-23 22:00:00",
+        "time_delta": 97135
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "game": "connections",
+  "case": "loss",
+  "sourceUrl": "https://www.nytimes.com/games/connections",
+  "capturedAt": "2026-11-23T00:23:42.822Z",
+  "puzzleId": "1370 (API id / puzzleId in storage); displayed as No. 1260 / share \"Puzzle #1260\"; printDate 2026-11-22",
+  "sources": [
+    "share",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Lost with 4 mistakes after solving yellow first; game auto-revealed the rest. Signed out: no stats."
+}

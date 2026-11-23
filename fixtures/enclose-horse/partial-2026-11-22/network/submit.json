@@ -1,0 +1,312 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.enclose.horse/api/levels/uwtFBO/submit",
+    "headers": {
+      "content-type": "application/json",
+      "x-player-id": "REDACTED"
+    },
+    "body": {
+      "walls": [
+        117,
+        143,
+        164,
+        176
+      ]
+    }
+  },
+  "status": 200,
+  "response": {
+    "submissionId": "REDACTED",
+    "score": 10,
+    "wallsUsed": 4,
+    "rank": 16955,
+    "percentile": 1,
+    "isNewPersonalBest": false,
+    "stats": {
+      "levelId": "uwtFBO",
+      "totalSubmissions": 17083,
+      "histogram": [
+        {
+          "minScore": -1,
+          "maxScore": -1,
+          "count": 2
+        },
+        {
+          "minScore": 1,
+          "maxScore": 1,
+          "count": 91
+        },
+        {
+          "minScore": 2,
+          "maxScore": 2,
+          "count": 18
+        },
+        {
+          "minScore": 3,
+          "maxScore": 3,
+          "count": 3
+        },
+        {
+          "minScore": 4,
+          "maxScore": 4,
+          "count": 5
+        },
+        {
+          "minScore": 5,
+          "maxScore": 5,
+          "count": 5
+        },
+        {
+          "minScore": 7,
+          "maxScore": 7,
+          "count": 2
+        },
+        {
+          "minScore": 9,
+          "maxScore": 9,
+          "count": 1
+        },
+        {
+          "minScore": 10,
+          "maxScore": 10,
+          "count": 2
+        },
+        {
+          "minScore": 11,
+          "maxScore": 11,
+          "count": 1
+        },
+        {
+          "minScore": 13,
+          "maxScore": 13,
+          "count": 2
+        },
+        {
+          "minScore": 15,
+          "maxScore": 15,
+          "count": 1
+        },
+        {
+          "minScore": 16,
+          "maxScore": 16,
+          "count": 7
+        },
+        {
+          "minScore": 17,
+          "maxScore": 17,
+          "count": 5
+        },
+        {
+          "minScore": 18,
+          "maxScore": 18,
+          "count": 2
+        },
+        {
+          "minScore": 19,
+          "maxScore": 19,
+          "count": 3
+        },
+        {
+          "minScore": 20,
+          "maxScore": 20,
+          "count": 3
+        },
+        {
+          "minScore": 21,
+          "maxScore": 21,
+          "count": 5
+        },
+        {
+          "minScore": 22,
+          "maxScore": 22,
+          "count": 3
+        },
+        {
+          "minScore": 23,
+          "maxScore": 23,
+          "count": 2
+        },
+        {
+          "minScore": 24,
+          "maxScore": 24,
+          "count": 5
+        },
+        {
+          "minScore": 25,
+          "maxScore": 25,
+          "count": 12
+        },
+        {
+          "minScore": 26,
+          "maxScore": 26,
+          "count": 5
+        },
+        {
+          "minScore": 27,
+          "maxScore": 27,
+          "count": 11
+        },
+        {
+          "minScore": 28,
+          "maxScore": 28,
+          "count": 12
+        },
+        {
+          "minScore": 29,
+          "maxScore": 29,
+          "count": 14
+        },
+        {
+          "minScore": 30,
+          "maxScore": 30,
+          "count": 13
+        },
+        {
+          "minScore": 31,
+          "maxScore": 31,
+          "count": 26
+        },
+        {
+          "minScore": 32,
+          "maxScore": 32,
+          "count": 36
+        },
+        {
+          "minScore": 33,
+          "maxScore": 33,
+          "count": 40
+        },
+        {
+          "minScore": 34,
+          "maxScore": 34,
+          "count": 64
+        },
+        {
+          "minScore": 35,
+          "maxScore": 35,
+          "count": 95
+        },
+        {
+          "minScore": 36,
+          "maxScore": 36,
+          "count": 97
+        },
+        {
+          "minScore": 37,
+          "maxScore": 37,
+          "count": 156
+        },
+        {
+          "minScore": 38,
+          "maxScore": 38,
+          "count": 228
+        },
+        {
+          "minScore": 39,
+          "maxScore": 39,
+          "count": 396
+        },
+        {
+          "minScore": 40,
+          "maxScore": 40,
+          "count": 777
+        },
+        {
+          "minScore": 41,
+          "maxScore": 41,
+          "count": 371
+        },
+        {
+          "minScore": 42,
+          "maxScore": 42,
+          "count": 96
+        },
+        {
+          "minScore": 43,
+          "maxScore": 43,
+          "count": 375
+        },
+        {
+          "minScore": 44,
+          "maxScore": 44,
+          "count": 315
+        },
+        {
+          "minScore": 45,
+          "maxScore": 45,
+          "count": 226
+        },
+        {
+          "minScore": 46,
+          "maxScore": 46,
+          "count": 168
+        },
+        {
+          "minScore": 47,
+          "maxScore": 47,
+          "count": 577
+        },
+        {
+          "minScore": 48,
+          "maxScore": 48,
+          "count": 6234
+        },
+        {
+          "minScore": 49,
+          "maxScore": 49,
+          "count": 6571
+        }
+      ],
+      "leaderboard": [
+        {
+          "id": "REDACTED",
+          "rank": 1,
+          "playerName": "Anonymous",
+          "isYou": false,
+          "score": 49,
+          "wallsUsed": 13,
+          "createdAt": 1795259871
+        },
+        {
+          "id": "REDACTED",
+          "rank": 2,
+          "playerName": "Anonymous",
+          "isYou": false,
+          "score": 49,
+          "wallsUsed": 13,
+          "createdAt": 1795260569
+        },
+        {
+          "id": "REDACTED",
+          "rank": 3,
+          "playerName": "Anonymous",
+          "isYou": false,
+          "score": 49,
+          "wallsUsed": 13,
+          "createdAt": 1795260875
+        }
+      ],
+      "optimalScore": 49,
+      "optimalWalls": [
+        1,
+        15,
+        18,
+        45,
+        90,
+        132,
+        135,
+        164,
+        181,
+        183,
+        186,
+        189,
+        191
+      ],
+      "bestScore": null,
+      "bestWalls": null,
+      "playerRank": 16955,
+      "playerPercentile": 1
+    }
+  }
+}

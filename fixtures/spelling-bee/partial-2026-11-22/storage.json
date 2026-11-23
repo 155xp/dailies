@@ -1,0 +1,30 @@
+{
+  "localStorage": {
+    "games-state-spelling_bee/ANON": {
+      "states": [
+        {
+          "puzzleId": "9300",
+          "data": {
+            "answers": [
+              "doth",
+              "hate",
+              "hath",
+              "head"
+            ],
+            "isRevealed": false,
+            "rank": "Good Start",
+            "isPlayingArchive": false
+          },
+          "schemaVersion": "0.52.0",
+          "timestamp": 1795392797,
+          "printDate": "2026-11-22"
+        }
+      ]
+    },
+    "spelling-bee-has-played": 1,
+    "editor_welcome_note_spelling_bee": 1,
+    "pz-version": ""
+  },
+  "indexedDB": {},
+  "_note": "Only game-owned keys kept. indexedDB.databases() returned no databases. Signed-in players get key games-state-spelling_bee/<regiId> instead of /ANON (per game JS, not captured here)."
+}

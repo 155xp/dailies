@@ -1,0 +1,9 @@
+{
+  "game": "enclose-horse",
+  "case": "partial",
+  "sourceUrl": "https://enclose.horse/",
+  "capturedAt": "2026-11-23T00:18:45.074Z",
+  "puzzleId": "2026-11-22 (Day 328 \"Contraption\", levelId uwtFBO)",
+  "sources": ["share", "localStorage", "network", "dom"],
+  "notes": "Small valid enclosure with 4 of 13 walls, score 10/49 (bronze 'okay', 20%), rank 16955, percentile 1; passed the 'unused walls' confirm modal."
+}

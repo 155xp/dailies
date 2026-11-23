@@ -1,0 +1,157 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p1",
+        "answer": "Sears",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Sears",
+      "tier": "krillion",
+      "score": 100,
+      "quip": "Sears once sold a car by mail through its catalog.",
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Discworld",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Discworld",
+      "tier": "schooler",
+      "score": 30,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p3",
+        "answer": "Jet bridge",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Jet bridge",
+      "tier": "rare",
+      "score": 60,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p4",
+        "answer": "Trebuchet",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Trebuchet",
+      "tier": "rare",
+      "score": 60,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p5",
+        "answer": "Chipotle",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Chipotle",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p6",
+        "answer": "Sarcoidosis",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Sarcoidosis",
+      "tier": "rare",
+      "score": 60,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p7",
+        "answer": "Silly mid-on",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Silly mid-on",
+      "tier": "deepcut",
+      "score": 85,
+      "receipt": "REDACTED"
+    }
+  }
+]

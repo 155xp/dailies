@@ -1,0 +1,147 @@
+[
+  {
+    "action": "page loaded",
+    "clipLabelAfter": "0.1 seconds",
+    "idbSessions": []
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "0.5 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:23:09.142Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 1,
+          "board": [
+            {
+              "state": "skipped"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "2 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:23:09.142Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 2,
+          "board": [
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "8 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:23:09.142Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 3,
+          "board": [
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "15 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:23:09.142Z",
+        "state": "ongoing",
+        "game": "songless",
+        "gameData": {
+          "guesses": 4,
+          "board": [
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "action": "skip",
+    "clipLabelAfter": "15 seconds",
+    "idbSessions": [
+      {
+        "categoryId": 0,
+        "challengeDate": "2026-11-22",
+        "timestamp": "2026-11-23T00:23:09.142Z",
+        "state": "lost",
+        "game": "songless",
+        "gameData": {
+          "guesses": 5,
+          "board": [
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            },
+            {
+              "state": "skipped"
+            }
+          ],
+          "answer": {
+            "artist": "Mariah Carey",
+            "track": "We Belong Together",
+            "sc": "255783320"
+          }
+        }
+      }
+    ]
+  }
+]

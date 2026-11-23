@@ -1,0 +1,79 @@
+{
+ "localStorage": {
+  "teuteuf-leaderboard-emoji": "🌍",
+  "travle-past-games": {
+   "games": [
+    {
+     "gameId": 1439,
+     "guesses": 7,
+     "minGuesses": 3,
+     "won": false,
+     "numHints": 1,
+     "perfect": false
+    }
+   ]
+  },
+  "travle-game-state": {
+   "puzzleIx": 1439,
+   "hash": "CRI:CHL:",
+   "isArchiveMode": false,
+   "pastGuessIds": [
+    "ECU",
+    "ARG",
+    "BOL",
+    "VEN",
+    "MEX",
+    "ESP",
+    "AUS"
+   ],
+   "guessRatings": [
+    "🟧",
+    "🟧",
+    "🟧",
+    "🟧",
+    "🟥",
+    "🟥",
+    "🟥"
+   ],
+   "gameProgress": "lost",
+   "hintsData": [
+    {
+     "revealCountry": "PAN"
+    }
+   ],
+   "hardMode": false,
+   "currentWeeklyChallengePlayed": false,
+   "perfect": false,
+   "gameSummary": {
+    "shortestSolution": 4,
+    "guessesNeededToSolve": [
+     "PAN",
+     "COL",
+     "BRA"
+    ],
+    "optimalSolution": [
+     "CRI",
+     "PAN",
+     "COL",
+     "PER",
+     "CHL"
+    ]
+   }
+  },
+  "teuteuf-user": {
+   "loggedIn": false,
+   "firstName": "",
+   "photoURL": "",
+   "isPhotoValid": false,
+   "marketingOptIn": "",
+   "premiumGames": [],
+   "anonymousId": "REDACTED"
+  },
+  "teuteuf-anonymous-id": "REDACTED",
+  "teuteuf-leaderboard-name": "REDACTED"
+ },
+ "indexedDB": {},
+ "cookies": {
+  "hardMode": "[]"
+ }
+}

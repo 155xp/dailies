@@ -1,0 +1,7 @@
+{
+  "localStorage": {
+    "pz-version": ""
+  },
+  "indexedDB": {},
+  "_note": "Gated signed out: no games-state-crossword_mini/* key is written because the board never loads. Only non-game keys (statsig, aps, ALS_DATA, iterate_hq, _gcl_ls) existed besides pz-version (empty string). indexedDB.databases() returned none."
+}

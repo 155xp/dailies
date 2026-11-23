@@ -1,0 +1,77 @@
+{
+  "localStorage": {
+    "songless_htpLastShown": "2026-11-23T00:23:00.859Z",
+    "audio-storage": {
+      "state": {
+        "sfxEnabled": true,
+        "musicEnabled": false,
+        "maplessMusicEnabled": true,
+        "sfxVolume": 70
+      },
+      "version": 0
+    }
+  },
+  "indexedDB": {
+    "game-store": {
+      "version": 10,
+      "stores": {
+        "sessions": {
+          "keyPath": [
+            "challengeDate",
+            "game",
+            "categoryId"
+          ],
+          "indexes": [
+            "categoryId",
+            "challengeDate",
+            "game",
+            "state",
+            "timestamp"
+          ],
+          "entries": [
+            {
+              "key": [
+                "2026-11-22",
+                "songless",
+                0
+              ],
+              "value": {
+                "categoryId": 0,
+                "challengeDate": "2026-11-22",
+                "timestamp": "2026-11-23T00:23:09.142Z",
+                "state": "lost",
+                "game": "songless",
+                "gameData": {
+                  "guesses": 5,
+                  "board": [
+                    {
+                      "state": "skipped"
+                    },
+                    {
+                      "state": "skipped"
+                    },
+                    {
+                      "state": "skipped"
+                    },
+                    {
+                      "state": "skipped"
+                    },
+                    {
+                      "state": "skipped"
+                    }
+                  ],
+                  "answer": {
+                    "artist": "Mariah Carey",
+                    "track": "We Belong Together",
+                    "sc": "255783320"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "_note": "Only the game's own keys. The finished result lives in IndexedDB game-store/sessions keyed [challengeDate, game, categoryId]. songless_htpLastShown = when the How to Play modal was last shown; audio-storage = sound settings. No player/session ids are stored for a signed-out player (api.lessgames.com/auth/get-session returns null)."
+}

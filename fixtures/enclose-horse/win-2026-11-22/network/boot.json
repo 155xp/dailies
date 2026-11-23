@@ -1,0 +1,84 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.enclose.horse/api/boot",
+    "headers": {}
+  },
+  "status": 200,
+  "response": {
+    "dailyLevels": [
+      {
+        "id": "wjup1g",
+        "date": "2026-11-23",
+        "dayNumber": 329,
+        "optimalScore": 81,
+        "name": "Linear II",
+        "bonusType": "lovebirds",
+        "bonusId": "noavQV",
+        "bonusOptimalScore": 91
+      },
+      {
+        "id": "uwtFBO",
+        "date": "2026-11-22",
+        "dayNumber": 328,
+        "optimalScore": 49,
+        "name": "Contraption",
+        "bonusType": "bitterdivorce",
+        "bonusId": "VU7OQX",
+        "bonusOptimalScore": 36
+      },
+      {
+        "id": "c1A1Ts",
+        "date": "2026-11-21",
+        "dayNumber": 327,
+        "optimalScore": 36,
+        "name": "Bees, bees everywhere",
+        "bonusType": "costlywalls",
+        "bonusId": "57a67f",
+        "bonusOptimalScore": 6
+      },
+      {
+        "id": "wNBQJJ",
+        "date": "2026-11-20",
+        "dayNumber": 326,
+        "optimalScore": 49,
+        "name": "Step On Up",
+        "bonusType": "loversquarrel",
+        "bonusId": "N0CN2P",
+        "bonusOptimalScore": 40
+      },
+      {
+        "id": "OpnF9e",
+        "date": "2026-11-19",
+        "dayNumber": 325,
+        "optimalScore": 78,
+        "name": "VI",
+        "bonusType": "lovebirds",
+        "bonusId": "JKohLa",
+        "bonusOptimalScore": 54
+      }
+    ],
+    "weeklyLevels": [
+      {
+        "id": "_uiniZ",
+        "date": "2026-11-18",
+        "weekNumber": 18,
+        "optimalScore": 87,
+        "name": "Buzzing about"
+      },
+      {
+        "id": "MVanvO",
+        "date": "2026-11-11",
+        "weekNumber": 17,
+        "optimalScore": 143,
+        "name": "Swarm of Bees"
+      }
+    ],
+    "communityPick": {
+      "id": "B0r5XE",
+      "name": "Exponential",
+      "creatorName": "REDACTED"
+    }
+  },
+  "_note": "dailyLevels trimmed to first 5 of 329, weeklyLevels to first 2"
+}

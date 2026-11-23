@@ -1,0 +1,26 @@
+{
+ "request": {
+  "method": "GET",
+  "url": "https://auth.teuteuf.fr/travle/scores/travle%3A1439"
+ },
+ "response": {
+  "lb": "travle:1439",
+  "scores": [
+   1228,
+   555,
+   12757,
+   713,
+   3854,
+   186,
+   15250,
+   676,
+   4080,
+   519,
+   1619,
+   434,
+   722,
+   369
+  ]
+ },
+ "note": "last of 3 polls (every 8s, max 10) after finishing"
+}

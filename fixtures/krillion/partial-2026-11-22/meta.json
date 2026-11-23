@@ -1,0 +1,14 @@
+{
+  "game": "krillion",
+  "case": "partial",
+  "sourceUrl": "https://krillion.io/",
+  "capturedAt": "2026-11-23T00:16:20.400Z",
+  "puzzleId": "Dive #130 (date 2026-11-22, dayNumber 130)",
+  "sources": [
+    "share",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Weak dive, score 50: 3 correct (plankton, schooler, plankton), 2 wrong answers that timed out (Moby Dick, Happiness), 2 blank timeouts; better than 0% of players."
+}

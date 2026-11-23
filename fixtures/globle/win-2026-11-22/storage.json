@@ -1,0 +1,59 @@
+{
+ "localStorage": {
+  "guesses": {
+   "day": "2026-11-22",
+   "countries": [
+    "Brazil",
+    "China",
+    "Germany",
+    "Vietnam",
+    "Kazakhstan",
+    "India",
+    "Pakistan",
+    "Iran",
+    "Afghanistan"
+   ]
+  },
+  "statistics": {
+   "lastWin": "Mon, 23 Nov 2026 00:16:18 GMT",
+   "lastWinPuzzleDate": "2026-11-22",
+   "gamesWon": 1,
+   "currentStreak": 1,
+   "maxStreak": 1,
+   "usedGuesses": [
+    9
+   ],
+   "emojiGuesses": "⬜🟥🟨🟧🟥🟥🟥🟥\n🟩"
+  },
+  "theme": {
+   "isDark": false
+  },
+  "labels": {
+   "labelsOn": false
+  },
+  "distanceUnit": {
+   "unit": "km"
+  },
+  "token": {
+   "google": ""
+  },
+  "locale": {
+   "locale": "en-CA"
+  },
+  "colours": {
+   "colours": "Default"
+  },
+  "user": {
+   "email": ""
+  },
+  "app_version_info": {
+   "version": "1.10.9",
+   "buildTime": "2026-11-13T15:07:23.863Z",
+   "userAgent": "REDACTED",
+   "timestamp": "2026-11-23T00:14:21.766Z"
+  }
+ },
+ "indexedDB": {},
+ "cookies": {},
+ "_note": "token.google and user.email were empty strings (signed out); a signed-in player would have a Google JWT / email there, which must be redacted."
+}

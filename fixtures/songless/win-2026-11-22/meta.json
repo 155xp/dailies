@@ -1,0 +1,15 @@
+{
+  "game": "songless",
+  "case": "win",
+  "sourceUrl": "https://lessgames.com/songless",
+  "capturedAt": "2026-11-23T00:24:56.016Z",
+  "puzzleId": "Songless #451, challengeDate 2026-11-22, categoryId 0 (Top Hits)",
+  "sources": [
+    "share",
+    "indexedDB",
+    "localStorage",
+    "network",
+    "dom"
+  ],
+  "notes": "Top Hits daily won on attempt 4 (8 s clip): right-artist wrong-song (yellow), wrong (red), skip (gray), correct (green). Top 19.1% today."
+}

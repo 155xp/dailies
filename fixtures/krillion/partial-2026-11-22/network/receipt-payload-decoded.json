@@ -1,0 +1,14 @@
+{
+  "_note": "receipt is base64url(JSON payload) + \".\" + signature; payload decoded from the first /api/submit response, ids redacted, signature dropped",
+  "payload": {
+    "v": 2,
+    "scope": "daily",
+    "game": 130,
+    "version": "2026-11-22",
+    "round": "r1",
+    "playerId": "REDACTED",
+    "runId": "REDACTED",
+    "score": 10,
+    "issuedAt": 1795392828861
+  }
+}

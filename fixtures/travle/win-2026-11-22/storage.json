@@ -1,0 +1,69 @@
+{
+ "localStorage": {
+  "teuteuf-leaderboard-emoji": "🌍",
+  "travle-past-games": {
+   "games": [
+    {
+     "gameId": 1439,
+     "guesses": 6,
+     "minGuesses": 3,
+     "won": true,
+     "numHints": 0,
+     "perfect": false
+    }
+   ]
+  },
+  "travle-game-state": {
+   "puzzleIx": 1439,
+   "hash": "CRI:CHL:",
+   "isArchiveMode": false,
+   "pastGuessIds": [
+    "PAN",
+    "ECU",
+    "BRA",
+    "COL",
+    "MEX",
+    "PER"
+   ],
+   "guessRatings": [
+    "✅",
+    "🟧",
+    "🟧",
+    "✅",
+    "🟥",
+    "✅"
+   ],
+   "gameProgress": "won",
+   "hintsData": [],
+   "hardMode": false,
+   "currentWeeklyChallengePlayed": false,
+   "perfect": false,
+   "gameSummary": {
+    "shortestSolution": 4,
+    "guessesNeededToSolve": [],
+    "optimalSolution": [
+     "CRI",
+     "PAN",
+     "COL",
+     "PER",
+     "CHL"
+    ]
+   }
+  },
+  "teuteuf-user": {
+   "loggedIn": false,
+   "firstName": "",
+   "photoURL": "",
+   "isPhotoValid": false,
+   "marketingOptIn": "",
+   "premiumGames": [],
+   "anonymousId": "REDACTED"
+  },
+  "teuteuf-anonymous-id": "REDACTED",
+  "teuteuf-leaderboard-name": "REDACTED"
+ },
+ "indexedDB": {},
+ "cookies": {
+  "hardMode": "[]"
+ }
+}

@@ -1,0 +1,24 @@
+{
+  "_note": "The board is a <canvas> drawn from a pixel-art sprite sheet (/themes/<theme>.webp), so tile colours are not CSS. Values below are the dominant pixel colour per tile, read with getImageData from canvas#game after submitting (default theme, 816x708 canvas for a 15x13 grid). CSS values are getComputedStyle.",
+  "css": {
+    "--grass-bg (html, default theme)": "#186b3b",
+    "body background-color": "rgb(24, 107, 59)",
+    "--grass-bg (bitterdivorce bonus theme)": "#365022",
+    "results colorBand background by medal (code constant Ft)": {"perfect": "#d4f4ff", "gold": "#fff0b3", "silver": "#e0e0e0", "bronze": "#e8d4c4"},
+    "results histogram bar fill": {"other scores": "#ccc", "your score bar and You label": "#3498db"}
+  },
+  "canvasTiles": {
+    "grass outside enclosure ('.' not reached)": "#1b6b3a",
+    "water ('~')": "#062f48",
+    "player wall (stone block)": "#777474",
+    "enclosed area, horse pen (hay)": ["#b1852a", "#cda857"],
+    "enclosed area, unicorn pen in bitterdivorce bonus (lilac)": ["#aa8ccd", "#6c518a"],
+    "horse ('H') sprite body": "#ffffff (on hay #cda857 when enclosed)",
+    "unicorn ('U') sprite": "#8966b1 dominant on lilac pen",
+    "golden apple ('G')": "#f7e133",
+    "cherry ('C')": ["#870029", "#ba1d27"],
+    "bees ('S')": ["#000000", "#80d8db"],
+    "bonus theme grass outside": "#365022",
+    "bonus theme water": "#0b2d54"
+  }
+}

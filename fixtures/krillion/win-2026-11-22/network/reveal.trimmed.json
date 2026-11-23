@@ -1,0 +1,1469 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://krillion.io/api/reveal?date=2026-11-22"
+  },
+  "response": {
+    "date": "2026-11-22",
+    "_note": "TRIMMED: original lists every accepted answer (with aliases, tier, score, optional quip) per prompt; kept up to 3 answers per tier plus this run's answers, and per-tier counts; alias lists longer than 8 cut to 8 with _aliasesTotal",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Name a car brand",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 7669,
+          "rare": 205,
+          "schooler": 50,
+          "plankton": 13
+        },
+        "answers": [
+          {
+            "answer": "Sears",
+            "aliases": [
+              "Sears Motor Buggy",
+              "Sears vehicles",
+              "Sears Motor Car",
+              "Sears Roebuck",
+              "sears sears",
+              "seaerss",
+              "sears brand"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "Sears once sold a car by mail through its catalog."
+          },
+          {
+            "answer": "212",
+            "aliases": [
+              "BAIC 212",
+              "Beijing 212 T01",
+              "212 T01",
+              "212 Off-Road"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "2Rike",
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "9ff",
+            "aliases": [
+              "GT9",
+              "GT9-R",
+              "GT9 Vmax",
+              "9ff GT9",
+              "Nine Eff",
+              "Nine FF"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "Abarth",
+            "aliases": [
+              "Carlo Abarth",
+              "Abarth 124 Spider",
+              "Abarth 595",
+              "695",
+              "Abarth 1000 Bialbero",
+              "OT 1300",
+              "Abarth 2000 Scorpione",
+              "Abarth Scorpione"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 31
+          },
+          {
+            "answer": "AC",
+            "aliases": [
+              "AC Cars",
+              "A.C.",
+              "AC Cobra",
+              "AC Ace",
+              "AC Automotive",
+              "AC Donington",
+              "3000ME",
+              "AC 428"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 16
+          },
+          {
+            "answer": "Allard",
+            "aliases": [
+              "Allard Motor Company",
+              "Allard J2",
+              "Allard & Co",
+              "Allard (1899 automobile)",
+              "J2X",
+              "Allard K1"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Acura",
+            "aliases": [
+              "NSX",
+              "Acura NSX",
+              "Integra Type R",
+              "RSX",
+              "Integra",
+              "Acura Integra",
+              "acrua",
+              "TSX"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 44
+          },
+          {
+            "answer": "Alfa Romeo",
+            "aliases": [
+              "Alfa",
+              "Duetto",
+              "4C",
+              "8C",
+              "8C Competizione",
+              "33 Stradale",
+              "GTV",
+              "Brera"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 196
+          },
+          {
+            "answer": "Aston Martin",
+            "aliases": [
+              "Aston",
+              "Aston Martin DB5",
+              "DB5",
+              "Vantage",
+              "DB9",
+              "DB11",
+              "DBS",
+              "Valkyrie"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 89
+          },
+          {
+            "answer": "Audi",
+            "aliases": [
+              "Audi Sport",
+              "quattro GmbH",
+              "R8",
+              "TT",
+              "TTS",
+              "TT RS",
+              "Quattro",
+              "Ur-Quattro"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 101
+          },
+          {
+            "answer": "BMW",
+            "aliases": [
+              "Bayerische Motoren Werke",
+              "Beemer",
+              "Bimmer",
+              "BMW M",
+              "Z3",
+              "Z4",
+              "Z1",
+              "Z8"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 135
+          },
+          {
+            "answer": "Chevrolet",
+            "aliases": [
+              "Chevy",
+              "Corvette",
+              "Camaro",
+              "Chevrolet Corvette",
+              "Chevelle SS",
+              "Chevy Camaro",
+              "Vette",
+              "Chevy Corvette"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 314
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "text": "Name a book series (1,000+ Goodreads ratings on any one book)",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 30809,
+          "rare": 1294,
+          "schooler": 65,
+          "plankton": 8
+        },
+        "answers": [
+          {
+            "answer": "Lucky Starr",
+            "aliases": [
+              "David Starr, Space Ranger",
+              "lcuky starr",
+              "lackey starr",
+              "lucky starrzzz",
+              "lucky satrr",
+              "lukcy starr"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "Isaac Asimov wrote all six books under the pen name Paul French."
+          },
+          {
+            "answer": "?Quien mato a Alex?",
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": ".hack// Another Birth",
+            "aliases": [
+              "another birth"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": ".hack//Legend of the Twilight",
+            "aliases": [
+              ".Hack. Edicion espanola",
+              "legend of the twilight",
+              "legend of twilight"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "100 Bullets",
+            "aliases": [
+              "100 Balas",
+              "Coleccion Vertigo: 100 Balas",
+              "First Shot, Last Call"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "12 Rules for Life",
+            "aliases": [
+              "Beyond Order",
+              "12 Rules",
+              "12 rules of life",
+              "10 rules for life",
+              "10 rules of life",
+              "12 rules to life",
+              "10 rules in life",
+              "10 rules to life"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 10
+          },
+          {
+            "answer": "1632",
+            "aliases": [
+              "1632 Universe",
+              "Ring of Fire Anthology",
+              "Ring of Fire",
+              "1632 series",
+              "Ring of Fire series",
+              "rimg of fire"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "A Court of Thorns and Roses",
+            "aliases": [
+              "A Court of Mist and Fury",
+              "A Court of Wings and Ruin",
+              "Ett hov av taggar och rosor",
+              "ACOTAR",
+              "ACOMAF",
+              "ACOWAR",
+              "A Court of Frost and Starlight",
+              "A Court of Silver Flames"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 243
+          },
+          {
+            "answer": "A Series of Unfortunate Events",
+            "aliases": [
+              "The Bad Beginning",
+              "The Reptile Room",
+              "The Wide Window",
+              "The Miserable Mill",
+              "The Austere Academy",
+              "The Ersatz Elevator",
+              "The Vile Village",
+              "The Carnivorous Carnival"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 415
+          },
+          {
+            "answer": "Animorphs",
+            "aliases": [
+              "Animorphs series",
+              "The Hork-Bajir Chronicles",
+              "The Ellimist Chronicles",
+              "Visser",
+              "The Invasion",
+              "Animorphs books",
+              "animophisus",
+              "animal morph"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 10
+          },
+          {
+            "answer": "A Song of Ice and Fire",
+            "aliases": [
+              "A Game of Thrones",
+              "A Clash of Kings",
+              "A Storm of Swords",
+              "A Feast for Crows",
+              "A Dance with Dragons",
+              "A Game of Thrones / A Clash of Kings",
+              "The Winds of Winter",
+              "A Song of Ice and Fire Graphic Novels"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 125
+          },
+          {
+            "answer": "Diary of a Wimpy Kid",
+            "aliases": [
+              "Rodrick Rules",
+              "The Last Straw",
+              "The Ugly Truth",
+              "The Third Wheel",
+              "Hard Luck",
+              "The Long Haul",
+              "Old School",
+              "Double Down"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 690
+          },
+          {
+            "answer": "Harry Potter",
+            "aliases": [
+              "Harry Potter and the Sorcerer's Stone",
+              "Harry Potter and the Prisoner of Azkaban",
+              "Harry Potter and the Chamber of Secrets",
+              "Harry Potter and the Goblet of Fire",
+              "Harry Potter and the Deathly Hallows",
+              "Harry Potter and the Order of the Phoenix",
+              "Harry Potter and the Half-Blood Prince",
+              "Harry Potter and the Cursed Child - Parts One and Two"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 288
+          },
+          {
+            "answer": "Discworld",
+            "aliases": [
+              "Small Gods",
+              "The Amazing Maurice and His Educated Rodents",
+              "Istorii ot Sveta na Diska",
+              "Discworld series",
+              "Monstrous Regiment",
+              "Discworld books",
+              "Disc World",
+              "discwod"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 10
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "text": "Name an area in an airport",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 375,
+          "rare": 190,
+          "schooler": 29,
+          "plankton": 6
+        },
+        "answers": [
+          {
+            "answer": "Golf course",
+            "aliases": [
+              "Golf club",
+              "Driving range",
+              "Golf driving range",
+              "Sky72",
+              "Kantarat golf course",
+              "Nine Eagles",
+              "nine-hole golf course",
+              "gold course"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "Bangkok's Don Mueang airport has 18 golf holes between two runways.",
+            "_aliasesTotal": 45
+          },
+          {
+            "answer": "Ablution room",
+            "aliases": [
+              "Wudu room",
+              "Ablution facility",
+              "ablution area",
+              "wudu station",
+              "foot washing station",
+              "foot wash",
+              "feet washing station",
+              "feet washing"
+            ],
+            "tier": "deepcut",
+            "score": 85,
+            "_aliasesTotal": 54
+          },
+          {
+            "answer": "Aesthetic clinic",
+            "aliases": [
+              "skin clinic",
+              "dermatology clinic",
+              "mabe aesthetic",
+              "dermatology practice",
+              "aesthetic room",
+              "facial clinics",
+              "aesthetic office"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "Agricultural inspection",
+            "aliases": [
+              "agriculture inspection",
+              "ag inspection",
+              "quarantine inspection",
+              "Biosecurity",
+              "biosecurity check",
+              "quarantine bins",
+              "Biosecurity inspection",
+              "biosecurity area"
+            ],
+            "tier": "deepcut",
+            "score": 85,
+            "_aliasesTotal": 81
+          },
+          {
+            "answer": "Accessible parking",
+            "aliases": [
+              "Disabled parking",
+              "Handicap parking",
+              "Handicapped parking",
+              "Blue badge parking",
+              "Blue badge bay",
+              "ADA parking",
+              "Disabled bays",
+              "Accessible spaces"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 40
+          },
+          {
+            "answer": "Airfield",
+            "aliases": [
+              "air field",
+              "flying field",
+              "landing field",
+              "airfield area",
+              "flight field",
+              "aerodrome",
+              "air feild"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Airport hotel",
+            "aliases": [
+              "hotel",
+              "on-site hotel",
+              "terminal hotel",
+              "twa hotel",
+              "grand hyatt dfw",
+              "westin denver",
+              "hilton",
+              "hyatt"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 108
+          },
+          {
+            "answer": "Airport lounge",
+            "aliases": [
+              "vip lounge",
+              "admirals club",
+              "delta sky club",
+              "sky club",
+              "united club",
+              "centurion lounge",
+              "priority pass lounge",
+              "first class lounge"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 2460
+          },
+          {
+            "answer": "Arrivals hall",
+            "aliases": [
+              "arrivals",
+              "arrival",
+              "arrivals area",
+              "arrival hall",
+              "arrivals level",
+              "international arrivals",
+              "domestic arrivals",
+              "arrival area"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 53
+          },
+          {
+            "answer": "Baggage carousel",
+            "aliases": [
+              "Luggage carousel",
+              "Carousel",
+              "Bag carousel",
+              "Baggage belt",
+              "Reclaim belt",
+              "Baggage reclaim belt",
+              "Carousel 5",
+              "Belt 3"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 197
+          },
+          {
+            "answer": "Baggage claim",
+            "aliases": [
+              "bag claim",
+              "baggage reclaim",
+              "luggage claim",
+              "baggage pickup",
+              "luggage pickup",
+              "baggage",
+              "bag pickup",
+              "baggage area"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 312
+          },
+          {
+            "answer": "Check-in",
+            "aliases": [
+              "checkin",
+              "airline counter",
+              "airline check in",
+              "check in line",
+              "check-in hall",
+              "Check-in area",
+              "check-in zone",
+              "check-in row"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 155
+          },
+          {
+            "answer": "Gate",
+            "aliases": [
+              "Boarding gate",
+              "Departure gate",
+              "Gates",
+              "Arrival gate",
+              "Gate number",
+              "Departure gates",
+              "Boarding gates",
+              "Gate 1"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 331
+          },
+          {
+            "answer": "Jet bridge",
+            "aliases": [
+              "Jetway",
+              "Jetbridge",
+              "Air bridge",
+              "Airbridge",
+              "Aerobridge",
+              "Aero bridge",
+              "Boarding bridge",
+              "Passenger boarding bridge"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 110
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "text": "Name a weapon you throw or a weapon that launches a projectile (no guns)",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 2170,
+          "rare": 86,
+          "schooler": 31,
+          "plankton": 4
+        },
+        "answers": [
+          {
+            "answer": "Snake pot",
+            "aliases": [
+              "snake pots",
+              "pots of snakes",
+              "snake jar",
+              "viper pot",
+              "hannibal's snake pots",
+              "pots of vipers",
+              "pot of snakes",
+              "snake po"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "Hannibal's sailors hurled clay pots of snakes onto Pergamon's warships.",
+            "_aliasesTotal": 14
+          },
+          {
+            "answer": "10 cm Feldhaubitze M 99",
+            "aliases": [
+              "feldhaubitze m 99"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "10 cm Gebirgshaubitze M 16",
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "10 cm Gebirgshaubitze M 8",
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "Anti-tank grenade",
+            "aliases": [
+              "AT grenade",
+              "antitank grenade",
+              "anti-tank hand grenade",
+              "Granada antitanque"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Anti-tank guided missile launcher",
+            "aliases": [
+              "ATGM",
+              "ATGM launcher",
+              "anti-tank missile",
+              "wire-guided missile",
+              "Man-portable anti-tank systems",
+              "anti-tank missile launcher",
+              "ATGW",
+              "anti-tank guided weapon"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 11
+          },
+          {
+            "answer": "Arbalest",
+            "aliases": [
+              "arbalist",
+              "arblast",
+              "arbalete",
+              "arbelest",
+              "arbalests",
+              "Heavy crossbow",
+              "heavy crossbows",
+              "Arbalesta"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 18
+          },
+          {
+            "answer": "Ballista",
+            "aliases": [
+              "ballistae",
+              "ballistas",
+              "balista",
+              "balistas",
+              "ballista bolt",
+              "balliste",
+              "ballista crossbow",
+              "Baliste"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 79
+          },
+          {
+            "answer": "Bazooka",
+            "aliases": [
+              "bazookas",
+              "bazooka launcher",
+              "bazuka",
+              "bazooke",
+              "m1 bazooka",
+              "m9 bazooka",
+              "m20 bazooka",
+              "M1A1 Bazooka"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 90
+          },
+          {
+            "answer": "Blowgun",
+            "aliases": [
+              "blow gun",
+              "blowguns",
+              "blowpipe",
+              "blow pipe",
+              "blow tube",
+              "blowtube",
+              "blow dart gun",
+              "blowdart"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 446
+          },
+          {
+            "answer": "Bow",
+            "aliases": [
+              "bow and arrow",
+              "bow and arrows",
+              "bow & arrow",
+              "bow n arrow",
+              "bowandarrow",
+              "bows",
+              "bow & arrows",
+              "arrow"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 556
+          },
+          {
+            "answer": "Crossbow",
+            "aliases": [
+              "cross bow",
+              "crossbows",
+              "cross bows",
+              "xbow",
+              "x-bow",
+              "bolt",
+              "bolts",
+              "quarrel"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 291
+          },
+          {
+            "answer": "Rocket launcher",
+            "aliases": [
+              "rocket launchers",
+              "rocket",
+              "rockets",
+              "war rocket",
+              "unguided rocket",
+              "artillery rocket",
+              "Congreve rocket",
+              "Congreve rockets"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 312
+          },
+          {
+            "answer": "Trebuchet",
+            "aliases": [
+              "treb",
+              "trebs",
+              "trebuche",
+              "trebuchets",
+              "trebouchet",
+              "trebuchette",
+              "trebucket",
+              "trebuchet catapult"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 395
+          }
+        ]
+      },
+      {
+        "id": "p5",
+        "text": "Name a restaurant chain where you build your own bowl",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 2272,
+          "rare": 182,
+          "schooler": 4,
+          "plankton": 2
+        },
+        "answers": [
+          {
+            "answer": "Cereality",
+            "aliases": [
+              "cereality cereal bar",
+              "cereality cafe",
+              "cearlity",
+              "cereltiy",
+              "cearility",
+              "cearilty",
+              "cerailaty",
+              "cerailty"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "Its pajama-clad servers were officially called cereologists.",
+            "_aliasesTotal": 10
+          },
+          {
+            "answer": "'Ono Poké Bar",
+            "aliases": [
+              "ONO Poke Bar (Toronto)",
+              "one poke bar",
+              "one pole bar",
+              "ono poke bear"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "1000 Degrees Pizza",
+            "aliases": [
+              "1000 degrees",
+              "1000 degree pizza",
+              "1000 degree"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "1000 Zen",
+            "aliases": [
+              "1000Zen",
+              "Phan Zen",
+              "Phan Zen Noodle",
+              "1000 ze",
+              "100 zen",
+              "10000 zen",
+              "zen 1000"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "16 Handles",
+            "aliases": [
+              "Sixteen Handles"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "America’s Best Wings",
+            "aliases": [],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Au Bon Pain",
+            "aliases": [
+              "abp",
+              "au bon pain cafe",
+              "au bon pan"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Panda Express",
+            "aliases": [
+              "Panda",
+              "Panda Expres",
+              "pandas express",
+              "panda xpress",
+              "panda expresss",
+              "panda express chinese kitchen",
+              "panda chinese",
+              "panda express chinese"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 66
+          },
+          {
+            "answer": "Qdoba",
+            "aliases": [
+              "Qdoba Mexican Eats",
+              "Qdoba Mexican Grill",
+              "qudoba",
+              "kdoba",
+              "quedoba",
+              "quidoba",
+              "quodoba",
+              "quadoba"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 140
+          },
+          {
+            "answer": "Subway",
+            "aliases": [
+              "Subway India",
+              "Subway Pakistan",
+              "Subway Sri Lanka",
+              "Subway Australia",
+              "Subway NZ",
+              "Subway South Africa",
+              "Subway Kenya",
+              "subway sandwiches"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 73
+          },
+          {
+            "answer": "CAVA",
+            "aliases": [
+              "cava grill",
+              "cava mezze",
+              "cava mediterranean",
+              "cava bowl",
+              "cava mezze grill",
+              "caba",
+              "sava",
+              "cavs"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 25
+          },
+          {
+            "answer": "Chipotle",
+            "aliases": [
+              "chipotle kuwait",
+              "chipotle riyadh",
+              "chipotle dubai",
+              "chipotles",
+              "chipolte",
+              "Chipotle Mexican Grill",
+              "chipotle's",
+              "chiptole"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 305
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "text": "Name a chronic medical condition",
+        "_tierCounts": {
+          "krillion": 2,
+          "deepcut": 9346,
+          "rare": 605,
+          "schooler": 107,
+          "plankton": 6
+        },
+        "answers": [
+          {
+            "answer": "Auto-brewery syndrome",
+            "aliases": [
+              "Ethanol-producing endogenous fermentation syndrome",
+              "Endogenous ethanol fermentation syndrome",
+              "autobrewery",
+              "brewery syndrome",
+              "auto brwery system",
+              "auto-brewery system",
+              "auto brew",
+              "auto brewary s"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "A Belgian brewery worker beat a 2024 drunk-driving charge with it.",
+            "_aliasesTotal": 252
+          },
+          {
+            "answer": "Yao syndrome",
+            "aliases": [],
+            "tier": "krillion",
+            "score": 100
+          },
+          {
+            "answer": "10p13-p14 deletion syndrome",
+            "aliases": [
+              "Del(10)(p13p14)",
+              "Deletion 10p13-p14",
+              "10p13-b14 deletion syndrome"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "10q22.3q23.3 microdeletion syndrome",
+            "aliases": [
+              "Del(10)(q22.3q23.3)",
+              "Deletion 10q22.3q23.3",
+              "Monosomy 10q22.3q23.3"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "10q22.3q23.3 microduplication syndrome",
+            "aliases": [
+              "Dup(10)(q22.3q23.3)",
+              "Trisomy 10q22.3q23.3"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "Achilles tendinitis",
+            "aliases": [
+              "achilles tendonitis",
+              "achilles tendinopathy",
+              "chronic Achilles tendinopathy",
+              "achelis tendonitis",
+              "achilles tenenides",
+              "achielles tenditious",
+              "chilis tendonitis",
+              "acheliss tendonitis"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 32
+          },
+          {
+            "answer": "Acne cosmetica",
+            "aliases": [
+              "cosmetic acne",
+              "Pomade acne",
+              "acne costnerica"
+            ],
+            "tier": "rare",
+            "score": 60
+          },
+          {
+            "answer": "Acromegaly",
+            "aliases": [
+              "growth hormone excess",
+              "Acromegaly, acromegalia",
+              "Erdheim's syndrome",
+              "Macrospondylitis , acromegalic",
+              "Marie's syndrome",
+              "Overproduction of growth hormone",
+              "Scaglietti-Dagnini  syndrome",
+              "acromelgy"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 11
+          },
+          {
+            "answer": "Acne",
+            "aliases": [
+              "Acne scars",
+              "acne scarring",
+              "Tar acne",
+              "acne vulgaris",
+              "pimples",
+              "zits",
+              "akne",
+              "acne breakouts"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 20
+          },
+          {
+            "answer": "Addiction",
+            "aliases": [
+              "Substance use disorder",
+              "sud",
+              "polysubstance use disorder",
+              "Prescription drug addiction",
+              "prescription drug abuse",
+              "Drug addiction",
+              "drug dependence",
+              "substance abuse"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 21
+          },
+          {
+            "answer": "ADHD",
+            "aliases": [
+              "add",
+              "Attention deficit hyperactivity disorder",
+              "attention deficit disorder",
+              "adult adhd",
+              "hyperkinetic disorder",
+              "minimal brain dysfunction",
+              "inattentive adhd",
+              "hyperactive adhd"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 54
+          },
+          {
+            "answer": "Arthritis",
+            "aliases": [
+              "Rheumatism",
+              "rheumatics",
+              "Polyarthritis",
+              "inflammatory arthritis",
+              "inflammatory polyarthritis",
+              "joint disease",
+              "gathiya",
+              "gathia"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 292
+          },
+          {
+            "answer": "Asthma",
+            "aliases": [
+              "Asthmatic bronchitis",
+              "wheezy bronchitis",
+              "chronic asthmatic bronchitis",
+              "bronchial asthma with bronchitis",
+              "Childhood asthma",
+              "pediatric asthma",
+              "paediatric asthma",
+              "Nocturnal asthma"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 101
+          },
+          {
+            "answer": "COPD",
+            "aliases": [
+              "Chronic obstructive pulmonary disease",
+              "smoker's lung",
+              "smokers lung",
+              "chronic obstructive lung disease",
+              "chronic obstructive airway disease",
+              "COAD",
+              "C.O.P.D.",
+              "chronic lower respiratory disease"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 73
+          },
+          {
+            "answer": "Sarcoidosis",
+            "aliases": [
+              "Ichthyosiform sarcoidosis",
+              "Papular sarcoid",
+              "Systemic sarcoidosis",
+              "sarcoid",
+              "pulmonary sarcoidosis",
+              "sarcoidosis of the lung",
+              "Besnier-Boeck-Schaumann disease",
+              "Boeck's sarcoid"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 21
+          }
+        ]
+      },
+      {
+        "id": "p7",
+        "text": "Name a part of the field or court in basketball, soccer, American football, cricket, or rugby",
+        "_tierCounts": {
+          "krillion": 1,
+          "deepcut": 251,
+          "rare": 103,
+          "schooler": 26,
+          "plankton": 6
+        },
+        "answers": [
+          {
+            "answer": "Corridor of uncertainty",
+            "aliases": [
+              "the corridor of uncertainty",
+              "channel outside off stump",
+              "outside off stump",
+              "the off-stump channel",
+              "channel outside off",
+              "outside off",
+              "just outside off",
+              "fifth stump"
+            ],
+            "tier": "krillion",
+            "score": 100,
+            "quip": "In 2014, the Bank of England's chief economist named a speech after this part of a cricket pitch.",
+            "_aliasesTotal": 139
+          },
+          {
+            "answer": "10-metre mark distance marks",
+            "aliases": [
+              "additional marks",
+              "5m marks either side of the 10m mark",
+              "second penalty mark distance marks",
+              "10 meter distance mark",
+              "10 meter distance marks",
+              "10 meter mark distance",
+              "10 meter mark distance markd",
+              "10 meter mark distance marke"
+            ],
+            "tier": "deepcut",
+            "score": 85,
+            "_aliasesTotal": 13
+          },
+          {
+            "answer": "15-metre line",
+            "aliases": [
+              "15m line",
+              "15-meter line",
+              "fifteen meter line",
+              "the 15",
+              "the fifteen",
+              "15 metre lines",
+              "15 m line",
+              "15 metre dash"
+            ],
+            "tier": "deepcut",
+            "score": 85,
+            "_aliasesTotal": 35
+          },
+          {
+            "answer": "15-yard circle",
+            "aliases": [
+              "fifteen yard circle",
+              "close catching circle",
+              "inner 15-yard circle",
+              "15-yard ring",
+              "Close-infield circle",
+              "inner fielding circle",
+              "close in circle",
+              "15 year circle"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          },
+          {
+            "answer": "1-yard line",
+            "aliases": [
+              "one yard line",
+              "the 1",
+              "1 yard",
+              "1st yard line",
+              "1 yd line",
+              "1 uard line",
+              "1 yard lone",
+              "1 yd"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 42
+          },
+          {
+            "answer": "10-metre line",
+            "aliases": [
+              "Kick-off line",
+              "ten metre line",
+              "the 10-metre",
+              "10m line",
+              "10-meter line",
+              "ten meter line",
+              "the 10",
+              "10 m line"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 45
+          },
+          {
+            "answer": "15-yard line",
+            "aliases": [
+              "fifteen yard line",
+              "extra point spot",
+              "extra point line",
+              "PAT line",
+              "PAT mark",
+              "the 15 (PAT)",
+              "extra point hash",
+              "PAT hash"
+            ],
+            "tier": "rare",
+            "score": 60,
+            "_aliasesTotal": 58
+          },
+          {
+            "answer": "50-yard line",
+            "aliases": [
+              "fifty yard line",
+              "the 50",
+              "the fifty",
+              "midfield stripe",
+              "half-field line",
+              "50 yd line",
+              "midfield (AF)",
+              "50yd line"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 50
+          },
+          {
+            "answer": "Backboard",
+            "aliases": [
+              "Backboard edge",
+              "edge of the backboard",
+              "side of the backboard",
+              "top of the backboard",
+              "back of the backboard",
+              "backboard frame",
+              "backboard border",
+              "bottom of the backboard"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 64
+          },
+          {
+            "answer": "Baseline",
+            "aliases": [
+              "byline (basketball)",
+              "End line",
+              "endline",
+              "end lines",
+              "back of the end zone",
+              "back line of the end zone",
+              "base line",
+              "End line (3x3, opposite the basket)"
+            ],
+            "tier": "schooler",
+            "score": 30,
+            "_aliasesTotal": 34
+          },
+          {
+            "answer": "End zone",
+            "aliases": [
+              "endzone",
+              "the house",
+              "paydirt",
+              "pay dirt",
+              "the promised land",
+              "scoring area",
+              "touchdown zone",
+              "in the end zone"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 153
+          },
+          {
+            "answer": "Free throw line",
+            "aliases": [
+              "foul line",
+              "charity stripe",
+              "foul shot line",
+              "charity line",
+              "FT line",
+              "linea de tiros libres",
+              "ligne des lancers francs",
+              "lunetta"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 81
+          },
+          {
+            "answer": "Goal",
+            "aliases": [
+              "Goal (football)",
+              "the goal",
+              "between the uprights",
+              "Goal (rugby)",
+              "goals",
+              "Middle of the goal",
+              "centre of the goal",
+              "center of the goal"
+            ],
+            "tier": "plankton",
+            "score": 10,
+            "_aliasesTotal": 89
+          },
+          {
+            "answer": "Silly mid-on",
+            "aliases": [
+              "sillymidon",
+              "silly midon",
+              "silly middle on",
+              "sliit mid on",
+              "solly modd on"
+            ],
+            "tier": "deepcut",
+            "score": 85
+          }
+        ]
+      }
+    ]
+  }
+}

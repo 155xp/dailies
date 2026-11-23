@@ -1,0 +1,12 @@
+{
+  "game": "mini",
+  "case": "gated",
+  "sourceUrl": "https://www.nytimes.com/crosswords/game/mini/2026/11/22",
+  "capturedAt": "2026-11-23T00:14:14.958Z",
+  "puzzleId": "24756 (publicationDate 2026-11-22)",
+  "sources": [
+    "network",
+    "dom"
+  ],
+  "notes": "Signed out the Mini shows \"Subscribe to play the Mini.\" with no board; puzzle JSON (with answers) still loads, state API returns 403. Needs a subscriber session to capture a solve."
+}

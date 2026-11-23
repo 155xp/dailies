@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://krillion.io/api/today/complete",
+    "body": {
+      "date": "2026-11-22",
+      "playerId": "REDACTED",
+      "score": 50,
+      "record": true,
+      "runId": "REDACTED",
+      "receipts": [
+        "REDACTED",
+        "REDACTED",
+        "REDACTED",
+        "REDACTED",
+        "REDACTED",
+        "REDACTED",
+        "REDACTED"
+      ]
+    }
+  },
+  "status": 200,
+  "response": {
+    "sample": 4481743,
+    "betterThan": 0,
+    "dist": [
+      823,
+      4587,
+      35439,
+      85114,
+      239399,
+      351528,
+      556780,
+      725609,
+      786177,
+      558612,
+      525316,
+      359660,
+      122587,
+      62806,
+      41477,
+      10534,
+      7401,
+      4991,
+      2327,
+      576
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.enclose.horse/api/daily/2026-11-22",
+    "headers": {}
+  },
+  "status": 200,
+  "response": {
+    "id": "uwtFBO",
+    "map": "~.~.~.~~.~..~.~\n.G.......~~.~C~\n~.~.~~~~....~.~\n..~....~~.~.~.~\n~.~~~~S~S.~....\n~......~.~~~.~.\n..~~.~S~S....~~\n~....~.~.~~~...\n~~.~~~S~S~...~~\n.......~...~..~\n~.~~~~.~~~~~~..\n~C...........H~\n~.~.~~.~~.~.~~~",
+    "budget": 13,
+    "name": "Contraption",
+    "description": null,
+    "creatorName": "REDACTED",
+    "playCount": 54131,
+    "createdAt": 1795137899,
+    "isDaily": true,
+    "dailyDate": "2026-11-22",
+    "dayNumber": 328,
+    "hasBonus": true,
+    "bonusType": "bitterdivorce",
+    "optimalScore": 49
+  }
+}

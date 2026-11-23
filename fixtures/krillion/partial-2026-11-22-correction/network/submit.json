@@ -1,0 +1,187 @@
+[
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p1",
+        "answer": "Toyota",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Toyota",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Banana",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p2",
+        "answer": "Banana",
+        "previewCorrection": false,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p4",
+        "answer": "Boomerang",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Boomerang",
+      "tier": "schooler",
+      "score": 30,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p5",
+        "answer": "Chipotle",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Chipotle",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p6",
+        "answer": "Diabetes",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Diabetes",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p7",
+        "answer": "Penalty box",
+        "previewCorrection": true,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "correction": "Penalty area"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "promptId": "p7",
+        "answer": "Penalty area",
+        "previewCorrection": false,
+        "playerId": "REDACTED",
+        "runId": "REDACTED"
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": true,
+      "answer": "Penalty area",
+      "tier": "plankton",
+      "score": 10,
+      "receipt": "REDACTED"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "https://krillion.io/api/submit",
+      "body": {
+        "date": "2026-11-22",
+        "playerId": "REDACTED",
+        "runId": "REDACTED",
+        "promptId": "p3",
+        "answer": ""
+      }
+    },
+    "status": 200,
+    "response": {
+      "accepted": false,
+      "receipt": "REDACTED"
+    }
+  }
+]

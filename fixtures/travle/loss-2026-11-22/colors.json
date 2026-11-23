@@ -1,0 +1,60 @@
+{
+ "perGuessRating": "travle-game-state.guessRatings[i] (emoji), parallel to pastGuessIds[i]; also shown in the past-guesses list and share text. Emoji set from game JS: ✅ perfect (on shortest path and connected), 🟩 near-perfect (on a shortest path but not yet connected), 🟧 good (detour of at most 1 extra country), 🟥 poor (bigger detour). The list button title attribute carries the English meaning.",
+ "mapFill": "Computed CSS fill of svg.map_display path#<ISO3>1 by class. This is NOT the rating: it encodes connection to the start country.",
+ "mapClassColours": {
+  "country-start": "rgb(211, 134, 155) #d3869b",
+  "country-end": "rgb(125, 174, 163) #7daea3",
+  "country-connected": "rgb(221, 199, 161) #ddc7a1 (guess linked to the start by a chain of guesses)",
+  "country-disconnected": "rgb(80, 74, 69) #504a45 (guess not linked to start; the help text calls these gray)",
+  "country-outline": "fill rgb(80, 74, 69), stroke rgb(80, 74, 69) (hint-revealed outline, not a guess)"
+ },
+ "distributionChartBars": {
+  "rgb(125, 174, 163)": "games without hints (scores[even])",
+  "rgb(211, 134, 155)": "games with hints (scores[odd])"
+ },
+ "capturedBeforeFinalGuess": [
+  {
+   "id": "ECU1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟧"
+  },
+  {
+   "id": "ARG1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟧"
+  },
+  {
+   "id": "BOL1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟧"
+  },
+  {
+   "id": "VEN1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟧"
+  },
+  {
+   "id": "MEX1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟥"
+  },
+  {
+   "id": "ESP1",
+   "cls": "country-disconnected",
+   "fill": "rgb(80, 74, 69)",
+   "rating": "🟥"
+  },
+  {
+   "id": "PAN1",
+   "cls": "country-outline",
+   "fill": "rgb(80, 74, 69)",
+   "rating": null,
+   "note": "revealed by hint 1"
+  }
+ ]
+}

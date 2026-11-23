@@ -1,0 +1,9 @@
+{
+  "game": "enclose-horse",
+  "case": "win",
+  "sourceUrl": "https://enclose.horse/",
+  "capturedAt": "2026-11-23T00:14:49.993Z",
+  "puzzleId": "2026-11-22 (Day 328 \"Contraption\", levelId uwtFBO; bonus levelId VU7OQX)",
+  "sources": ["share", "localStorage", "network", "dom"],
+  "notes": "Optimal enclosure, score 49/49 (diamond, 100%), then the Bitter Divorce bonus round solved 18+18=36/36 in the same player context; stats page /stats/2026-11-22 captured after."
+}

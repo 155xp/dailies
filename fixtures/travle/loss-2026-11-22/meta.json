@@ -1,0 +1,14 @@
+{
+ "game": "travle",
+ "case": "loss",
+ "sourceUrl": "https://travle.earth",
+ "capturedAt": "2026-11-23T00:13:00Z",
+ "puzzleId": "1439",
+ "sources": [
+  "share",
+  "localStorage",
+  "network",
+  "dom"
+ ],
+ "notes": "Lost puzzle 1439 after 7/7 guesses, 3 away, with 1 hint (show next country outline revealed PAN)."
+}

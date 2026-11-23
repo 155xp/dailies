@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.nytimes.com/svc/wordle/v2/2026-11-22.json"
+  },
+  "status": 200,
+  "body": {
+    "id": 4823,
+    "solution": "upend",
+    "print_date": "2026-11-22",
+    "days_since_launch": 1982,
+    "editor": "REDACTED"
+  }
+}

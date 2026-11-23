@@ -1,0 +1,159 @@
+{
+  "localStorage": {
+    "games-state-connections/ANON": {
+      "states": [
+        {
+          "puzzleId": "1370",
+          "data": {
+            "puzzleComplete": true,
+            "puzzleWon": false,
+            "mistakes": 4,
+            "guesses": [
+              {
+                "cards": [
+                  {
+                    "position": 5,
+                    "level": 0
+                  },
+                  {
+                    "position": 9,
+                    "level": 0
+                  },
+                  {
+                    "position": 13,
+                    "level": 0
+                  },
+                  {
+                    "position": 15,
+                    "level": 0
+                  }
+                ],
+                "correct": true
+              },
+              {
+                "cards": [
+                  {
+                    "position": 2,
+                    "level": 2
+                  },
+                  {
+                    "position": 4,
+                    "level": 1
+                  },
+                  {
+                    "position": 6,
+                    "level": 1
+                  },
+                  {
+                    "position": 10,
+                    "level": 1
+                  }
+                ],
+                "correct": false
+              },
+              {
+                "cards": [
+                  {
+                    "position": 0,
+                    "level": 3
+                  },
+                  {
+                    "position": 11,
+                    "level": 2
+                  },
+                  {
+                    "position": 12,
+                    "level": 2
+                  },
+                  {
+                    "position": 14,
+                    "level": 2
+                  }
+                ],
+                "correct": false
+              },
+              {
+                "cards": [
+                  {
+                    "position": 1,
+                    "level": 1
+                  },
+                  {
+                    "position": 3,
+                    "level": 3
+                  },
+                  {
+                    "position": 7,
+                    "level": 3
+                  },
+                  {
+                    "position": 8,
+                    "level": 3
+                  }
+                ],
+                "correct": false
+              },
+              {
+                "cards": [
+                  {
+                    "position": 0,
+                    "level": 3
+                  },
+                  {
+                    "position": 1,
+                    "level": 1
+                  },
+                  {
+                    "position": 2,
+                    "level": 2
+                  },
+                  {
+                    "position": 4,
+                    "level": 1
+                  }
+                ],
+                "correct": false
+              }
+            ],
+            "solvedCategories": [
+              {
+                "cards": [
+                  {
+                    "position": 5,
+                    "level": 0
+                  },
+                  {
+                    "position": 9,
+                    "level": 0
+                  },
+                  {
+                    "position": 13,
+                    "level": 0
+                  },
+                  {
+                    "position": 15,
+                    "level": 0
+                  }
+                ],
+                "level": 0,
+                "orderSolved": 1
+              }
+            ],
+            "isPlayingArchive": false
+          },
+          "schemaVersion": "0.52.0",
+          "timestamp": 1795393397,
+          "printDate": "2026-11-22"
+        }
+      ]
+    },
+    "connections_has_played": 1,
+    "elf_limiter": {
+      "count": 1,
+      "timestamp": 1795393365478
+    },
+    "editor_welcome_note_connections": 1
+  },
+  "indexedDB": {},
+  "_note": "Only the game's own keys. indexedDB.databases() returned no databases. Omitted non-game keys seen: statsig.*, ALS_DATA, iterate_hq, aps:*, __bm_*, _gcl_ls, pz-version (all analytics/ads/experimentation)."
+}

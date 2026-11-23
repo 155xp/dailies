@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.enclose.horse/api/daily/bonus/uwtFBO",
+    "headers": {}
+  },
+  "status": 200,
+  "response": {
+    "id": "VU7OQX",
+    "map": "~.~.~.~~.~..~.~\n.U.......~~.~C~\n~.~.~~~~....~.~\n..~....~~.~.~.~\n~.~~~~S~S.~....\n~......~.~~~.~.\n..~~.~S~S....~~\n~....~.~.~~~...\n~~.~~~S~S~...~~\n.......~...~..~\n~.~~~~.~~~~~~..\n~C...........H~\n~.~.~~.~~.~.~~~",
+    "budget": 13,
+    "bonusType": "bitterdivorce",
+    "optimalScore": 36
+  }
+}

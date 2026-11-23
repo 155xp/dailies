@@ -1,0 +1,99 @@
+{
+  "localStorage": {
+    "krillion:stats:v1": {
+      "history": {
+        "2026-11-22": {
+          "runId": "REDACTED",
+          "dayNumber": 130,
+          "score": 405,
+          "tiers": [
+            "krillion",
+            "schooler",
+            "rare",
+            "rare",
+            "plankton",
+            "rare",
+            "deepcut"
+          ],
+          "results": [
+            {
+              "promptId": "p1",
+              "promptText": "Name a car brand",
+              "rawAnswer": "Sears",
+              "answer": "Sears",
+              "tier": "krillion",
+              "score": 100,
+              "quip": "Sears once sold a car by mail through its catalog.",
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p2",
+              "promptText": "Name a book series (1,000+ Goodreads ratings on any one book)",
+              "rawAnswer": "Discworld",
+              "answer": "Discworld",
+              "tier": "schooler",
+              "score": 30,
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p3",
+              "promptText": "Name an area in an airport",
+              "rawAnswer": "Jet bridge",
+              "answer": "Jet bridge",
+              "tier": "rare",
+              "score": 60,
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p4",
+              "promptText": "Name a weapon you throw or a weapon that launches a projectile (no guns)",
+              "rawAnswer": "Trebuchet",
+              "answer": "Trebuchet",
+              "tier": "rare",
+              "score": 60,
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p5",
+              "promptText": "Name a restaurant chain where you build your own bowl",
+              "rawAnswer": "Chipotle",
+              "answer": "Chipotle",
+              "tier": "plankton",
+              "score": 10,
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p6",
+              "promptText": "Name a chronic medical condition",
+              "rawAnswer": "Sarcoidosis",
+              "answer": "Sarcoidosis",
+              "tier": "rare",
+              "score": 60,
+              "receipt": "REDACTED"
+            },
+            {
+              "promptId": "p7",
+              "promptText": "Name a part of the field or court in basketball, soccer, American football, cricket, or rugby",
+              "rawAnswer": "Silly mid-on",
+              "answer": "Silly mid-on",
+              "tier": "deepcut",
+              "score": 85,
+              "receipt": "REDACTED"
+            }
+          ]
+        }
+      },
+      "gamesPlayed": 1,
+      "totalScore": 405,
+      "bestScore": 405,
+      "currentStreak": 1,
+      "maxStreak": 1,
+      "lastPlayedDate": "2026-11-22"
+    },
+    "krillion:player:v1": "REDACTED"
+  },
+  "indexedDB": {
+    "databases": []
+  },
+  "_note": "State after the dive finished. krillion:game:v1 is removed at finish; storage-midgame.json has it as of the last feedback screen."
+}

@@ -1,0 +1,460 @@
+{
+  "_note": "Computed styles read with getComputedStyle in the live page. Tier colors come from CSS custom properties --tier-<tier> on :root (colorblind mode overrides them under :root.colorblind).",
+  "cssTierVars": {
+    ":root": {
+      "--tier-plankton": "#8fa3c4",
+      "--tier-tooclever": "#ff9f43",
+      "--tier-schooler": "#4de3ff",
+      "--tier-rare": "#ff5252",
+      "--tier-deepcut": "#9d7bff",
+      "--tier-krillion": "#ffd166",
+      "--tier-miss": "#3d4f6e",
+      "--tier-miss-lit": "#5d739c",
+      "--tier-krillion-notebook": "#c29a2e"
+    },
+    ":root.colorblind": {
+      "--tier-plankton": "#d7e1f2",
+      "--tier-tooclever": "#ffb35c",
+      "--tier-schooler": "#7deaff",
+      "--tier-rare": "#ff7bac",
+      "--tier-deepcut": "#bfa7ff",
+      "--tier-krillion": "#ffe08a",
+      "--tier-miss": "#a3b6d6",
+      "--tier-miss-lit": "#b6c8e4",
+      "--tier-krillion-notebook": "#805600"
+    }
+  },
+  "finishedScreenRows": [
+    {
+      "text": "1 | NAME A CAR BRAND | Toyota | 80,124 other players chose this | 10 | +",
+      "scoreStyle": "color: var(--tier-plankton);",
+      "scoreColor": "rgb(143, 163, 196)",
+      "icon": "/tiers/plankton.png"
+    },
+    {
+      "text": "2 | NAME A BOOK SERIES (1,000+ GOODREADS RATINGS ON ANY ONE BOOK) | \"Moby Dick\" | 0 | +",
+      "scoreStyle": "color: var(--tier-miss);",
+      "scoreColor": "rgb(61, 79, 110)",
+      "icon": "svg stroke=var(--tier-miss) computed=rgb(61, 79, 110)"
+    },
+    {
+      "text": "3 | NAME AN AREA IN AN AIRPORT | — | 0 | +",
+      "scoreStyle": "color: var(--tier-miss);",
+      "scoreColor": "rgb(61, 79, 110)",
+      "icon": "svg stroke=var(--tier-miss) computed=rgb(61, 79, 110)"
+    },
+    {
+      "text": "4 | NAME A WEAPON YOU THROW OR A WEAPON THAT LAUNCHES A PROJECTILE (NO GUNS) | Slingshot | 374,655 other players chose this | 30 | +",
+      "scoreStyle": "color: var(--tier-schooler);",
+      "scoreColor": "rgb(77, 227, 255)",
+      "icon": "/tiers/schooler.png"
+    },
+    {
+      "text": "5 | NAME A RESTAURANT CHAIN WHERE YOU BUILD YOUR OWN BOWL | — | 0 | +",
+      "scoreStyle": "color: var(--tier-miss);",
+      "scoreColor": "rgb(61, 79, 110)",
+      "icon": "svg stroke=var(--tier-miss) computed=rgb(61, 79, 110)"
+    },
+    {
+      "text": "6 | NAME A CHRONIC MEDICAL CONDITION | \"Happiness\" | 0 | +",
+      "scoreStyle": "color: var(--tier-miss);",
+      "scoreColor": "rgb(61, 79, 110)",
+      "icon": "svg stroke=var(--tier-miss) computed=rgb(61, 79, 110)"
+    },
+    {
+      "text": "7 | NAME A PART OF THE FIELD OR COURT IN BASKETBALL, SOCCER, AMERICAN FOOTBALL, CRICKET, OR RUGBY | Sideline | 157,318 other players chose this | 10 | +",
+      "scoreStyle": "color: var(--tier-plankton);",
+      "scoreColor": "rgb(143, 163, 196)",
+      "icon": "/tiers/plankton.png"
+    }
+  ],
+  "percentileText": "better than 0% of today's players",
+  "perRoundFeedback": [
+    {
+      "round": 0,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 200px; --tc: var(--tier-plankton);",
+      "tcVarResolved": "#8fa3c4",
+      "tierNameColor": "rgb(143, 163, 196)",
+      "pointsColor": "rgb(143, 163, 196)",
+      "text": [
+        "PLANKTON",
+        "“Toyota”",
+        "+10 PTS · sink 100m",
+        "The answer everyone blurts out."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "100m",
+        "text": "DEPTH\n100m\nPROMPT 2 OF 7\nSCORE\n10"
+      }
+    },
+    {
+      "round": 1,
+      "landedClass": "ds-landed miss",
+      "landedStyle": "top: 280px; --tc: var(--tier-miss);",
+      "tcVarResolved": "#3d4f6e",
+      "tierNameColor": "rgb(61, 79, 110)",
+      "pointsColor": "rgb(61, 79, 110)",
+      "text": [
+        "NOTHING LANDED",
+        "“Moby Dick”",
+        "+0 PTS",
+        "never made it onto the reef."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "100m",
+        "text": "DEPTH\n100m\nPROMPT 3 OF 7\nSCORE\n10"
+      }
+    },
+    {
+      "round": 2,
+      "landedClass": "ds-landed miss",
+      "landedStyle": "top: 280px; --tc: var(--tier-miss);",
+      "tcVarResolved": "#3d4f6e",
+      "tierNameColor": "rgb(61, 79, 110)",
+      "pointsColor": "rgb(61, 79, 110)",
+      "text": [
+        "NOTHING LANDED",
+        "—",
+        "+0 PTS",
+        "the clock beat you to it."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "100m",
+        "text": "DEPTH\n100m\nPROMPT 4 OF 7\nSCORE\n10"
+      }
+    },
+    {
+      "round": 3,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 800px; --tc: var(--tier-schooler);",
+      "tcVarResolved": "#4de3ff",
+      "tierNameColor": "rgb(77, 227, 255)",
+      "pointsColor": "rgb(77, 227, 255)",
+      "text": [
+        "SCHOOLER",
+        "“Slingshot”",
+        "+30 PTS · sink 300m",
+        "Solid — swims with the school."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "400m",
+        "text": "DEPTH\n400m\nPROMPT 5 OF 7\nSCORE\n40"
+      }
+    },
+    {
+      "round": 4,
+      "landedClass": "ds-landed miss",
+      "landedStyle": "top: 880px; --tc: var(--tier-miss);",
+      "tcVarResolved": "#3d4f6e",
+      "tierNameColor": "rgb(61, 79, 110)",
+      "pointsColor": "rgb(61, 79, 110)",
+      "text": [
+        "NOTHING LANDED",
+        "—",
+        "+0 PTS",
+        "the clock beat you to it."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        },
+        {
+          "cls": "",
+          "bg": "rgb(18, 35, 61)"
+        }
+      ],
+      "hud": {
+        "depth": "400m",
+        "text": "DEPTH\n400m\nPROMPT 6 OF 7\nSCORE\n40"
+      }
+    },
+    {
+      "round": 5,
+      "landedClass": "ds-landed miss",
+      "landedStyle": "top: 880px; --tc: var(--tier-miss);",
+      "tcVarResolved": "#3d4f6e",
+      "tierNameColor": "rgb(61, 79, 110)",
+      "pointsColor": "rgb(61, 79, 110)",
+      "text": [
+        "NOTHING LANDED",
+        "“Happiness”",
+        "+0 PTS",
+        "never made it onto the reef."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "cur",
+          "bg": "rgb(255, 93, 143)"
+        }
+      ],
+      "hud": {
+        "depth": "400m",
+        "text": "DEPTH\n400m\nPROMPT 7 OF 7\nSCORE\n40"
+      }
+    },
+    {
+      "round": 6,
+      "landedClass": "ds-landed",
+      "landedStyle": "top: 1000px; --tc: var(--tier-plankton);",
+      "tcVarResolved": "#8fa3c4",
+      "tierNameColor": "rgb(143, 163, 196)",
+      "pointsColor": "rgb(143, 163, 196)",
+      "text": [
+        "PLANKTON",
+        "“Sideline”",
+        "+10 PTS · sink 100m",
+        "The answer everyone blurts out."
+      ],
+      "progressDots": [
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        },
+        {
+          "cls": "done",
+          "bg": "rgb(255, 209, 102)"
+        }
+      ],
+      "hud": {
+        "depth": "500m",
+        "text": "DEPTH\n500m\nDIVE COMPLETE\nSCORE\n50"
+      }
+    }
+  ],
+  "answerAttempts": [
+    {
+      "round": 0,
+      "typed": "Toyota",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 1,
+      "typed": "Banana",
+      "phaseAfter": "answering",
+      "rejectMessage": {
+        "text": "\"Banana\": no echo. try again",
+        "cls": "ds-reject ds-reject-shake",
+        "color": "rgb(255, 159, 67)"
+      }
+    },
+    {
+      "round": 1,
+      "typed": "Moby Dick",
+      "phaseAfter": "answering",
+      "rejectMessage": {
+        "text": "\"Moby Dick\": no echo. try again",
+        "cls": "ds-reject ds-reject-shake",
+        "color": "rgb(255, 159, 67)"
+      }
+    },
+    {
+      "round": 3,
+      "typed": "Slingshot",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    },
+    {
+      "round": 5,
+      "typed": "Happiness",
+      "phaseAfter": "answering",
+      "rejectMessage": {
+        "text": "\"Happiness\": no echo. try again",
+        "cls": "ds-reject ds-reject-shake",
+        "color": "rgb(255, 159, 67)"
+      }
+    },
+    {
+      "round": 6,
+      "typed": "Sideline",
+      "phaseAfter": "feedback",
+      "rejectMessage": null
+    }
+  ]
+}

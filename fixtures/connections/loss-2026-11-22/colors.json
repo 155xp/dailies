@@ -1,0 +1,224 @@
+{
+  "elements": [
+    {
+      "testid": "guess-square-attempt0-item0-level0",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "0",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(249, 223, 109)"
+    },
+    {
+      "testid": "guess-square-attempt0-item1-level0",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "0",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(249, 223, 109)"
+    },
+    {
+      "testid": "guess-square-attempt0-item2-level0",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "0",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(249, 223, 109)"
+    },
+    {
+      "testid": "guess-square-attempt0-item3-level0",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "0",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(249, 223, 109)"
+    },
+    {
+      "testid": "guess-square-attempt1-item0-level2",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "2",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "guess-square-attempt1-item1-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "guess-square-attempt1-item2-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "guess-square-attempt1-item3-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "guess-square-attempt2-item0-level3",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "3",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    },
+    {
+      "testid": "guess-square-attempt2-item1-level2",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "2",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "guess-square-attempt2-item2-level2",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "2",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "guess-square-attempt2-item3-level2",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "2",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "guess-square-attempt3-item0-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "guess-square-attempt3-item1-level3",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "3",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    },
+    {
+      "testid": "guess-square-attempt3-item2-level3",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "3",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    },
+    {
+      "testid": "guess-square-attempt3-item3-level3",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "3",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    },
+    {
+      "testid": "guess-square-attempt4-item0-level3",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "3",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    },
+    {
+      "testid": "guess-square-attempt4-item1-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "guess-square-attempt4-item2-level2",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "2",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "guess-square-attempt4-item3-level1",
+      "cls": "Congrats-module_shareBlock__c4G_C",
+      "dataLevel": "1",
+      "aria": null,
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "solved-category-container",
+      "cls": "SolvedCategory-module_solvedCategory___8phN",
+      "dataLevel": "0",
+      "aria": "Correct group MULTITUDE. HOST,MASS,SEA,SLEW",
+      "text": "",
+      "bg": "rgb(249, 223, 109)"
+    },
+    {
+      "testid": "solved-category-container",
+      "cls": "SolvedCategory-module_solvedCategory___8phN",
+      "dataLevel": "1",
+      "aria": "Correct group INTERJECTIONS BEFORE A REACTION. GEE,SAY,WELL,WHY",
+      "text": "",
+      "bg": "rgb(160, 195, 90)"
+    },
+    {
+      "testid": "solved-category-container",
+      "cls": "SolvedCategory-module_solvedCategory___8phN",
+      "dataLevel": "2",
+      "aria": "Correct group BUBBLE ___. BATH,GUM,TEA,WRAP",
+      "text": "",
+      "bg": "rgb(176, 196, 239)"
+    },
+    {
+      "testid": "solved-category-container",
+      "cls": "SolvedCategory-module_solvedCategory___8phN",
+      "dataLevel": "3",
+      "aria": "Correct group HOMOPHONES OF PRONOUNS. EWE,EYE,HEE,WEE",
+      "text": "",
+      "bg": "rgb(186, 129, 197)"
+    }
+  ],
+  "cssVariables": {
+    "--connections-purple": "#b4a8ff",
+    "--connections-lightest-beige": "#efefe6",
+    "--connections-light-beige": "#cfcfbf",
+    "--connections-beige": "#a39f95",
+    "--connections-dark-beige": "#5a594ebf",
+    "--connections-darker-beige": "#787668",
+    "--connections-extra-dark-beige": "#656458",
+    "--connections-darkest-beige": "#5a594e",
+    "--connections-yellow": "#f9df6d",
+    "--connections-maroon": "#ba81c5",
+    "--connections-blue": "#b0c4ef",
+    "--connections-green": "#a0c35a",
+    "--connections-dark-purple": "#861cab",
+    "--bg-connections": "var(--connections-purple)",
+    "--text-connections-mistake": "var(--connections-beige)",
+    "--bg-tile-connections": "var(--connections-light-beige)",
+    "--bg-tile-connections-selected": "var(--connections-extra-dark-beige)",
+    "--bg-tile-connections-error": "var(--connections-extra-dark-beige)",
+    "--bg-connections-straightforward": "var(--connections-yellow)",
+    "--bg-connections-easy": "var(--connections-green)",
+    "--bg-connections-medium": "var(--connections-blue)",
+    "--bg-connections-tricky": "var(--connections-maroon)",
+    "--bg-statsbar-connections": "var(--connections-dark-purple)",
+    "--connections-np": "url(\"https://www.nytimes.com/games-assets/v2/assets/wordle/page-icons/Connections-Icon-np.svg\")",
+    "--connectionsPeriwinkle": "#b4a8ff",
+    "--connectionsbot-walking-icon": "url(\"./assets/connections/connections-bot-mascot.svg\")"
+  }
+}

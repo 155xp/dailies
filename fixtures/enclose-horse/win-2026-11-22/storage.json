@@ -1,0 +1,29 @@
+{
+  "localStorage": {
+    "enclose_seen_help": "1",
+    "enclose_submissions": {
+      "uwtFBO": {
+        "walls": [
+          1,
+          15,
+          18,
+          45,
+          90,
+          132,
+          135,
+          164,
+          181,
+          183,
+          186,
+          189,
+          191
+        ],
+        "score": 49,
+        "isEasy": false
+      }
+    },
+    "fencing_player_id": "REDACTED",
+    "enclose_progress": {}
+  },
+  "indexedDB": {}
+}

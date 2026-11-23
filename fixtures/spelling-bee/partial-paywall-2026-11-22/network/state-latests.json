@@ -1,0 +1,8 @@
+{
+  "url": "https://www.nytimes.com/svc/games/state/spelling_bee/latests?puzzle_ids=9300,20111,25291,13592,11723,23424,20295,23691,10584,16569,23427,14022,21354,26633",
+  "method": "GET",
+  "status": 403,
+  "body": {
+    "error": "forbidden"
+  }
+}

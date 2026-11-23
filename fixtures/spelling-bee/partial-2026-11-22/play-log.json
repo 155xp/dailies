@@ -1,0 +1,33 @@
+{
+  "_note": "Words typed via keyboard in order, toast text shown, and rank/score shown in the progress bar ~1.4s after each Enter. Empty rank/value means the paywall replaced the board.",
+  "log": [
+    {
+      "word": "doth",
+      "toast": "Good!",
+      "rank": "Beginner",
+      "value": "1",
+      "locked": false
+    },
+    {
+      "word": "hate",
+      "toast": "Good!",
+      "rank": "Beginner",
+      "value": "2",
+      "locked": false
+    },
+    {
+      "word": "hath",
+      "toast": "Good!",
+      "rank": "Beginner",
+      "value": "3",
+      "locked": false
+    },
+    {
+      "word": "head",
+      "toast": "Good!",
+      "rank": "Good Start",
+      "value": "4",
+      "locked": false
+    }
+  ]
+}

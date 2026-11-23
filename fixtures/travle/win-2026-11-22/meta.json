@@ -1,0 +1,14 @@
+{
+ "game": "travle",
+ "case": "win",
+ "sourceUrl": "https://travle.earth",
+ "capturedAt": "2026-11-23T00:09:00Z",
+ "puzzleId": "1439",
+ "sources": [
+  "share",
+  "localStorage",
+  "network",
+  "dom"
+ ],
+ "notes": "Won puzzle 1439 Costa Rica to Chile in 6 guesses (+3) with no hints; guesses PAN ECU BRA COL MEX PER."
+}
