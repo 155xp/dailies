@@ -7,6 +7,14 @@ A browser extension and local dashboard that tracks your daily web games.
 Results are read on each game's own site, from what the game itself saves (its share text, its local storage,
 or its own network responses), and kept only in your browser. There are no accounts and no server.
 
+## Install
+
+Dailies works in Chrome and the browsers built on it, such as Edge, Brave and Helium. Open the dashboard and
+choose Download the extension (or take `dailies-extension.zip` from the latest CI run), then unzip it into a
+folder you will keep. Open `chrome://extensions`, turn on Developer mode at the top right, choose Load unpacked
+and pick the unzipped folder. Go back to the dashboard: it finds the extension on its own and shows today's games.
+Results stay in that browser profile only, so each person, and each profile, keeps a separate history.
+
 ## Games
 
 Krillion, Travle, enclose.horse, Wordle, Connections, Spelling Bee, Mini Crossword, Globle and Songless.

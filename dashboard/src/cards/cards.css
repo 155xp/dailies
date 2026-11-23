@@ -1,0 +1,383 @@
+/* Per-game result cards. Game colors live only inside tiles and charts. */
+:root {
+  --bar: var(--ink-6);
+  --wordle-correct: #6aaa64;
+  --wordle-present: #c9b458;
+  --wordle-absent: #787c7e;
+  --wordle-ink: #000;
+  --wordle-absent-ink: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bar: #4a4945;
+    --wordle-correct: #538d4e;
+    --wordle-present: #b59f3b;
+    --wordle-absent: #3a3a3c;
+    --wordle-absent-ink: #fff;
+  }
+}
+
+.card {
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  border-radius: 8px;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Hug the content, but leave room for the parts that fill their width (boards, ladders, charts). */
+  min-width: min(100%, 400px);
+}
+
+.card-title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* Game colored tiles: in dark, a 0.5px edge one step above the card. */
+.card .gtile {
+  display: block;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+  font-style: normal;
+}
+
+.card .card-fig {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.card .figure {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card .punct {
+  font-variant-numeric: normal;
+}
+
+.card .caption {
+  color: var(--ink-11);
+}
+
+/* Charts: whole on the first frame, 8px inner padding, nothing animates. */
+.card .chart {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card .plot {
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--ink-3);
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+
+.card .bars {
+  position: relative;
+  display: grid;
+  align-items: end;
+  height: 72px;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+
+.card .slot {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.card .slot > [data-bar] {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.card .slot > [data-own] {
+  box-shadow: inset 0 2px 0 var(--ink-12);
+}
+
+.card .slot > [data-active]:not([data-own]) {
+  outline: 1px solid var(--ink-10);
+  outline-offset: 1px;
+}
+
+.card .rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink-12);
+}
+
+/* Krillion */
+.card .krill {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card .krill-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 16px;
+}
+
+.card .krill-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 12px;
+}
+
+.card .tier-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+}
+
+.card .swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+/* enclose.horse: board redrawn from the map. Sampled grass and water, the player's walls in ink. */
+.card .board {
+  display: grid;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card .board > i {
+  position: relative;
+  background: #1b6b3a;
+}
+
+.card .board > [data-cell="water"] {
+  background: #062f48;
+}
+
+.card .board > .in {
+  background: color-mix(in srgb, #fff0b3 20%, #1b6b3a);
+}
+
+.card .board > [data-cell="wall"] {
+  background: var(--ink-12);
+}
+
+.card .board > [data-cell="fixed"] {
+  background: #777474;
+}
+
+.card .board > [data-cell="horse"]::after,
+.card .board > [data-cell="item"]::after {
+  content: "";
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.card .board > [data-cell="item"]::after {
+  inset: 32%;
+  background: #f1c40f;
+}
+
+.card .board > [data-glyph="C"]::after {
+  background: #e5484d;
+}
+
+.card .board > [data-glyph="S"]::after {
+  background: #bdbdbd;
+}
+
+.card .medal {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: #21201c;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Wordle */
+.card .wordle {
+  display: grid;
+  grid-template-columns: repeat(5, 44px);
+  gap: 5px;
+}
+
+.card .wordle > i {
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: var(--wordle-ink);
+  box-shadow: inset 0 0 0 1px var(--ink-6);
+}
+
+.card .wordle > [data-mark="correct"] {
+  background: var(--wordle-correct);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+.card .wordle > [data-mark="present"] {
+  background: var(--wordle-present);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+.card .wordle > [data-mark="absent"] {
+  background: var(--wordle-absent);
+  color: var(--wordle-absent-ink);
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Connections */
+.card .conn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card .conn-row {
+  display: grid;
+  grid-template-columns: repeat(4, 24px);
+  gap: 4px;
+}
+
+.card .conn-row > i {
+  height: 24px;
+  border-radius: 4px;
+}
+
+.card .groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card .group {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #000;
+}
+
+/* Spelling Bee */
+.card .ladder-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.card .ladder {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 4px;
+  max-width: 320px;
+}
+
+.card .ladder > i {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ink-4);
+  box-shadow: none;
+}
+
+.card .ladder > [data-on] {
+  background: #f7da21;
+  box-shadow: 0 0 0 0.5px var(--tile-edge);
+}
+
+/* Globle: wraps every 8 guesses, as the game's share does */
+.card .globle {
+  display: grid;
+  grid-template-columns: repeat(8, 28px);
+  gap: 4px;
+}
+
+.card .globle > i {
+  height: 28px;
+  border-radius: 4px;
+}
+
+.card .globle > [data-heat="unknown"] {
+  background: var(--ink-4);
+}
+
+/* Travle */
+.card .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.card .chip {
+  font-size: 13px;
+  line-height: 20px;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Songless */
+.card .song {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.card .song-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 44px);
+  gap: 4px;
+}
+
+.card .song-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.card .song-step > i {
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.card .song-step > [data-state="unused"] {
+  background: var(--ink-4);
+  box-shadow: none;
+}
+
+/* The cards preview: a 2-column flow at desktop widths, each card hugging its content. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+@media (max-width: 1023px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 16px 20px 20px;
+  }
+}
