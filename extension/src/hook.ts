@@ -1,7 +1,7 @@
 import { allowResponse, gameForUrl, type GameDef } from "./games";
 
 /**
- * MAIN world, document_start, on the 9 game pages only. Wraps `Storage.prototype.setItem`, `fetch` and `XMLHttpRequest` so the
+ * MAIN world, document_start, on the 10 game pages only. Wraps `Storage.prototype.setItem`, `fetch` and `XMLHttpRequest` so the
  * game's own writes and allowlisted responses post one message each. Nothing runs unless the page acts.
  */
 function install(game: GameDef) {
@@ -13,10 +13,11 @@ function install(game: GameDef) {
     }
   };
   const globals = () => {
-    if (!game.globals) return undefined;
+    if (!game.globals && !game.pageState) return undefined;
     const w = window as unknown as Record<string, unknown>;
     try {
-      return JSON.parse(JSON.stringify(Object.fromEntries(game.globals.map((g) => [g, w[g]])))) as Record<string, unknown>;
+      const named = Object.fromEntries((game.globals ?? []).map((g) => [g, w[g]]));
+      return JSON.parse(JSON.stringify({ ...named, ...game.pageState?.() })) as Record<string, unknown>;
     } catch {
       return undefined;
     }
@@ -119,6 +120,8 @@ function install(game: GameDef) {
   }
 
   if (game.globals) document.addEventListener("DOMContentLoaded", () => post({ kind: "page", page: globals() }), { once: true });
+  // In-memory page state exists once the page's own scripts have run; a revisit reads it here, with no storage write.
+  if (game.pageState) window.addEventListener("load", () => post({ kind: "page", page: globals() }), { once: true });
 }
 
 const game = gameForUrl(location.href);

@@ -1,6 +1,6 @@
 # Dailies extension
 
-A Manifest V3 extension that logs a result when you finish one of the 9 daily games, with no clicks. Results
+A Manifest V3 extension that logs a result when you finish one of the 10 daily games, with no clicks. Results
 stay in `chrome.storage.local` in your browser.
 
 ## Build and install
@@ -17,11 +17,13 @@ To let a hosted dashboard read your results, build with its origin:
 
 ## When code runs
 
-Content scripts are matched only to the 9 game pages (`src/games.ts`) and the dashboard origins. On a game page:
+Content scripts are matched only to the 10 game pages (`src/games.ts`) and the dashboard origins. On a game page:
 
 - `hook.js` (page world, `document_start`) wraps `Storage.prototype.setItem`, `fetch`, `XMLHttpRequest` and, for Wordle and
   Connections, the clipboard and share sheet. It posts one message when the game writes one of its own result
-  keys, receives an allowlisted response, or shares. Nothing else is touched.
+  keys, receives an allowlisted response, or shares. Nothing else is touched. Spamle saves only ids, so on a Spamle
+  page the hook also reads the day's prompt text, answer names and round targets from the page's own memory with each
+  of those messages and once at `load` (`src/spamle-page.ts`).
 - `content.js` reads once at page load, and again on each hook message. Spelling Bee also has one
   `MutationObserver` on its rank label, disconnected on `pagehide`.
 - "Played, not logged": when a game's result screen is on the page and no record exists, one `setTimeout`

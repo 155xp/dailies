@@ -97,7 +97,7 @@ export interface Row {
 }
 
 /**
- * Today's 9 games in display order. A record counts for today when its game day is today or it was logged
+ * Today's 10 games in display order. A record counts for today when its game day is today or it was logged
  * today, since some games keep their own day (Travle's is UTC). Resets on the next local day.
  */
 export function todayRows(state: State, now: Date): Row[] {
