@@ -14,6 +14,8 @@ interface Preview {
 }
 
 const PREVIEW = BASE + "cards/index.html";
+/** The lazy map chunk. Blocking it shows the text and tile fallback these tests were written for. */
+const GEO = /\/assets\/geo-[\w-]+\.js$/;
 const real = fixtureRecords();
 const byGame = <G extends DailyRecord["game"]>(g: G) => real.find((r) => r.game === g) as RecordOf<G>;
 
@@ -221,7 +223,8 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
     await expect(c.locator("[data-readout]")).toHaveText("Today: 1:23");
   });
 
-  test("Globle: guess tiles by distance bucket, wrapping at eight, with guesses, streak and average", async ({ page }) => {
+  test("Globle (no map): guess tiles by distance bucket, wrapping at eight, with guesses, streak and average", async ({ page }) => {
+    await page.route(GEO, (route) => route.abort());
     await openCards(page);
     const record = byGame("globle");
     const c = card(page, "globle");
@@ -237,7 +240,8 @@ test.describe("each game has its own card, drawn from a real fixture", () => {
     await expect(c).toContainText("Average 9.0");
   });
 
-  test("Travle: guess tiles in the four rating roles and +N", async ({ page }) => {
+  test("Travle (no map): guess tiles in the four rating roles and +N", async ({ page }) => {
+    await page.route(GEO, (route) => route.abort());
     await openCards(page);
     const record = byGame("travle");
     const c = card(page, "travle");
