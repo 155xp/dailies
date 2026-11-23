@@ -31,7 +31,7 @@ export function Krillion({ record }: CardProps) {
               <span className="answer">{a.answer ?? "No answer"}</span>
               <span className="krill-meta meta">
                 <span className="tier-mark">
-                  <i className="tile swatch" data-swatch style={{ background: a.color }} />
+                  <i className="gtile swatch" data-swatch style={{ background: a.color }} />
                   <span className="tier">{a.tier ? TIERS[a.tier] : "Missed"}</span>
                 </span>
                 <span className="points">{a.points} pts</span>

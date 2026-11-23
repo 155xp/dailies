@@ -19,7 +19,7 @@ export function Wordle({ record, history }: CardProps) {
       <div className="wordle" data-tiles role="img" aria-label={`Guesses: ${r.detail.guesses.join(", ")}`}>
         {rows.flatMap((word, row) =>
           Array.from({ length: 5 }, (_, i) => (
-            <i key={`${row}-${i}`} className="tile" data-tile data-mark={r.detail.evaluations[row]?.[i] ?? "empty"}>
+            <i key={`${row}-${i}`} className="gtile" data-tile data-mark={r.detail.evaluations[row]?.[i] ?? "empty"}>
               {word[i]?.toUpperCase()}
             </i>
           )),

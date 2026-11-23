@@ -23,7 +23,7 @@ export function Globle({ record, history }: CardProps) {
       <div className="globle" data-tiles role="img" aria-label={`Guesses by distance: ${detail.countries.join(", ")}`}>
         {detail.countries.map((c, i) => {
           const heat = detail.heat?.[i] ?? "unknown";
-          return <i key={i} className="tile" data-tile data-heat={heat} style={{ background: HEAT[heat] }} />;
+          return <i key={i} className="gtile" data-tile data-heat={heat} style={{ background: HEAT[heat] }} />;
         })}
       </div>
       <p>{status === "won" ? `Found ${detail.countries.at(-1)}` : `Last guess ${detail.countries.at(-1) ?? "none"}`}</p>

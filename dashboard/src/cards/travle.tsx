@@ -21,7 +21,7 @@ export function Travle({ record }: CardProps) {
       <Figure game="travle" value={value} label={<span className="meta">{[detail.par !== null && `Par ${detail.par}`, plural(score, "guess", "guesses"), detail.hints > 0 && plural(detail.hints, "hint")].filter(Boolean).join(", ")}</span>} />
       <div className="chips" data-tiles role="img" aria-label="Guesses by rating">
         {detail.guesses.map((g, i) => (
-          <i key={i} className="tile chip" data-tile data-rating={g.rating} style={{ background: RATINGS[g.rating], color: inkOn(RATINGS[g.rating]) }}>
+          <i key={i} className="gtile chip" data-tile data-rating={g.rating} style={{ background: RATINGS[g.rating], color: inkOn(RATINGS[g.rating]) }}>
             {g.country}
           </i>
         ))}

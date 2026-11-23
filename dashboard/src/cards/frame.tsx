@@ -26,7 +26,7 @@ export function Card({ game, children }: { game: GameId; children: ReactNode }) 
 /** The card's one key figure, with an optional label set on its baseline. */
 export function Figure({ game, value, label }: { game: GameId; value: string; label?: ReactNode }) {
   return (
-    <div className="fig" data-figure data-value={`${game} figure ${value}`}>
+    <div className="card-fig" data-figure data-value={`${game} figure ${value}`}>
       <p className="figure">
         {/* Tabular digits, but the face's tabular colon and separators are too wide: set them proportional. */}
         {value.split(/([:.,])/).map((part, i) => (i % 2 ? <span key={i} className="punct">{part}</span> : part))}

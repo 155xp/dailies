@@ -13,7 +13,7 @@ export function SpellingBee({ record }: CardProps) {
       <div className="ladder-row">
         <div className="ladder" data-ladder data-tiles role="img" aria-label={`Rank ${at + 1} of ${RANKS.length}`}>
           {RANKS.map((name, i) => (
-            <i key={name} className="tile" data-step data-on={i <= at ? "" : undefined} />
+            <i key={name} className="gtile" data-step data-on={i <= at ? "" : undefined} />
           ))}
         </div>
         <p data-rank>{detail.rank}</p>

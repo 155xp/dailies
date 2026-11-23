@@ -25,7 +25,7 @@ export function Songless({ record }: CardProps) {
         <div className="song-steps" data-tiles role="img" aria-label={steps.join(", ")}>
           {steps.map((s, i) => (
             <span key={i} className="song-step">
-              <i className="tile" data-tile data-state={s} style={{ background: SONGLESS_COLORS[s] }} />
+              <i className="gtile" data-tile data-state={s} style={{ background: SONGLESS_COLORS[s] }} />
               <span className="meta">{CLIPS[i]}s</span>
             </span>
           ))}
