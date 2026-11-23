@@ -250,10 +250,10 @@ const same = (a: Box[], b: Box[]) => a.forEach((x, i) => {
 });
 
 test.describe("16 slow 3G: a static first paint", () => {
-  test("the title, its line and the 9-row shell paint within 500ms of navigation and 300ms of the first byte, in the page's own colors", async ({ page }, info) => {
+  test("the title, its line and a shell row per game paint within 500ms of navigation and 300ms of the first byte, in the page's own colors", async ({ page }, info) => {
     only1440and390(info);
     const r = await slowLoad(page, SCENARIOS["missing, a first visit"]!);
-    expect(r.rec.shell, "a frame with the title, its line, Today and all 9 rows").not.toBeNull();
+    expect(r.rec.shell, "a frame with the title, its line, Today and every game's row").not.toBeNull();
     const shell = r.rec.shell!;
     info.annotations.push({ type: "timing", description: `first byte ${Math.round(r.responseStart)}ms, shell ${Math.round(shell.t)}ms, FCP ${Math.round(r.paints["first-contentful-paint"] ?? -1)}ms` });
     expect(r.responseStart, "the throttle is on: the first byte takes the 400ms RTT").toBeGreaterThanOrEqual(390);
@@ -328,7 +328,7 @@ test.describe("16 the shell without JS", () => {
     return { context, page };
   }
 
-  test("index.html alone paints the header, its line, Today and the 9 game links, the same names, hrefs, target and rel as the app", async ({ browser }, info) => {
+  test("index.html alone paints the header, its line, Today and a link per game, the same names, hrefs, target and rel as the app", async ({ browser }, info) => {
     const { context, page } = await bare(browser, info);
     await expect(page.getByRole("heading", { level: 1, name: "Dailies" })).toBeVisible();
     await expect(page.getByText(WHAT, { exact: true })).toBeVisible();
