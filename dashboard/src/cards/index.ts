@@ -1,24 +1,27 @@
 import type { JSX } from "react";
 import type { GameId } from "../games";
-import type { CardProps } from "./frame";
-import { PlaceholderCard } from "./placeholder";
-import { Krillion } from "./krillion";
-import { EncloseHorse } from "./enclose-horse";
-import { Wordle } from "./wordle";
 import { Connections } from "./connections";
+import { EncloseHorse } from "./enclose-horse";
+import type { CardProps } from "./frame";
+import { Globle } from "./globle";
+import { Krillion } from "./krillion";
+import { Mini } from "./mini";
+import { Songless } from "./songless";
 import { SpellingBee } from "./spelling-bee";
+import { Travle } from "./travle";
+import { Wordle } from "./wordle";
 
 export type { CardProps };
 
-/** One result card per game. Placeholders remain until each real card lands. */
+/** One result card per game. */
 export const CARDS: Record<GameId, (props: CardProps) => JSX.Element> = {
   krillion: Krillion,
-  travle: PlaceholderCard,
+  travle: Travle,
   "enclose-horse": EncloseHorse,
   wordle: Wordle,
   connections: Connections,
   "spelling-bee": SpellingBee,
-  mini: PlaceholderCard,
-  globle: PlaceholderCard,
-  songless: PlaceholderCard,
+  mini: Mini,
+  globle: Globle,
+  songless: Songless,
 };
