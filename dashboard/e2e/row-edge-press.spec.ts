@@ -72,9 +72,10 @@ async function hold(page: Page, s: Spot) {
   return held;
 }
 
+/** Reads a computed `matrix(a, b, c, d, e, f)` in the test runner, which has no DOMMatrix. */
 const scaleOf = (t: string) => {
-  const m = new DOMMatrix(t === "none" ? undefined : t);
-  return { a: m.a, d: m.d, b: m.b, c: m.c };
+  const [a, b, c, d] = t === "none" ? [1, 0, 0, 1] : t.slice(t.indexOf("(") + 1, -1).split(",").map(Number);
+  return { a: a!, d: d!, b: b!, c: c! };
 };
 
 for (const edge of ["left", "right"] as const) {
