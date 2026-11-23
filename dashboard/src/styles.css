@@ -715,7 +715,7 @@ button {
 
 /* Hover: color only, fine pointers only. */
 @media (hover: hover) and (pointer: fine) {
-  .line:hover {
+  .line:has(.disclosure):hover {
     background-color: var(--row-hover);
   }
 
@@ -748,8 +748,13 @@ button {
 }
 
 .hist-label:active,
-.line:has(.disclosure:active) {
+.line:has(.disclosure):active:not(:has(.name:active)) {
   transform: scale(0.99);
+}
+
+/* Only a row with Details does something on a click; a row without one shows no hover or press. */
+.line:has(.disclosure) {
+  cursor: pointer;
 }
 
 /* Phone: 20px gutters, two-line rows, 44pt targets, the history scrolls in its own box. */
@@ -937,7 +942,7 @@ button {
   .disclosure:active,
   .link:active,
   .hist-label:active,
-  .line:has(.disclosure:active) {
+  .line:has(.disclosure):active:not(:has(.name:active)) {
     transform: none;
   }
 
