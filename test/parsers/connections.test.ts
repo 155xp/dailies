@@ -50,7 +50,7 @@ describe("parseConnections", () => {
   it("reads a loss with four mistakes", () => {
     const r = parseConnections(loss);
     expect(r).toMatchObject({ outcome: "loss", score: 4 });
-    expect(r?.guesses.map((g) => g.mark)).toEqual(["correct", "incorrect", "incorrect", "incorrect", "incorrect"]);
+    expect(r?.guesses.map((g) => g.mark)).toEqual(["correct", "one away", "one away", "one away", "incorrect"]);
   });
 
   it("reports no distribution signed out (fixtures/connections/win-2026-11-22/dom.html)", () => {
