@@ -465,6 +465,8 @@ test.describe("390 and 1440", () => {
     await open(page, { ext: withState(STATES.done) });
     await page.locator('.row[data-game="globle"] .disclosure').click();
     const c = card(page);
+    // Since #15 the opened card can start below the fold at 390; the turn plays when the card is first in view.
+    await c.scrollIntoViewIfNeeded();
     await settled(c);
     await expectCentered(c);
     expect(await audit(page)).toEqual(CLEAN);
