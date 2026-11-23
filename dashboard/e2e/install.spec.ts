@@ -45,7 +45,9 @@ test.describe("5a install steps", () => {
       });
     });
     await open(page, { ext: "none" });
-    const copy = steps(page).nth(1).getByRole("button", { name: "Copy address" });
+    // Found by position, not by name: the name is what changes.
+    const copy = steps(page).nth(1).locator("button");
+    await expect(copy).toHaveText("Copy address");
     await copy.click();
     await expect(copy).toHaveText("Copied");
     expect(await page.evaluate(() => (window as unknown as { copied: string[] }).copied)).toEqual(["chrome://extensions"]);
