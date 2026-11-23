@@ -1,0 +1,74 @@
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+
+export type Geo = typeof import("./geo");
+
+let loaded: Geo | null = null;
+let pending: Promise<Geo> | null = null;
+
+/** The geo chunk: null while it loads, false if it failed. Requested by the first card that needs it. */
+export function useGeo(): Geo | null | false {
+  const [geo, setGeo] = useState<Geo | null | false>(loaded);
+  useEffect(() => {
+    if (geo !== null) return;
+    let live = true;
+    (pending ??= import("./geo")).then(
+      (m) => live && setGeo((loaded = m)),
+      () => live && setGeo(false),
+    );
+    return () => {
+      live = false;
+    };
+  }, [geo]);
+  return geo;
+}
+
+/** Where the geo view stands: the map, its placeholder, or today's text and tiles. */
+export const geoState = <T,>(geo: Geo | null | false, view: T | null) => (geo === null ? "loading" : view ? "ready" : "fallback");
+
+/** The silhouette box and its words. The words are a quiet bar until the chunk lands, when the name is known. */
+export function AnswerRow({ d, name, children }: { d: string | null; name: string | null; children: ReactNode }) {
+  return (
+    <div className="geo-answer">
+      <div className="geo-sil" data-geo-box="silhouette">
+        {d === null ? (
+          <i className="geo-hold" data-geo-placeholder />
+        ) : (
+          <svg data-silhouette viewBox="0 0 88 88" role="img" aria-label={`${name} outline`}>
+            <path className="geo-in" data-mark="answer" d={d} />
+          </svg>
+        )}
+      </div>
+      <div className="geo-words">
+        {name === null ? <i className="geo-hold geo-line" data-geo-placeholder /> : <p data-answer>{name}</p>}
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** A 3:2 box the width of the card. Draws `children(w, h)` in pixels once the chunk is in, so labels keep their size. */
+export function MapBox({ ready, label, children }: { ready: boolean; label: string; children: (w: number, h: number) => ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(0);
+  useLayoutEffect(() => {
+    const el = ref.current!;
+    setW(el.getBoundingClientRect().width);
+    const ro = new ResizeObserver(() => setW(el.getBoundingClientRect().width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const h = (w * 2) / 3;
+  return (
+    <div ref={ref} className="geo-map" data-geo-box="map">
+      {!ready ? (
+        <i className="geo-hold" data-geo-placeholder />
+      ) : (
+        w > 0 && (
+          <svg data-map viewBox={`0 0 ${w} ${h}`} role="img" aria-label={label}>
+            <g className="geo-in">{children(w, h)}</g>
+          </svg>
+        )
+      )}
+    </div>
+  );
+}

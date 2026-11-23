@@ -313,6 +313,13 @@ button {
   animation: rise 200ms var(--ease);
 }
 
+/* A geo card's map and silhouette, once the geo chunk lands: settles in place, so no ink leaves its box. */
+.geo-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: settle 200ms var(--ease);
+}
+
 /* Placeholder card recipe (raised surface). */
 .card {
   width: fit-content;
@@ -606,6 +613,13 @@ button {
   }
 }
 
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
 @keyframes tip-in {
   from {
     opacity: 0;
@@ -810,7 +824,8 @@ button {
 
 /* Reduced motion: travel and scale become a 150ms fade; presses do not scale. */
 @media (prefers-reduced-motion: reduce) {
-  .card-slot {
+  .card-slot,
+  .geo-in {
     animation: fade 150ms var(--ease);
   }
 

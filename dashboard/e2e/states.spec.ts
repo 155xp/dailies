@@ -46,7 +46,14 @@ test.describe("3d states, type and motion", () => {
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
     await page.evaluate((s) => (window as never as { __ext: { set(m: unknown): void } }).__ext.set({ kind: "state", state: s }), STATES.partial);
     await expect(page.locator("main")).toHaveAttribute("data-status", "connected");
-    expect(await tops()).toEqual(before);
+    const after = await tops();
+    if (!info.project.name.startsWith("390")) expect(after).toEqual(before);
+    else {
+      // At 390 a Not played yet row is one line (#15), which loading can't know in advance: rows may move up
+      // by what those rows give back, never down, and the first row stays put.
+      expect(after[0]).toBe(before[0]);
+      after.forEach((t, i) => expect(t, `row ${i}`).toBeLessThanOrEqual(before[i]!));
+    }
   });
 
   test("type: one face, one weight, body text 17px or larger, meta 13px or larger, on every text node", async ({ page }) => {
