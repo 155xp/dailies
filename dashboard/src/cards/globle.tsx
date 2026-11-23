@@ -89,8 +89,9 @@ export function Globle({ record, history }: CardProps) {
         </div>
       </Card>
     );
+  // Unfinished, there is no answer outline to stand beside the map, so the card keeps one column.
   return (
-    <Card game="globle" geo={state}>
+    <Card game="globle" geo={state} single={!won}>
       {figure}
       {won && (
         <AnswerRow d={view?.sil ?? null} name={detail.countries.at(-1)!}>
@@ -98,7 +99,7 @@ export function Globle({ record, history }: CardProps) {
         </AnswerRow>
       )}
       {!won && streak}
-      <MapBox ready={!!view} label={label ?? ""}>
+      <MapBox ready={!!view} label={label ?? ""} wide={!won}>
         {(w, h) => {
           const m = (geo as Geo).mapView(w, h, view!.guesses.map((g) => g.c), view!.answer?.center[0]);
           const pins = view!.guesses.map((g) => ({ ...g, at: m.pin(g.c) ?? [-99, -99] }));

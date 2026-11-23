@@ -51,19 +51,24 @@ export function AnswerRow({ d, name, children }: { d: string | null; name: strin
 }
 
 /** A 3:2 box the width of the card. Draws `children(w, h)` in pixels once the chunk is in, so labels keep their size. */
-export function MapBox({ ready, label, children }: { ready: boolean; label: string; children: (w: number, h: number) => ReactNode }) {
+export function MapBox({ ready, label, wide, children }: { ready: boolean; label: string; wide?: boolean; children: (w: number, h: number) => ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [w, setW] = useState(0);
+  const [[w, boxH], setSize] = useState([0, 0]);
   useLayoutEffect(() => {
     const el = ref.current!;
-    setW(el.getBoundingClientRect().width);
-    const ro = new ResizeObserver(() => setW(el.getBoundingClientRect().width));
+    const read = () => {
+      const r = el.getBoundingClientRect();
+      setSize([r.width, r.height]);
+    };
+    read();
+    const ro = new ResizeObserver(read);
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  const h = (w * 2) / 3;
+  // A wide box takes its height from CSS: a strip from 1024 up, 3:2 below.
+  const h = wide ? boxH : (w * 2) / 3;
   return (
-    <div ref={ref} className="geo-map" data-geo-box="map">
+    <div ref={ref} className={wide ? "geo-map wide" : "geo-map"} data-geo-box="map">
       {!ready ? (
         <i className="geo-hold" data-geo-placeholder />
       ) : (

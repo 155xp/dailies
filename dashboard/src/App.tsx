@@ -128,11 +128,14 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
         {status === "connected" && record && (
           <>
             <span className="status">Played</span>
-            <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
-              {tiles(record).map((color, i) => (
-                <span key={i} className="tile" style={{ background: color }} />
-              ))}
-            </span>
+            {/* An unfinished Globle has no distances yet, so no tiles: leave the strip out rather than draw it empty. */}
+            {tiles(record).length > 0 && (
+              <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
+                {tiles(record).map((color, i) => (
+                  <span key={i} className="tile" style={{ background: color }} />
+                ))}
+              </span>
+            )}
             <span className="result">{result(record)}</span>
             <button type="button" className="disclosure" aria-expanded={open} aria-controls={slot} onClick={() => setOpen(!open)}>
               Details
