@@ -715,7 +715,8 @@ button {
 
 /* Hover: color only, fine pointers only. */
 @media (hover: hover) and (pointer: fine) {
-  .line:has(.disclosure):hover {
+  /* On the hit box, so the color holds while a press near an edge has scaled the line out from under the pointer. */
+  .hit:has(.disclosure):hover > .line {
     background-color: var(--row-hover);
   }
 
@@ -753,7 +754,7 @@ button {
 }
 
 /* Only a row with Details does something on a click; a row without one shows no hover or press. */
-.line:has(.disclosure) {
+.hit:has(.disclosure) {
   cursor: pointer;
 }
 

@@ -121,36 +121,40 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
 
   return (
     <li className="row" data-game={game.id}>
-      <div className="line" onClick={status === "connected" && record ? onLine : undefined}>
-        <a className="link name" href={game.url} target="_blank" rel="noopener">
-          {game.name}
-          <HugeiconsIcon icon={LinkSquare02Icon} size={16} strokeWidth={1.5} aria-hidden="true" />
-        </a>
-        {status === "loading" && <span className="skel status-skel" />}
-        {status === "connected" && record && (
-          <>
-            <span className="status">Played</span>
-            {/* An unfinished Globle has no distances yet, so no tiles: leave the strip out rather than draw it empty. */}
-            {tiles(record).length > 0 && (
-              <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
-                {tiles(record).map((color, i) => (
-                  <span key={i} className="tile" style={{ background: color }} />
-                ))}
-              </span>
-            )}
-            <span className="result">{result(record)}</span>
-            <button type="button" className="disclosure" aria-expanded={open} aria-controls={open ? slot : undefined} onClick={() => setOpen(!open)}>
-              Details
-            </button>
-          </>
-        )}
-        {status === "connected" && !record && miss && (
-          <>
-            <span className="status missed">Played, not logged</span>
-            <span className="reason meta">{miss.reason}</span>
-          </>
-        )}
-        {status === "connected" && !record && !miss && <span className="status idle">Not played yet</span>}
+      {/* The hit box takes the click and never transforms; only the line inside it scales on press, so a held press
+          near an edge is still released on the row. */}
+      <div className="hit" onClick={status === "connected" && record ? onLine : undefined}>
+        <div className="line">
+          <a className="link name" href={game.url} target="_blank" rel="noopener">
+            {game.name}
+            <HugeiconsIcon icon={LinkSquare02Icon} size={16} strokeWidth={1.5} aria-hidden="true" />
+          </a>
+          {status === "loading" && <span className="skel status-skel" />}
+          {status === "connected" && record && (
+            <>
+              <span className="status">Played</span>
+              {/* An unfinished Globle has no distances yet, so no tiles: leave the strip out rather than draw it empty. */}
+              {tiles(record).length > 0 && (
+                <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
+                  {tiles(record).map((color, i) => (
+                    <span key={i} className="tile" style={{ background: color }} />
+                  ))}
+                </span>
+              )}
+              <span className="result">{result(record)}</span>
+              <button type="button" className="disclosure" aria-expanded={open} aria-controls={open ? slot : undefined} onClick={() => setOpen(!open)}>
+                Details
+              </button>
+            </>
+          )}
+          {status === "connected" && !record && miss && (
+            <>
+              <span className="status missed">Played, not logged</span>
+              <span className="reason meta">{miss.reason}</span>
+            </>
+          )}
+          {status === "connected" && !record && !miss && <span className="status idle">Not played yet</span>}
+        </div>
       </div>
       {open && record && (
         <div className="card-slot" id={slot}>
