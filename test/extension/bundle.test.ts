@@ -9,7 +9,7 @@ let code: Record<string, string>;
 
 beforeAll(async () => {
   dir = mkdtempSync(join(tmpdir(), "dailies-ext-"));
-  await bundle({ outdir: dir });
+  await bundle({ outdir: dir, dashboardOrigins: "https://dailies.enci.dev" });
   code = Object.fromEntries(
     readdirSync(dir)
       .filter((f) => f.endsWith(".js"))

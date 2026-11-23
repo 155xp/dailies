@@ -12,6 +12,7 @@ function stubChrome() {
     },
   };
   vi.stubGlobal("chrome", chrome);
+  vi.stubGlobal("__DAILIES_DASHBOARD_ORIGINS__", [location.origin]);
   return { changed };
 }
 

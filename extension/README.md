@@ -7,13 +7,24 @@ stay in `chrome.storage.local` in your browser.
 
 ```sh
 pnpm install
-pnpm build:ext          # extension/dist/ (unpacked) and extension/dailies-extension.zip
+DAILIES_DASHBOARD_ORIGINS=https://dailies.enci.dev pnpm build:ext  # extension/dist/ (unpacked) and extension/dailies-extension.zip
 ```
 
 Open `chrome://extensions`, turn on Developer mode, choose "Load unpacked" and pick `extension/dist`.
-To let a hosted dashboard read your results, build with its origin:
-`DAILIES_DASHBOARD_ORIGINS=https://your-dashboard.example pnpm build:ext`. The default build allows only
-`http://localhost` and `http://127.0.0.1`.
+Production builds require `DAILIES_DASHBOARD_ORIGINS` (comma-separated bare origins) and fail if it is
+missing or contains loopback. CI builds the served zip for `https://dailies.enci.dev` with `DAILIES_DEV`
+disabled. For another hosted dashboard, set its origin explicitly.
+
+For local dashboard work on port **5173**, build a dev zip explicitly:
+
+```sh
+DAILIES_DEV=1 pnpm build:ext
+pnpm dev:site --host localhost --port 5173 --strictPort
+```
+
+Load `extension/dist` as above. This dev build allows `http://localhost:5173` and `http://127.0.0.1:5173`;
+the bridge checks the exact origin including its port. To use another local port, include its bare origin
+in `DAILIES_DASHBOARD_ORIGINS` alongside `DAILIES_DEV=1`. Never use a dev zip for production.
 
 ## When code runs
 
