@@ -42,6 +42,8 @@ export interface Mark {
 
 /** One guess, answer or attempt, in the order the player made it. */
 export interface Guess extends Mark {
+  /** The prompt this guess answered, for games with a prompt per round. */
+  prompt?: string;
   /** Per-letter or per-card grading, for games that grade parts of a guess. */
   parts?: Mark[];
   points?: number;
@@ -80,11 +82,15 @@ export interface GameResult {
   score: number;
   scoreUnit: "guesses" | "points" | "mistakes" | "attempts";
   maxScore?: number;
+  /** The fewest guesses the puzzle can be solved in, when the game says. */
+  par?: number;
   guesses: Guess[];
   hintsUsed?: number;
   timeSeconds?: number;
   /** Share of other players this result beat, 0 to 100, as the game reports it. */
   percentile?: number;
+  /** The game's "top X%" figure: share of players who did as well or better, 0 to 100. */
+  topPercent?: number;
   rank?: number;
   /** A named rank or medal, for example "Solid" or "diamond". */
   rankLabel?: string;
