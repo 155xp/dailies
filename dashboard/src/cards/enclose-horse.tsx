@@ -1,3 +1,4 @@
+import { enclosure } from "../../../src/parsers/enclose-horse";
 import type { RecordOf } from "../../../src/record";
 import { Bars, Caption, Card, Figure, fmt, type CardProps } from "./frame";
 
@@ -8,25 +9,6 @@ const MEDALS = {
   bronze: { label: "okay", bg: "#e8d4c4" },
 } as const;
 
-/** Cells the horse can reach. If it reaches the edge it has escaped and nothing is enclosed. */
-function enclosed(grid: string[], cols: number, walls: Set<number>): Set<number> {
-  const start = grid.indexOf("H");
-  const seen = new Set<number>([start]);
-  const queue = [start];
-  while (queue.length) {
-    const i = queue.pop()!;
-    const [r, c] = [Math.floor(i / cols), i % cols];
-    if (r === 0 || c === 0 || c === cols - 1 || i + cols >= grid.length) return new Set();
-    for (const j of [i - 1, i + 1, i - cols, i + cols]) {
-      if (!seen.has(j) && grid[j] !== "~" && grid[j] !== "W" && !walls.has(j)) {
-        seen.add(j);
-        queue.push(j);
-      }
-    }
-  }
-  return seen;
-}
-
 const kind = (glyph: string, wall: boolean, inside: boolean) =>
   wall ? "wall" : glyph === "~" ? "water" : glyph === "W" ? "fixed" : glyph === "H" ? "horse" : glyph !== "." ? "item" : inside ? "enclosed" : "grass";
 
@@ -34,7 +16,9 @@ export function EncloseHorse({ record }: CardProps) {
   const { detail } = record as RecordOf<"enclose-horse">;
   const grid = detail.map.split("\n").join("").split("");
   const walls = new Set(detail.walls);
-  const inside = enclosed(grid, detail.cols, walls);
+  // The parser's own flood fill, so portals and escapes match the game's scoring.
+  const pen = enclosure(detail.map.split("\n"), detail.walls);
+  const inside = new Set(pen.escaped ? [] : pen.cells);
   const medal = MEDALS[detail.medal];
   const hist = detail.histogram?.length ? detail.histogram : null;
   const own = hist ? Math.max(0, hist.findIndex((h) => detail.score >= h.minScore && detail.score <= h.maxScore)) : 0;

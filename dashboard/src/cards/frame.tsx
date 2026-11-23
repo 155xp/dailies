@@ -65,7 +65,7 @@ export interface Bar {
 
 interface BarsProps {
   bars: Bar[];
-  /** The player's bar: marked, and where the scrub starts. */
+  /** The player's bar: marked, and where the scrub starts; -1 for none. */
   own: number;
   /** Bar color unless a bar sets its own. */
   rest?: string;
@@ -78,7 +78,7 @@ interface BarsProps {
 
 /** A bar chart that paints whole on the first frame and scrubs by pointer and arrow keys. */
 export function Bars({ bars, own, rest = "var(--bar)", ownColor, readout, label, rule }: BarsProps) {
-  const [active, setActive] = useState(own);
+  const [active, setActive] = useState(Math.max(0, own));
   const max = Math.max(...bars.map((b) => b.height ?? b.value), 1e-9);
   const last = bars.length - 1;
   const move = (i: number) => setActive(Math.min(last, Math.max(0, i)));
