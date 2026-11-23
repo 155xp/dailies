@@ -36,6 +36,8 @@ const ALLOWED_DOMAINS = [
   "w3.org",
   // the font license URL in extension/static/fonts/OFL.txt
   "sil.org",
+  // the public production dashboard configured in Extension CI
+  "dailies.enci.dev",
   // the reserved test host the e2e harness serves the site from
   "dailies.test",
 ];
