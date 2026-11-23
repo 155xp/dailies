@@ -52,7 +52,8 @@ function install(game: GameDef) {
         promise
           .then((res) => res.clone().json().then((body: unknown) => {
             const response = { url: res.url || url, method, status: res.status, body, ...(requestBody !== undefined && { requestBody }) };
-            post({ kind: "response", id, response });
+            // With the page's in-memory state too: on a revisit a response can land before load (Spamle's words).
+            post({ kind: "response", id, response, page: globals() });
           }))
           .catch(() => post({ kind: "response", id }));
       }
@@ -93,7 +94,7 @@ function install(game: GameDef) {
           }
           if (!this.status || json == null) return post({ kind: "response", id });
           const response = { url: this.responseURL || req.url, method: req.method, status: this.status, body: json, ...(requestBody !== undefined && { requestBody }) };
-          post({ kind: "response", id, response });
+          post({ kind: "response", id, response, page: globals() });
         }, { once: true });
       }
       return send.call(this, body);

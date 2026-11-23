@@ -338,8 +338,10 @@ Fields (proof `*/storage.json` unless noted):
 Page memory (`*/page.json`): Spamle saves ids only. The extension's page-world hook reads, for the latest live
 Daily's prompts only, the prompt text, the number of possible answers, the targets and the names of the answers
 given, from the page's own top-level `P` and `targets` (`extension/src/spamle-page.ts`). It does this with each
-`spamle-v1` write and once at load. Without it a record still saves, with prompt ids and answer keys in place of
-words; a later read fills them in.
+`spamle-v1` write, each allowlisted response and once at load. Without it a record still saves, with prompt ids
+and answer keys in place of words; a later read fills them in. A read that misses the words never replaces ones
+already stored: finished rounds keep their prompt text, targets, rating and answer names
+(`keepWords` in `extension/src/store.ts`).
 
 Colors (`win-2026-11-23/colors.json`, computed in the page):
 

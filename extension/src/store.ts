@@ -57,10 +57,35 @@ function fill(next: unknown, prev: unknown): unknown {
   return next;
 }
 
+/**
+ * Spamle's words (prompt text, targets, rating, answer names) come from the page's memory, which a read before the
+ * page has loaded can miss; its answers then fall back to the saved keys (`westcoasthiphop`). A finished round never
+ * changes, so where the stored record already has a round's words (same position and prompt), they are kept.
+ */
+function keepWords(next: DailyRecord, prev: DailyRecord | undefined): DailyRecord {
+  if (next.game !== "spamle" || prev?.game !== "spamle") return next;
+  const rounds = next.detail.rounds.map((r, i) => {
+    const known = prev.detail.rounds[i];
+    if (r.prompt !== null || !known || known.prompt === null || known.promptId !== r.promptId) return r;
+    const same = known.points === r.points;
+    return {
+      ...r,
+      prompt: known.prompt,
+      possible: known.possible,
+      great: known.great,
+      top: known.top,
+      rating: same ? known.rating : r.rating,
+      answers: r.answers.map((a, j) => (known.answers[j]?.points === a.points ? { ...a, answer: known.answers[j]!.answer } : a)),
+    };
+  });
+  return { ...next, detail: { ...next.detail, rounds } };
+}
+
 /** The storage patch for a captured record, or null when it adds nothing to what is stored (a replay or reload). */
-export function applyRecord(state: State, captured: DailyRecord, now: Date, atLoad = false): Partial<State> | null {
-  const key = recordKey(captured.game, captured.date);
+export function applyRecord(state: State, fresh: DailyRecord, now: Date, atLoad = false): Partial<State> | null {
+  const key = recordKey(fresh.game, fresh.date);
   const prev = state.records[key];
+  const captured = keepWords(fresh, prev);
   // A read at page load runs before the game fetches its own data, so it only fills gaps in a stored record.
   const record = !prev ? captured : ((atLoad ? fill(prev, captured) : fill(captured, prev)) as DailyRecord);
   if (same(prev, record)) return null;
