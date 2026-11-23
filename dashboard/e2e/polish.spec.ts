@@ -97,7 +97,7 @@ test.describe("favicon", () => {
       expect(links.map((l) => l.type)).toContain("image/svg+xml");
       expect(links.some((l) => l.sizes === "32x32")).toBe(true);
       for (const href of [...links.map((l) => l.href), BASE + "favicon.ico"]) {
-        const res = await page.evaluate((u) => fetch(u).then(async (r) => ({ status: r.status, bytes: [...new Uint8Array(await r.arrayBuffer())].slice(0, 4) })), href);
+        const res = await page.evaluate((u) => fetch(u + "?probe").then(async (r) => ({ status: r.status, bytes: [...new Uint8Array(await r.arrayBuffer())].slice(0, 4) })), href);
         expect(res.status, href).toBe(200);
         expect(res.bytes.length, href).toBe(4);
       }
