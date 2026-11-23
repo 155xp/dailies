@@ -76,6 +76,8 @@ test.describe("16 snapshot and shell", () => {
       await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
       expect(await geometry(page), "loading view").toEqual(before);
 
+      // The loading check above paused the page clock; resume it so the 300ms not-found deadline can run.
+      await page.clock.resume();
       await open(page, { ext: c.ext });
       await expect(page.locator("main")).toHaveAttribute("data-status", c.status);
       await settle(page);
