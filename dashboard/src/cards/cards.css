@@ -26,8 +26,46 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* Hug the content, but leave room for the parts that fill their width (boards, ladders, charts). */
-  min-width: min(100%, 400px);
+  /* Every card spans its row; at 1024 and up it splits in two (below). */
+  width: 100%;
+}
+
+/* The result (figure and drawing) on the left, the chart and its lines on the right. Stacked below 1024. */
+.card-body {
+  display: grid;
+  gap: 16px;
+}
+
+.card-result,
+.card-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .card-body:has(> .card-side) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 32px;
+  }
+
+  /* The chart grows to the height of the result beside it, so neither column ends in empty space. */
+  .card-side > .chart {
+    flex: 1;
+  }
+
+  .card-side .plot {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-side .bars {
+    flex: 1;
+    height: auto;
+    min-height: 72px;
+  }
 }
 
 .card-title {
@@ -362,18 +400,11 @@
   box-shadow: none;
 }
 
-/* The cards preview: a 2-column flow at desktop widths, each card hugging its content. */
+/* The cards preview: one full-width card per row, as each sits in its Today row. */
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
-}
-
-@media (max-width: 1023px) {
-  .cards {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 @media (max-width: 767px) {

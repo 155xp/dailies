@@ -1,15 +1,16 @@
 import { LinkSquare02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
+import { Children, isValidElement, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
 import type { DailyRecord } from "../../../src/record";
 import { gameById, type GameId } from "../games";
 import "./cards.css";
 
 export type CardProps = { record: DailyRecord; history: DailyRecord[] };
 
-/** The shared frame: the title links to the game, then the card's own drawing, figure and chart. */
+/** The shared frame: the title links to the game, then the card's figure and drawing, with its chart beside them. */
 export function Card({ game, children }: { game: GameId; children: ReactNode }) {
   const g = gameById(game);
+  const [result, side] = split(children);
   return (
     <article className="card" data-panel data-game={game}>
       <h3 className="card-title">
@@ -18,9 +19,31 @@ export function Card({ game, children }: { game: GameId; children: ReactNode }) 
           <HugeiconsIcon icon={LinkSquare02Icon} size={16} aria-hidden />
         </a>
       </h3>
-      {children}
+      <div className="card-body">
+        <div className="card-result" data-result>
+          {result}
+        </div>
+        {side.length > 0 && (
+          <div className="card-side" data-side>
+            {side}
+          </div>
+        )}
+      </div>
     </article>
   );
+}
+
+/**
+ * The two columns a wide card splits into. The right one takes the chart first, then its caption. A card with no
+ * chart keeps its figure and drawing on the left and moves the lines after them to the right, so neither half is empty.
+ */
+function split(children: ReactNode): [ReactNode[], ReactNode[]] {
+  const parts = Children.toArray(children);
+  const is = (part: ReactNode, type: unknown) => isValidElement(part) && part.type === type;
+  const chart = parts.filter((p) => is(p, Bars));
+  const captions = parts.filter((p) => is(p, Caption));
+  if (chart.length || captions.length) return [parts.filter((p) => !is(p, Bars) && !is(p, Caption)), [...chart, ...captions]];
+  return parts.length > 2 ? [parts.slice(0, 2), parts.slice(2)] : [parts, []];
 }
 
 /** The card's one key figure, with an optional label set on its baseline. */

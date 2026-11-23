@@ -54,8 +54,8 @@ export function History({ log, today }: { log: Log; today: string }) {
       <div className="section-head">
         <h2 className="section-title">History</h2>
         <div className="figures">
-          <Figure label="Current streak" value={overall.current} />
-          <Figure label="Best streak" value={overall.best} />
+          <Figure label="Current streak, all games" value={overall.current} />
+          <Figure label="Best streak, all games" value={overall.best} />
         </div>
       </div>
       <div className="hist-card" data-panel>
@@ -72,8 +72,7 @@ export function History({ log, today }: { log: Log; today: string }) {
                     aria-controls="history-days"
                     onClick={() => setOpenGame(openGame === g.id ? null : g.id)}
                   >
-                    <span>{g.name}</span>
-                    <span className="streak meta">Streak {streaks(playedDays(g, log), today).current}</span>
+                    {g.name}
                   </button>
                   <div className="sqs">
                     {row.map((c) => (
@@ -94,6 +93,7 @@ export function History({ log, today }: { log: Log; today: string }) {
                       />
                     ))}
                   </div>
+                  <span className="streak meta">Streak {streaks(playedDays(g, log), today).current}</span>
                 </div>
               );
             })}
