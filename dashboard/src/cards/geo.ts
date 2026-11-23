@@ -84,10 +84,10 @@ export type Box = { x: number; y: number; w: number; h: number };
 export function mapView(w: number, h: number, fit: Country[], lon?: number) {
   const [pad, edge] = [w * 0.04, w * 0.02];
   const all: FeatureCollection = { type: "FeatureCollection", features: fit.map((c) => c.body) };
-  const proj = geoNaturalEarth1()
-    .rotate([-(lon ?? geoCentroid(all)[0]), 0])
-    .fitExtent([[pad, pad], [w - pad, h - pad]], all)
-    .clipExtent([[0, 0], [w, h]]);
+  const fitAt = (l: number) => geoNaturalEarth1().rotate([-l, 0]).fitExtent([[pad, pad], [w - pad, h - pad]], all);
+  // With no center given, turn the globe to where the countries fit tightest, so none is split at the map's edge.
+  const best = lon ?? Array.from({ length: 24 }, (_, i) => i * 15 - 180).reduce((a, b) => (fitAt(b).scale() > fitAt(a).scale() + 1e-6 ? b : a), geoCentroid(all)[0]);
+  const proj = fitAt(best).clipExtent([[0, 0], [w, h]]);
   const path = geoPath(proj);
   const ok = (q: [number, number] | null | undefined): q is [number, number] => !!q && q[0] >= edge && q[0] <= w - edge && q[1] >= edge && q[1] <= h - edge;
   return {
