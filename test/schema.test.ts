@@ -2,10 +2,22 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type { z } from "zod";
-import { connectionsRecord, globleRecord, krillionRecord, spellingBeeRecord, travleRecord, wordleRecord } from "../src/record";
+import {
+  connectionsRecord,
+  encloseHorseRecord,
+  globleRecord,
+  krillionRecord,
+  songlessRecord,
+  spellingBeeRecord,
+  travleRecord,
+  wordleRecord,
+} from "../src/record";
 import { parseConnections } from "../src/parsers/connections";
+import { drawBoard, parseEncloseHorse } from "../src/parsers/enclose-horse";
 import { parseGloble } from "../src/parsers/globle";
 import { parseKrillion } from "../src/parsers/krillion";
+import { parseMini } from "../src/parsers/mini";
+import { parseSongless } from "../src/parsers/songless";
 import { parseSpellingBee } from "../src/parsers/spelling-bee";
 import { parseTravle } from "../src/parsers/travle";
 import { parseWordle } from "../src/parsers/wordle";
@@ -182,5 +194,76 @@ describe("globle record", () => {
 
   it("has no heat for an unsolved day", () => {
     expect(parseGloble(loadCapture("globle", "partial-2026-11-22"))).toMatchObject({ status: "partial", score: 4, detail: { heat: null } });
+  });
+});
+
+describe("enclose-horse record", () => {
+  schemaTest("enclose-horse", parseEncloseHorse, encloseHorseRecord);
+
+  it("carries the map, walls, medal and server ranking", () => {
+    const r = encloseHorseRecord.parse(parseEncloseHorse(loadCapture("enclose-horse", "win-2026-11-22")));
+    expect(r).toMatchObject({
+      date: "2026-11-22",
+      puzzleNo: 328,
+      status: "won",
+      score: 49,
+      detail: { cols: 15, rows: 13, score: 49, optimal: 49, medal: "perfect", rank: 1, percentile: 100 },
+    });
+    expect(r.detail.walls).toEqual([1, 15, 18, 45, 90, 132, 135, 164, 181, 183, 186, 189, 191]);
+    expect(r.detail.histogram).toHaveLength(46);
+  });
+
+  for (const dir of ["win-2026-11-22", "partial-2026-11-22"]) {
+    it(`redraws the ${dir} board to match the stored snapshot`, async () => {
+      const r = encloseHorseRecord.parse(parseEncloseHorse(loadCapture("enclose-horse", dir)));
+      await expect(drawBoard(r.detail)).toMatchFileSnapshot(`./snapshots/enclose-horse-${dir}.txt`);
+    });
+  }
+
+  it("has null ranking fields without the submit response", () => {
+    const c = loadCapture("enclose-horse", "partial-2026-11-22");
+    const r = encloseHorseRecord.parse(parseEncloseHorse({ ...c, responses: (c.responses ?? []).filter((x) => !x.url.endsWith("/submit")) }));
+    expect(r.detail).toMatchObject({ medal: "bronze", histogram: null, rank: null, percentile: null });
+  });
+});
+
+describe("songless record", () => {
+  schemaTest("songless", parseSongless, songlessRecord);
+
+  it("keeps every attempt, the answer and the day's placement", () => {
+    expect(parseSongless(loadCapture("songless", "win-2026-11-22"))).toEqual({
+      game: "songless",
+      date: "2026-11-22",
+      puzzleNo: 451,
+      status: "won",
+      score: 4,
+      detail: {
+        categoryId: 0,
+        board: [
+          { state: "present", artist: "Mariah Carey", track: "Always Be My Baby" },
+          { state: "incorrect", artist: "The Weeknd", track: "Blinding Lights" },
+          { state: "skipped", artist: null, track: null },
+          { state: "correct", artist: "Mariah Carey", track: "We Belong Together" },
+        ],
+        answer: { artist: "Mariah Carey", track: "We Belong Together" },
+        topPercent: 19.1,
+        distribution: [0.041, 0.0579, 0.0426, 0.1158, 0.0885, 1],
+      },
+    });
+  });
+
+  it("numbers the day from the archive start without share text", () => {
+    const { indexedDB } = loadCapture("songless", "loss-2026-11-22");
+    expect(songlessRecord.parse(parseSongless({ indexedDB: indexedDB ?? {} }))).toMatchObject({
+      puzzleNo: 451,
+      status: "lost",
+      detail: { topPercent: null, distribution: null },
+    });
+  });
+});
+
+describe("mini record", () => {
+  it("has no record to check: signed out the board is gated (fixtures/mini/*/dom.html)", () => {
+    for (const dir of readdirSync(join(FIXTURES, "mini"))) expect(parseMini(loadCapture("mini", dir))).toBeNull();
   });
 });

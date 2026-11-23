@@ -96,3 +96,7 @@ export const parseEncloseHorse: Parser = (capture) => {
     ...(capture.share && { shareText: capture.share }),
   };
 };
+
+export function drawBoard(_detail: unknown): string {
+  throw new Error("not implemented");
+}
