@@ -427,7 +427,7 @@ test.describe("visual guards and states on the cards preview", () => {
     if (!info.project.use.isMobile) {
       await a.hover();
       await expect.poll(async () => (await style()).color).not.toBe(rest.color);
-      expect((await style()).line).toBe((await style()).color);
+      await expect.poll(async () => { const s = await style(); return s.line === s.color; }).toBe(true);
       await page.mouse.move(0, 0);
     }
     await page.keyboard.press("Tab");
