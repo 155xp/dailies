@@ -13,7 +13,11 @@ export function Connections({ record }: CardProps) {
         {detail.guesses.map((g, r) => (
           <div className="conn-row" data-guess key={r}>
             {g.levels.map((level, i) => (
-              <i key={i} className="gtile" data-tile data-level={level} style={{ background: LEVELS[level] }} />
+              <i key={i} className="gtile" data-tile data-level={level} style={{ background: LEVELS[level] }}>
+                <span className="cue" data-cue>
+                  {level + 1}
+                </span>
+              </i>
             ))}
           </div>
         ))}
@@ -21,7 +25,10 @@ export function Connections({ record }: CardProps) {
       <ul className="groups">
         {detail.solved.map((level) => (
           <li key={level} className="gtile group" data-group data-level={level} style={{ background: LEVELS[level] }}>
-            {detail.guesses.find((g) => g.correct && g.levels[0] === level)?.words.join(", ")}
+            <span className="cue" data-cue>
+              {level + 1}
+            </span>
+            <span className="words">{detail.guesses.find((g) => g.correct && g.levels[0] === level)?.words.join(", ")}</span>
           </li>
         ))}
       </ul>

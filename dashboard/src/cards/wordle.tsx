@@ -8,7 +8,7 @@ const slot = (r: RecordOf<"wordle">) => (r.status === "won" ? r.detail.guesses.l
 export function Wordle({ record, history }: CardProps) {
   const r = record as RecordOf<"wordle">;
   const counts = LABELS.map((_, i) => history.filter((h) => slot(h as RecordOf<"wordle">) === i).length);
-  const rows = Array.from({ length: 6 }, (_, i) => r.detail.guesses[i] ?? "");
+  const rows = Array.from({ length: Math.max(6, r.detail.guesses.length) }, (_, i) => r.detail.guesses[i] ?? "");
   return (
     <Card game="wordle">
       <Figure
@@ -16,14 +16,17 @@ export function Wordle({ record, history }: CardProps) {
         value={r.status === "partial" ? "In progress" : `${r.status === "won" ? r.detail.guesses.length : "X"}/6`}
         label={r.status === "partial" || r.detail.hardMode ? <span className="meta">{[r.status === "partial" && `${r.detail.guesses.length} of 6 guesses`, r.detail.hardMode && "Hard mode"].filter(Boolean).join(", ")}</span> : undefined}
       />
+      {/* One row per guess, five lettered tiles each, padded with empty rows to Wordle's six. */}
       <div className="wordle" data-tiles role="img" aria-label={`Guesses: ${r.detail.guesses.join(", ")}`}>
-        {rows.flatMap((word, row) =>
-          Array.from({ length: 5 }, (_, i) => (
-            <i key={`${row}-${i}`} className="gtile" data-tile data-mark={r.detail.evaluations[row]?.[i] ?? "empty"}>
-              {word[i]?.toUpperCase()}
-            </i>
-          )),
-        )}
+        {rows.map((word, row) => (
+          <div key={row} className="wordle-row" data-guess-row data-state={word ? "filled" : "empty"}>
+            {Array.from({ length: 5 }, (_, i) => (
+              <i key={i} className="gtile" data-tile data-mark={r.detail.evaluations[row]?.[i] ?? "empty"}>
+                {word[i]?.toUpperCase()}
+              </i>
+            ))}
+          </div>
+        ))}
       </div>
       {counts.some((n) => n > 0) && (
         <Bars

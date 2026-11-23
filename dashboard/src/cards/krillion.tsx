@@ -1,5 +1,5 @@
 import type { RecordOf } from "../../../src/record";
-import { Bars, Caption, Card, Figure, fmt, type CardProps } from "./frame";
+import { Bars, Caption, Card, Figure, fmt, inkOn, type CardProps } from "./frame";
 
 const TIERS: Record<string, string> = {
   plankton: "Plankton",
@@ -27,20 +27,23 @@ export function Krillion({ record }: CardProps) {
         {detail.answers.map((a, i) => (
           <li data-row key={i}>
             <p className="meta prompt">{a.prompt}</p>
-            <p className="krill-line">
+            {/* The answer on its tier's tile, as the game's results list colors each row. */}
+            <p className="gtile ktile" data-answer data-swatch data-tier={a.tier ?? "miss"} style={{ background: a.color, color: inkOn(a.color) }}>
               <span className="answer">{a.answer ?? "No answer"}</span>
-              <span className="krill-meta meta">
-                <span className="tier-mark">
-                  <i className="gtile swatch" data-swatch style={{ background: a.color }} />
-                  <span className="tier">{a.tier ? TIERS[a.tier] : "Missed"}</span>
+              <span className="ktile-end">
+                <span className="cue" data-cue>
+                  {a.tier ? TIERS[a.tier] : "Missed"}
                 </span>
                 <span className="points">{a.points} pts</span>
-                {a.sharePct !== null && (
-                  <span>
-                    <span className="share">{share(a.sharePct)}</span> gave this
-                  </span>
-                )}
               </span>
+            </p>
+            <p className="krill-meta meta">
+              <span className="tier">{a.tier ? TIERS[a.tier] : "Missed"}</span>
+              {a.sharePct !== null && (
+                <span>
+                  <span className="share">{share(a.sharePct)}</span> gave this
+                </span>
+              )}
             </p>
           </li>
         ))}
