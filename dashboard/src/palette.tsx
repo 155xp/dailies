@@ -50,7 +50,7 @@ export function PaletteSetting() {
     <div className="setting">
       <div>
         <label htmlFor="palette">High-contrast colors</label>
-        <p className="meta" id="palette-note">
+        <p className="quiet" id="palette-note">
           Wordle tiles in orange and blue, and a label on every Krillion and Connections tile
         </p>
       </div>

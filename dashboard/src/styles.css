@@ -434,8 +434,9 @@ button {
   gap: 8px 12px;
 }
 
-.act > .meta {
+.act > p {
   flex: 1 1 200px;
+  text-wrap: pretty;
 }
 
 .shot {
@@ -762,9 +763,17 @@ button {
   }
 
   .pill {
+    position: relative;
     min-width: 0;
     white-space: normal;
     border-radius: 16px;
+  }
+
+  /* A 44pt target for a 32px pill: an invisible band 6px above and below, none once the pill wraps past 44. */
+  .pill::after {
+    content: "";
+    position: absolute;
+    inset: min(0px, 50% - 22px) 0;
   }
 
   .pill.skel {
