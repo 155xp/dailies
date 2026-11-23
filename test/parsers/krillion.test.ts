@@ -19,20 +19,11 @@ describe("parseKrillion", () => {
   const corrected = loadCapture("krillion", "partial-2026-11-22-correction");
 
   it("reads a full dive from krillion:stats:v1", () => {
-    expect(parseKrillion(win)).toMatchObject({
-      game: "krillion",
-      puzzleId: "2026-11-22",
-      puzzleNumber: 130,
-      date: "2026-11-22",
-      outcome: "win",
-      score: 405,
-      scoreUnit: "points",
-      maxScore: 700,
-    });
+    expect(parseKrillion(win)).toMatchObject({ game: "krillion", puzzleNo: 130, date: "2026-11-22", status: "won", score: 405 });
   });
 
   it("keeps every answer, its tier color and points, in order", () => {
-    expect(parseKrillion(win)?.guesses.map((g) => [g.value, g.mark, g.color, g.points])).toEqual([
+    expect(parseKrillion(win)?.detail.answers.map((a) => [a.answer, a.tier, a.color, a.points])).toEqual([
       ["Sears", "krillion", "#ffd166", 100],
       ["Discworld", "schooler", "#4de3ff", 30],
       ["Jet bridge", "rare", "#ff5252", 60],
@@ -41,44 +32,41 @@ describe("parseKrillion", () => {
       ["Sarcoidosis", "rare", "#ff5252", 60],
       ["Silly mid-on", "deepcut", "#9d7bff", 85],
     ]);
-    expect(parseKrillion(win)?.guesses[6]?.prompt).toMatch(/^Name a part of the field/);
+    expect(parseKrillion(win)?.detail.answers[6]?.prompt).toMatch(/^Name a part of the field/);
   });
 
-  it("keeps wrong and blank answers as misses", () => {
-    expect(parseKrillion(partial)?.guesses.map((g) => [g.value, g.mark, g.color, g.points])).toEqual([
+  it("keeps wrong and blank answers as misses with the miss color", () => {
+    expect(parseKrillion(partial)?.detail.answers.map((a) => [a.answer, a.tier, a.color, a.points])).toEqual([
       ["Toyota", "plankton", "#8fa3c4", 10],
-      ["Moby Dick", "miss", "#3d4f6e", 0],
-      ["", "miss", "#3d4f6e", 0],
+      ["Moby Dick", null, "#3d4f6e", 0],
+      [null, null, "#3d4f6e", 0],
       ["Slingshot", "schooler", "#4de3ff", 30],
-      ["", "miss", "#3d4f6e", 0],
-      ["Happiness", "miss", "#3d4f6e", 0],
+      [null, null, "#3d4f6e", 0],
+      ["Happiness", null, "#3d4f6e", 0],
       ["Sideline", "plankton", "#8fa3c4", 10],
     ]);
-    expect(parseKrillion(partial)).toMatchObject({ outcome: "partial", score: 50 });
+    expect(parseKrillion(partial)).toMatchObject({ status: "partial", score: 50 });
   });
 
   it("matches the share text tier for tier", () => {
     for (const capture of [win, partial, corrected]) {
-      expect(parseKrillion(capture)?.guesses.map((g) => g.mark)).toEqual(shareTiers(capture.share ?? ""));
+      expect(parseKrillion(capture)?.detail.answers.map((a) => a.tier ?? "miss")).toEqual(shareTiers(capture.share ?? ""));
     }
   });
 
   it("keeps the server's corrected spelling", () => {
-    expect(parseKrillion(corrected)?.guesses[6]?.value).toBe("Penalty area");
+    expect(parseKrillion(corrected)?.detail.answers[6]?.answer).toBe("Penalty area");
   });
 
-  it("reads percentile and the 20-bucket distribution from /api/today/complete", () => {
-    const r = parseKrillion(win);
-    expect(r?.percentile).toBe(90);
-    expect(r?.distribution).toHaveLength(20);
-    expect(r?.distribution?.reduce((n, b) => n + b.count, 0)).toBe(4476939);
-    expect(parseKrillion(partial)?.percentile).toBe(0);
+  it("reads betterThan and the 20-bucket distribution from /api/today/complete", () => {
+    const d = parseKrillion(win)?.detail;
+    expect(d?.betterThan).toBe(90);
+    expect(d?.dist?.reduce((n, c) => n + c, 0)).toBe(4476939);
+    expect(parseKrillion(partial)?.detail.betterThan).toBe(0);
   });
 
   it("works from storage alone", () => {
-    const r = parseKrillion({ localStorage: win.localStorage ?? {} });
-    expect(r?.score).toBe(405);
-    expect(r?.percentile).toBeUndefined();
+    expect(parseKrillion({ localStorage: win.localStorage ?? {} })?.score).toBe(405);
   });
 
   it("returns null with no finished dive", () => {

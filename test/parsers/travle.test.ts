@@ -9,51 +9,48 @@ describe("parseTravle", () => {
   it("reads a win from travle-game-state and travle-past-games", () => {
     expect(parseTravle(win)).toMatchObject({
       game: "travle",
-      puzzleId: "1439",
+      puzzleNo: 1439,
       date: "2026-11-22",
-      outcome: "win",
+      status: "won",
       score: 6,
-      scoreUnit: "guesses",
-      par: 3,
-      hintsUsed: 0,
+      detail: { par: 3, hints: 0 },
     });
   });
 
   it("keeps every guess in order with its rating", () => {
-    const guesses = parseTravle(win)?.guesses.map((g) => [g.value, g.mark]);
-    expect(guesses).toEqual([
-      ["PAN", "perfect"],
-      ["ECU", "good"],
-      ["BRA", "good"],
-      ["COL", "perfect"],
-      ["MEX", "detour"],
-      ["PER", "perfect"],
+    expect(parseTravle(win)?.detail.guesses).toEqual([
+      { country: "PAN", rating: "perfect" },
+      { country: "ECU", rating: "good" },
+      { country: "BRA", rating: "good" },
+      { country: "COL", rating: "perfect" },
+      { country: "MEX", rating: "poor" },
+      { country: "PER", rating: "perfect" },
     ]);
   });
 
   it("reads a loss with a hint", () => {
     const r = parseTravle(loss);
-    expect(r).toMatchObject({ outcome: "loss", score: 7, hintsUsed: 1 });
-    expect(r?.guesses.map((g) => g.mark)).toEqual(["good", "good", "good", "good", "detour", "detour", "detour"]);
+    expect(r).toMatchObject({ status: "lost", score: 7, detail: { hints: 1 } });
+    expect(r?.detail.guesses.map((g) => g.rating)).toEqual(["good", "good", "good", "good", "poor", "poor", "poor"]);
   });
 
   it("reads the global distribution from the last scores poll", () => {
-    const dist = parseTravle(win)?.distribution ?? [];
+    const dist = parseTravle(win)?.detail.distribution ?? [];
     expect(dist).toHaveLength(14);
-    expect(dist.find((b) => b.label === "+3")?.count).toBe(1617);
-    expect(dist.find((b) => b.label === "failed, hints")?.count).toBe(553);
+    expect(dist[10]).toBe(1617); // +3, no hints
+    expect(dist[1]).toBe(553); // failed, with hints
   });
 
   it("computes the top percent the result chart shows (fixtures/travle/*/dom.html)", () => {
-    expect(parseTravle(win)?.topPercent).toBe(95);
-    expect(parseTravle(loss)?.topPercent).toBe(100);
+    expect(parseTravle(win)?.detail.topPercent).toBe(95);
+    expect(parseTravle(loss)?.detail.topPercent).toBe(100);
   });
 
   it("works from storage alone, without a distribution", () => {
     const r = parseTravle({ localStorage: win.localStorage ?? {} });
     expect(r?.score).toBe(6);
-    expect(r?.distribution).toBeUndefined();
-    expect(r?.topPercent).toBeUndefined();
+    expect(r?.detail.distribution).toBeNull();
+    expect(r?.detail.topPercent).toBeNull();
   });
 
   it("returns null when there is no finished Travle game", () => {
