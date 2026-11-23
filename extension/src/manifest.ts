@@ -1,25 +1,26 @@
 /// <reference types="chrome" />
 import { GAMES } from "./games";
 
-const LOCAL = ["http://localhost/*", "http://127.0.0.1/*"];
+const LOCAL = ["http://localhost:5173", "http://127.0.0.1:5173"];
 
-/** `DAILIES_DASHBOARD_ORIGINS` is a comma-separated list of bare origins, such as `https://dash.example`. */
-export function dashboardMatches(env = ""): string[] {
-  const extra = env
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((origin) => {
-      const m = origin.match(/^(https?:\/\/[a-z0-9.-]+(?::\d+)?)\/?$/i);
-      if (!m) throw new Error(`DAILIES_DASHBOARD_ORIGINS: "${origin}" is not a bare http(s) origin`);
-      return `${m[1]}/*`;
-    });
-  return [...LOCAL, ...extra];
+/** Bare dashboard origins; loopback is available only in explicit dev builds, with a port. */
+export function dashboardMatches(env = "", dev = false): string[] {
+  const origins = env.split(",").map((s) => s.trim()).filter(Boolean);
+  if (!dev && !origins.length) throw new Error("DAILIES_DASHBOARD_ORIGINS is required for production builds");
+  const configured = origins.map((origin) => {
+    const m = origin.match(/^(https?:\/\/([a-z0-9.-]+|\[::1\])(?::(\d+))?)\/?$/i);
+    if (!m) throw new Error(`DAILIES_DASHBOARD_ORIGINS: "${origin}" is not a bare http(s) origin`);
+    const url = new URL(origin);
+    const local = /localhost|^127\.|\[::1\]/i.test(url.hostname);
+    if (local && (!dev || !m[3])) throw new Error("DAILIES_DASHBOARD_ORIGINS: loopback requires DAILIES_DEV=1 and an explicit port");
+    return local ? `${url.protocol}//${url.hostname}:${m[3]}` : url.origin;
+  });
+  return [...new Set([...configured, ...(dev ? LOCAL : [])])].map((origin) => `${origin}/*`);
 }
 
-export function buildManifest({ version, dashboardOrigins }: { version: string; dashboardOrigins?: string }): chrome.runtime.ManifestV3 {
+export function buildManifest({ version, dashboardOrigins, dev = false }: { version: string; dashboardOrigins?: string; dev?: boolean }): chrome.runtime.ManifestV3 {
   const games = GAMES.flatMap((g) => g.matches);
-  const dashboards = dashboardMatches(dashboardOrigins);
+  const dashboards = dashboardMatches(dashboardOrigins, dev);
   return {
     manifest_version: 3,
     name: "Dailies",

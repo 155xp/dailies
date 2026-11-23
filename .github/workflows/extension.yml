@@ -20,10 +20,18 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck:ext
-      - name: Build (no dashboard origins)
+      - name: Build production zip (hosted dashboard only)
         run: pnpm build:ext
         env:
-          DAILIES_DASHBOARD_ORIGINS: ""
+          DAILIES_DASHBOARD_ORIGINS: https://dailies.enci.dev
+          DAILIES_DEV: ""
+      - name: Verify zipped production origin permissions
+        run: |
+          unzip -p extension/dailies-extension.zip manifest.json | tee /tmp/prod-manifest.json
+          if grep -niE 'localhost|127\.0\.0\.1|\[::1\]' /tmp/prod-manifest.json; then
+            echo "Loopback origin in production manifest"; exit 1
+          fi
+          echo "No loopback strings in zipped manifest"
       - name: Grep the build for polling, alarms and request interception
         run: |
           if grep -nE "setInterval|chrome\.alarms|\balarms\b|webRequest|requestAnimationFrame" extension/dist/*.js extension/dist/manifest.json; then
