@@ -1,6 +1,22 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { expect, it } from "vitest";
+import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { basename, join } from "node:path";
+import { afterAll, beforeAll, expect, it } from "vitest";
+
+const backup = mkdtempSync(join(tmpdir(), "dailies-cli-artifacts-"));
+const artifacts = ["extension/dist", "extension/dailies-extension.zip"];
+beforeAll(() => {
+  for (const path of artifacts) if (existsSync(path)) cpSync(path, join(backup, basename(path)), { recursive: true });
+});
+afterAll(() => {
+  for (const path of artifacts) {
+    rmSync(path, { recursive: true, force: true });
+    const saved = join(backup, basename(path));
+    if (existsSync(saved)) cpSync(saved, path, { recursive: true });
+  }
+  rmSync(backup, { recursive: true, force: true });
+});
 
 const loopback = /localhost|127\.0\.0\.1|\[::1\]/;
 function build(dev: string, origins: string) {
