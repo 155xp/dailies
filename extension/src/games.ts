@@ -69,7 +69,8 @@ export const GAMES: GameDef[] = [
     responses: /^https:\/\/www\.nytimes\.com\/svc\/wordle\/v2\/[\d-]+\.json$/,
     share: true,
     finished: '#stats-dialog, [class*="Footer-module_shareButton"]',
-    done: decided,
+    // With no solution response and no share, guesses cannot be graded: that is a miss, not a record.
+    done: (r) => decided(r) && r.game === "wordle" && r.detail.evaluations.every((row) => row.length === 5),
   },
   {
     id: "connections",
