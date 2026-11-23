@@ -13,8 +13,9 @@ import { HINT, predict, SHELL_KEY, WHAT } from "./src/shell";
 /**
  * Size-adjust for the fallback face (Arial, or its metric twin Liberation Sans), measured against
  * Schibsted Grotesk on the shell with the hidden install copy, sweeping 98% to 109% at widths 320 to 1440:
- * from 768px up every width matches at 98% to 102.75%; below it 320, 390, 414, 480 and 700 need 103% or
- * more, 360, 375, 540, 600 and 767 take any, and 430 alone needs under 103% (one line, 26px, where it differs).
+ * from 768px up every width matches at 98% to 102.5%; below it 390, 414, 480 and 700 need 103% or more and
+ * 360, 375, 540, 600 and 767 take any. 430 needs under 103%, and at 320 no single size matches: there the
+ * reserved install room can differ by a line (26px) when the font lands.
  */
 const FALLBACK_ADJUST = { desktop: "100.5%", phone: "105%" };
 

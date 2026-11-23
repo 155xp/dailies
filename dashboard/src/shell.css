@@ -293,8 +293,9 @@ button {
   gap: 8px 12px;
 }
 
-.act > .meta {
+.act > p {
   flex: 1 1 200px;
+  text-wrap: pretty;
 }
 
 .shot {
