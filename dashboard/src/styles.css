@@ -130,6 +130,19 @@ button {
   flex: none;
 }
 
+/* The local-only note takes its own line under the title and date, without widening the title column. */
+.head {
+  display: grid;
+  grid-template-columns: max-content minmax(0, max-content);
+  row-gap: 2px;
+}
+
+.local {
+  grid-column: 1 / -1;
+  contain: inline-size;
+  text-wrap: pretty;
+}
+
 .title {
   font-size: 20px;
   line-height: 28px;
@@ -361,10 +374,61 @@ button {
   margin-top: 8px;
 }
 
+.install {
+  max-width: 800px;
+}
+
 .steps {
   display: grid;
-  gap: 4px;
+  justify-self: stretch;
   margin-top: 8px;
+}
+
+/* One step: the words and its action on the left, a small capture of Chrome on the right. */
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  grid-template-areas:
+    "text shot"
+    "action shot";
+  align-items: start;
+  justify-items: start;
+  column-gap: 32px;
+  row-gap: 12px;
+  padding: 16px 0;
+  border-top: 0.5px solid var(--line);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.step > p {
+  grid-area: text;
+}
+
+.step > :is(a, button) {
+  grid-area: action;
+}
+
+.shot {
+  grid-area: shot;
+  align-self: center;
+  display: block;
+  max-width: 100%;
+}
+
+.shot img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--tile-edge);
+}
+
+.address {
+  user-select: all;
+  overflow-wrap: anywhere;
 }
 
 /* History */
@@ -638,6 +702,18 @@ button {
   .primary,
   .secondary {
     min-height: 44px;
+  }
+
+  .install {
+    padding: 20px;
+  }
+
+  .step {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "text"
+      "shot"
+      "action";
   }
 
   .hist-card {
