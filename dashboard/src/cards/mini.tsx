@@ -16,6 +16,14 @@ export function Mini({ record, history }: CardProps) {
     <Card game="mini">
       <Figure game="mini" value={r.detail.timeSeconds === null ? "Solved" : clock(r.detail.timeSeconds)} />
       {r.detail.timeSeconds !== null && (
+        // The record holds only the time, so the grid is an empty outline: no letters or black squares are guessed.
+        <div className="mini-grid" data-mini-grid data-tiles role="img" aria-label={`The 5 by 5 grid, solved in ${clock(r.detail.timeSeconds)}`}>
+          {Array.from({ length: 25 }, (_, i) => (
+            <i key={i} data-cell />
+          ))}
+        </div>
+      )}
+      {r.detail.timeSeconds !== null && (
         <Bars
           label="Your solve times this week"
           bars={week}
