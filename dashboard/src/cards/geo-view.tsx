@@ -2,25 +2,29 @@ import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "re
 
 export type Geo = typeof import("./geo");
 
-let loaded: Geo | null = null;
-let pending: Promise<Geo> | null = null;
-
-/** The geo chunk: null while it loads, false if it failed. Requested by the first card that needs it. */
-export function useGeo(): Geo | null | false {
-  const [geo, setGeo] = useState<Geo | null | false>(loaded);
-  useEffect(() => {
-    if (geo !== null) return;
-    let live = true;
-    (pending ??= import("./geo")).then(
-      (m) => live && setGeo((loaded = m)),
-      () => live && setGeo(false),
-    );
-    return () => {
-      live = false;
-    };
-  }, [geo]);
-  return geo;
+/** A hook for one lazy chunk: null while it loads, false if it failed. Requested by the first card that asks (`on`). */
+export function chunk<T>(load: () => Promise<T>) {
+  let loaded: T | null = null;
+  let pending: Promise<T> | null = null;
+  return function useChunk(on = true): T | null | false {
+    const [mod, setMod] = useState<T | null | false>(loaded);
+    useEffect(() => {
+      if (mod !== null || !on) return;
+      let live = true;
+      (pending ??= load()).then(
+        (m) => live && setMod((loaded = m)),
+        () => live && setMod(false),
+      );
+      return () => {
+        live = false;
+      };
+    }, [mod, on]);
+    return mod;
+  };
 }
+
+/** The geo chunk, requested by the first card that needs it. */
+export const useGeo = chunk<Geo>(() => import("./geo"));
 
 /** Where the geo view stands: the map, its placeholder, or today's text and tiles. */
 export const geoState = <T,>(geo: Geo | null | false, view: T | null) => (geo === null ? "loading" : view ? "ready" : "fallback");

@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 import type { RecordOf } from "../../../src/record";
 import { Card, Figure, type CardProps } from "./frame";
-import { AnswerRow, geoState, MapBox, useGeo, type Geo } from "./geo-view";
+import { AnswerRow, chunk, geoState, MapBox, useGeo, type Geo } from "./geo-view";
+
+/** The globe's own lazy chunk; if it fails, a won card keeps the flat map. */
+const useGlobe = chunk(() => import("./globe"));
 
 /**
  * Distance buckets as the game shares them (share of 15,000 km), each in the game's own map color sampled
@@ -45,8 +48,9 @@ export function Globle({ record, history }: CardProps) {
   const average = wins.length ? wins.reduce((n, h) => n + h.score, 0) / wins.length : null;
   const won = status === "won";
   const geo = useGeo();
+  const globe = useGlobe(won);
   const view = useMemo(() => (geo ? globleGeo(geo, detail.countries, won) : null), [geo, detail.countries, won]);
-  const state = geoState(geo, view);
+  const state = won && geo && view && globe === null ? "loading" : geoState(geo, view);
   const streak = (
     <p className="meta">
       Streak {detail.currentStreak} · Best {detail.maxStreak}
@@ -68,9 +72,26 @@ export function Globle({ record, history }: CardProps) {
       </Card>
     );
   const label = view && `Guesses and their distance to the answer: ${view.guesses.map((g) => (g.label ? `${g.name} ${g.label}` : g.name)).join(", ")}`;
+  const figure = <Figure game="globle" value={String(score)} label={<span className="meta">{score === 1 ? "Guess" : "Guesses"}</span>} />;
+  if (won && globe !== false)
+    return (
+      <Card game="globle" geo={state}>
+        {figure}
+        <AnswerRow d={view?.sil ?? null} name={detail.countries.at(-1)!}>
+          {streak}
+        </AnswerRow>
+        <div className="globe-box" data-geo-box="globe">
+          {state === "ready" && globe ? (
+            <globe.Globe geo={geo as Geo} answer={view!.answer!} guesses={view!.guesses} label={`Globe centered on ${view!.answer!.name}. ${label}`} />
+          ) : (
+            <i className="geo-hold" data-geo-placeholder />
+          )}
+        </div>
+      </Card>
+    );
   return (
     <Card game="globle" geo={state}>
-      <Figure game="globle" value={String(score)} label={<span className="meta">{score === 1 ? "Guess" : "Guesses"}</span>} />
+      {figure}
       {won && (
         <AnswerRow d={view?.sil ?? null} name={detail.countries.at(-1)!}>
           {streak}

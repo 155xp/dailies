@@ -2,7 +2,7 @@
  * The lazy geo chunk: world-atlas countries-110m (Natural Earth), topojson-client and d3-geo.
  * Only `geo-view.tsx` imports it, through a dynamic import, so it loads when a Travle or Globle card renders.
  */
-import { geoArea, geoAzimuthalEqualArea, geoCentroid, geoDistance, geoNaturalEarth1, geoPath } from "d3-geo";
+import { geoArea, geoAzimuthalEqualArea, geoCentroid, geoDistance, geoGraticule10, geoNaturalEarth1, geoOrthographic, geoPath } from "d3-geo";
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import { feature } from "topojson-client";
 import atlas from "world-atlas/countries-110m.json";
@@ -103,6 +103,21 @@ export function mapView(w: number, h: number, fit: Country[], lon?: number) {
       const q = path.centroid(c.feature);
       return ok(q) ? q : null;
     },
+  };
+}
+
+const GRATICULE = geoGraticule10();
+
+/** An orthographic globe `size` wide, turned by `rotate` ([lambda, phi] as d3-geo takes them). The far side is not drawn. */
+export function globeView(size: number, rotate: [number, number]) {
+  const path = geoPath(geoOrthographic().rotate(rotate).fitExtent([[1, 1], [size - 1, size - 1]], { type: "Sphere" }));
+  return {
+    sphere: path({ type: "Sphere" }) ?? "",
+    graticule: path(GRATICULE) ?? "",
+    countries: SHAPES.flatMap((f, i) => {
+      const d = path(f);
+      return d ? [{ key: String(f.id ?? i), name: f.properties.name, d }] : [];
+    }),
   };
 }
 
