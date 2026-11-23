@@ -40,9 +40,10 @@ describe("manifest", () => {
     }
   });
 
-  it("asks for storage only: no alarms, tabs, webRequest or all-urls access", () => {
+  it("asks for storage and scripting only: no alarms, tabs, webRequest or all-urls access", () => {
     const m = buildManifest({ version: "1.0.0" });
-    expect(m.permissions).toEqual(["storage"]);
+    // scripting: on install or update, inject the bridge into dashboard tabs that were already open.
+    expect(m.permissions).toEqual(["storage", "scripting"]);
     expect(m.optional_permissions).toBeUndefined();
     const text = JSON.stringify(m);
     for (const banned of ["<all_urls>", "alarms", "webRequest", '"tabs"', "*://*"]) expect(text).not.toContain(banned);

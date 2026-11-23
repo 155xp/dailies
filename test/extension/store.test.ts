@@ -89,3 +89,17 @@ describe("a read at page load", () => {
     expect(applyRecord(empty(), win, at, true)?.records).toEqual({ "wordle:2026-11-22": win });
   });
 });
+
+describe("misses against today's log", () => {
+  it("drops a miss for a game already logged today, even under its own earlier game day", () => {
+    const logged = merge(empty(), applyRecord(empty(), win, new Date(2026, 10, 23, 9, 0)));
+    const miss = { game: "wordle" as const, date: "2026-11-23", reason: "x", at: new Date(2026, 10, 23, 9, 1).toISOString() };
+    expect(applyMiss(logged, miss)).toBeNull();
+  });
+
+  it("keeps a miss when the game's only record was logged on an earlier day", () => {
+    const logged = merge(empty(), applyRecord(empty(), win, new Date(2026, 10, 22, 9, 0)));
+    const miss = { game: "wordle" as const, date: "2026-11-23", reason: "x", at: new Date(2026, 10, 23, 9, 1).toISOString() };
+    expect(applyMiss(logged, miss)?.misses).toEqual({ "wordle:2026-11-23": miss });
+  });
+});

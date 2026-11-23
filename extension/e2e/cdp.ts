@@ -44,7 +44,8 @@ export class Cdp {
     });
   }
 
-  static launch(extensionDir: string): Cdp {
+  /** With an extension dir, load it at startup; with null, start bare so a test can install it later. */
+  static launch(extensionDir: string | null): Cdp {
     const proc = spawn(
       chromium.executablePath(),
       [
@@ -53,8 +54,9 @@ export class Cdp {
         "--no-sandbox",
         "--remote-debugging-pipe",
         `--user-data-dir=${mkdtempSync(join(tmpdir(), "dailies-cdp-"))}`,
-        `--disable-extensions-except=${extensionDir}`,
-        `--load-extension=${extensionDir}`,
+        ...(extensionDir
+          ? [`--disable-extensions-except=${extensionDir}`, `--load-extension=${extensionDir}`]
+          : ["--enable-unsafe-extension-debugging"]),
         "--no-first-run",
         "--no-default-browser-check",
         "about:blank",

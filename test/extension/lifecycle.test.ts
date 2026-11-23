@@ -76,8 +76,18 @@ describe("Spelling Bee rank observer", () => {
 
 describe("'played, not logged' check", () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    // The fixtures' game day, so their saved result counts as today's.
+    vi.useFakeTimers({ now: new Date(2026, 10, 22, 18, 0) });
     document.body.innerHTML = `<dialog id="stats-dialog" open></dialog>`;
+  });
+
+  it("still reports a miss when the game only holds an earlier day's result", async () => {
+    vi.setSystemTime(new Date(2026, 10, 23, 18, 0));
+    document.body.innerHTML = `<button aria-label="Share via apps"></button>`;
+    storeFixture("krillion", "win-2026-11-22");
+    start("krillion");
+    await vi.advanceTimersByTimeAsync(2000);
+    expect(sent.find((m) => m.type === "miss")).toMatchObject({ type: "miss", game: "krillion", date: "2026-11-23" });
   });
 
   it("reports a miss 2s after a finished screen with no saved result", async () => {
