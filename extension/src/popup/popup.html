@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=360" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Dailies</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Today</h1>
+      <p class="meta" id="date"></p>
+    </header>
+    <ul id="games" data-guard="panel" aria-busy="true"></ul>
+    <section id="failed" hidden>
+      <p>Could not read your results.</p>
+      <p class="meta">Your saved games are untouched.</p>
+      <button type="button" class="secondary" id="reload">Try again</button>
+    </section>
+    <p class="meta" id="note"></p>
+    <script src="popup.js"></script>
+  </body>
+</html>

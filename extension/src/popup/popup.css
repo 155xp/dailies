@@ -1,0 +1,134 @@
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("fonts/schibsted-grotesk-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+
+/* Tokens: Radix sand neutral, red for "not logged" only. Light first; dark follows the system. */
+:root {
+  color-scheme: light dark;
+  --ink-2: #f9f9f8; --ink-3: #f1f0ef; --ink-6: #dad9d6; --ink-8: #bcbbb5; --ink-9: #8d8d86;
+  --ink-10: #82827c; --ink-11: #63635e; --ink-12: #21201c;
+  --red-11: #ce2c31;
+  --panel: #ffffff;
+  --raised: #ffffff;
+  --raised-hover: var(--ink-2);
+  --line: var(--ink-6);
+  --focus-ring: var(--ink-10);
+  --shadow-ink: 33 32 28;
+  --shadow-button: 0 1px 2px 0 rgb(var(--shadow-ink) / .12), 0 0 0 1px rgb(var(--shadow-ink) / .08);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --font: "Schibsted Grotesk", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink-2: #191918; --ink-3: #222221; --ink-6: #3b3a37; --ink-8: #62605b; --ink-9: #6f6d66;
+    --ink-10: #7c7b74; --ink-11: #b5b3ad; --ink-12: #eeeeec;
+    --red-11: #ff9592;
+    --panel: #111110;
+    --raised: var(--ink-3);
+    --raised-hover: #2a2a28;
+    --line: #31312e;
+    --shadow-button: 0 0 0 0.5px var(--ink-6), 0 1px 2px 0 rgb(0 0 0 / .5);
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--panel); }
+body {
+  width: 360px;
+  margin: 0;
+  padding: 16px 16px 14px;
+  background: var(--panel);
+  color: var(--ink-12);
+  font: 400 17px/24px var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+h1, p, ul { margin: 0; }
+.meta { font-size: 15px; line-height: 20px; color: var(--ink-11); }
+
+header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 10px; }
+h1 { font-size: 22px; line-height: 28px; font-weight: 400; letter-spacing: -0.01em; }
+
+ul { list-style: none; padding: 0; }
+li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 12px;
+  min-height: 48px;
+  padding: 11px 0;
+  border-top: 0.5px solid var(--line);
+}
+
+a {
+  justify-self: start;
+  color: var(--ink-12);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  border-radius: 4px;
+  transition: text-decoration-color 150ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  a:hover { text-decoration-color: var(--ink-8); }
+}
+a:focus-visible, button:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--ink-11);
+  text-align: right;
+}
+.status.logged::before, .status.missed::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-9);
+}
+.status.missed { color: var(--red-11); }
+.status.missed::before { background: var(--red-11); }
+.status.pending { width: 96px; height: 12px; border-radius: 4px; background: var(--ink-3); }
+
+.reason { font-size: 15px; line-height: 20px; color: var(--ink-11); }
+li > button { justify-self: end; align-self: start; }
+
+button {
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--raised);
+  box-shadow: var(--shadow-button);
+  color: var(--ink-12);
+  font: inherit;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 150ms var(--ease-out), background-color 150ms var(--ease-out), opacity 150ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  button:hover:not(:disabled) { background: var(--raised-hover); }
+}
+button:active:not(:disabled) { transform: scale(.97); }
+button:disabled { opacity: .6; cursor: default; }
+
+#failed { display: grid; justify-items: start; gap: 4px; padding: 20px 0 8px; border-top: 0.5px solid var(--line); }
+#failed[hidden] { display: none; }
+#failed button { margin-top: 12px; }
+
+#note { padding-top: 12px; border-top: 0.5px solid var(--line); }
+#note:empty { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  a, button { transition: opacity 150ms linear, background-color 150ms linear; }
+  button:active:not(:disabled) { transform: none; }
+}

@@ -122,21 +122,25 @@ test("reduced motion swaps movement for a short opacity fade", async ({ extPage:
   expect(transition).not.toMatch(/transform|all/);
 });
 
-test("played, not logged: the hooks miss a result, the popup says so, and Retry logs it", async ({ context, page, extPage }) => {
+test("played, not logged: the result shows but nothing is saved in time, the popup says so, and Retry logs it", async ({ context, page, extPage }) => {
+  type Fix = { __finish: (o?: { save?: boolean }) => Promise<void>; __save: (viaSetItem?: boolean) => void };
   const f = loadFixture("wordle/win-2026-11-22");
   await serveFixture(context, f);
   await page.goto(f.url);
-  // The game writes by property assignment, which the setItem hook cannot see.
-  await page.evaluate(() => (window as unknown as { __finish: (viaSetItem: boolean) => Promise<void> }).__finish(false));
+  // The result screen shows, but the game has not saved; the player clicks on the screen.
+  await page.evaluate(() => (window as unknown as Fix).__finish({ save: false }));
+  await page.mouse.click(5, 5);
   await expect.poll(async () => Object.values((await readStore(extPage)).misses ?? {}).map((m) => m.game), { timeout: 5000 }).toEqual(["wordle"]);
   expect((await readStore(extPage)).records ?? {}).toEqual({});
 
   await extPage.setViewportSize({ width: 360, height: 640 });
   await extPage.reload();
   await expect(extPage.getByText("Played, not logged")).toBeVisible();
-  await expect(extPage.getByText(/saved result could not be read/)).toBeVisible();
+  await expect(extPage.getByText(/game saved no result/)).toBeVisible();
   await extPage.screenshot({ path: test.info().outputPath("popup-missed.png"), fullPage: true });
 
+  // The game saves late, by property assignment, which the setItem hook cannot see. Retry reads it once.
+  await page.evaluate(() => (window as unknown as Fix).__save(false));
   await extPage.getByRole("button", { name: "Retry" }).click();
   await expect(extPage.getByText(/^Logged \d{1,2}:\d{2}\s?[AP]M$/)).toHaveCount(1);
   await expect(extPage.getByText("Played, not logged")).toHaveCount(0);
