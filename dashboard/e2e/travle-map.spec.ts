@@ -17,7 +17,6 @@ const END = { light: "rgb(69, 112, 122)", dark: "rgb(125, 174, 163)" };
 /** Guesses within reach of the route frame the map; the rest are named under it. */
 const FRAMED = { win: ["PAN", "ECU", "BRA", "COL", "MEX", "PER"], loss: ["ECU", "ARG", "BOL", "VEN", "MEX"] };
 const OFF = { win: [], loss: ["Spain", "Australia"] };
-const NAMES: Record<string, string> = { PAN: "Panama", COL: "Colombia", PER: "Peru", BRA: "Brazil", CRI: "Costa Rica", CHL: "Chile" };
 const WORDS = { perfect: "on the route", "near-perfect": "on a route, not linked", good: "small detour", poor: "big detour" };
 
 async function openCards(page: Page, records: RecordOf<"travle">[]) {
@@ -49,8 +48,8 @@ for (const [name, record] of Object.entries(CASES) as ["win" | "loss", RecordOf<
       const c = await openCards(page, [record]);
       const map = c.locator("svg[data-map]");
       const [W, H] = (await map.getAttribute("viewBox"))!.split(" ").slice(2).map(Number) as [number, number];
-      // The whole atlas is drawn as land, not just the route.
-      expect(await map.locator(".geo-land path").count()).toBeGreaterThan(100);
+      // The atlas is drawn as land around the route, not just the route: every country in the frame.
+      expect(await map.locator(".geo-land path").count()).toBeGreaterThan(20);
       const framed = [...record.detail.optimalRoute, ...FRAMED[name]];
       const boxes = await Promise.all(framed.map((code) => bbox(map.locator(`path[data-country="${code}"]`).first())));
       boxes.forEach((b, i) => {
@@ -106,7 +105,7 @@ for (const [name, record] of Object.entries(CASES) as ["win" | "loss", RecordOf<
       const chain = (await line.getAttribute("data-chain"))!.split(" ");
       expect(chain[0]).toBe("CRI");
       expect(chain.at(-1)).toBe("CHL");
-      const d = [(await line.getAttribute("d")) ?? "", (await map.locator("path[data-gap]").getAttribute("d").catch(() => "")) ?? ""].join(" ");
+      const d = [(await line.getAttribute("d")) ?? "", await map.locator("path[data-gap]").evaluateAll((els) => els.map((e) => e.getAttribute("d")).join(" "))].join(" ");
       const pts = [...d.matchAll(/[ML]\s*(-?[\d.]+)[ ,](-?[\d.]+)/g)].map((m) => ({ x: +m[1]!, y: +m[2]! }));
       for (const [i, code] of chain.entries()) {
         const b = await bbox(map.locator(`path[data-country="${code}"]`).first());
@@ -157,14 +156,15 @@ for (const [name, record] of Object.entries(CASES) as ["win" | "loss", RecordOf<
         await page.mouse.move(0, 0);
         await expect(map.locator("[data-hover-label]")).toHaveCount(0);
       }
-      // Keyboard: the game link, then the first guess row.
+      // Keyboard: the game link first.
       await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
       await page.keyboard.press("Tab");
       const link = c.locator(".card-title a");
       await expect(link).toBeFocused();
       expect(await link.evaluate((el) => getComputedStyle(el).outlineStyle)).not.toBe("none");
-      await page.keyboard.press("Tab");
+      // Then on through the chart (it sits above the list) to the first guess row.
       const row = c.locator(`[data-row="${g.country}"]`);
+      for (let i = 0; i < 3 && !(await row.evaluate((el) => el === document.activeElement)); i++) await page.keyboard.press("Tab");
       await expect(row).toBeFocused();
       expect(await row.evaluate((el) => [el.matches(":focus-visible"), getComputedStyle(el).outlineStyle, getComputedStyle(el).outlineWidth])).toEqual([true, "solid", "2px"]);
       await expect(row).toHaveAttribute("data-active", "");
