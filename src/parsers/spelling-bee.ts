@@ -1,4 +1,4 @@
-import type { Parser } from "../types";
+import type { RecordParser } from "../record";
 import { nytState } from "./util";
 
 interface Today {
@@ -13,7 +13,7 @@ export function wordPoints(word: string, isPangram: boolean): number {
   return (word.length === 4 ? 1 : word.length) + (isPangram ? 7 : 0);
 }
 
-export const parseSpellingBee: Parser = (capture) => {
+export const parseSpellingBee: RecordParser<"spelling-bee"> = (capture) => {
   const state = nytState(capture, "spelling_bee");
   if (!state) return null;
   const { answers, rank } = state.data as { answers: string[]; rank: string };
@@ -23,23 +23,17 @@ export const parseSpellingBee: Parser = (capture) => {
   const pangrams = new Set(matches?.pangrams ?? []);
   const points = (w: string) => wordPoints(w, pangrams.has(w));
 
-  const guesses = answers.map((w) => ({
-    value: w,
-    mark: pangrams.has(w) ? "pangram" : "word",
-    points: points(w),
-  }));
-  const score = guesses.reduce((sum, g) => sum + g.points, 0);
-
   return {
     game: "spelling-bee",
-    puzzleId: state.puzzleId,
     date: state.printDate,
-    outcome: rank === "Queen Bee" ? "win" : "partial",
-    score,
-    scoreUnit: "points",
-    ...(matches && { maxScore: matches.answers.reduce((sum, w) => sum + points(w), 0) }),
-    guesses,
-    rankLabel: rank,
-    ...(capture.share && { shareText: capture.share }),
+    puzzleNo: Number(state.puzzleId),
+    status: rank === "Queen Bee" ? "won" : "partial",
+    score: answers.reduce((sum, w) => sum + points(w), 0),
+    detail: {
+      words: answers,
+      pangrams: answers.filter((w) => pangrams.has(w)),
+      rank,
+      maxPoints: matches ? matches.answers.reduce((sum, w) => sum + points(w), 0) : null,
+    },
   };
 };
