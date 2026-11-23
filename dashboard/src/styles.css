@@ -307,8 +307,9 @@ button {
     transform 120ms var(--ease);
 }
 
+/* The expanded card spans the whole row, edge to edge with its hairline. */
 .card-slot {
-  padding: 4px 12px 16px;
+  padding: 4px 0 16px;
   animation: rise 200ms var(--ease);
 }
 
@@ -458,7 +459,6 @@ button {
 .history-skel {
   margin-top: 48px;
   height: 480px;
-  max-width: 720px;
 }
 
 .section-head {
@@ -467,7 +467,6 @@ button {
   align-items: flex-start;
   gap: 16px;
   margin-bottom: 16px;
-  max-width: 720px;
 }
 
 .figures {
@@ -479,9 +478,8 @@ button {
   display: grid;
 }
 
+/* As wide as the Today table above it. */
 .hist-card {
-  width: fit-content;
-  max-width: 100%;
   padding: 12px 16px;
   border-radius: 8px;
   background: var(--surface);
@@ -495,12 +493,15 @@ button {
 
 .hist-rows {
   width: max-content;
+  min-width: 100%;
 }
 
+/* Name, the 30 days, then the game's own streak at the row's right end, as Today ends on the result. */
 .hist-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 200px max-content minmax(max-content, 1fr);
   align-items: center;
-  gap: 12px;
+  column-gap: 12px;
 }
 
 .hist-label {
@@ -525,6 +526,8 @@ button {
 }
 
 .streak {
+  justify-self: end;
+  padding-right: 8px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -720,6 +723,13 @@ button {
     grid-column: 2 / -1;
   }
 
+  /* Not played yet has nothing for a second line, so the row is one line. */
+  .line:has(> .status.idle) {
+    grid-template-rows: 26px;
+    grid-template-areas: "name status disc";
+    min-height: 44px;
+  }
+
   .result {
     justify-self: end;
   }
@@ -762,13 +772,39 @@ button {
     scrollbar-width: none;
   }
 
+  /* The streak goes back under the name, in the label's bottom padding, so the newest days stay in view. */
   .hist-row {
-    gap: 8px;
+    grid-template-columns: 96px max-content;
+    column-gap: 8px;
   }
 
   .hist-label {
+    grid-area: 1 / 1;
     width: 96px;
-    padding: 4px 4px 4px 0;
+    justify-content: flex-start;
+    padding: 4px 4px 22px 0;
+  }
+
+  .streak {
+    grid-area: 1 / 1;
+    justify-self: start;
+    align-self: end;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    padding-right: 0;
+    line-height: 22px;
+    pointer-events: none;
+  }
+
+  .sqs {
+    grid-area: 1 / 2;
+  }
+
+  /* The two all-games figures go under the title, where their labels fit on one line. */
+  .section-head {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
