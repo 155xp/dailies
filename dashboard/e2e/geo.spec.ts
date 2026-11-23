@@ -421,19 +421,22 @@ test.describe("motion", () => {
 test.describe("390 and 1440", () => {
   const CASES = { "travle-win": [travleWin], "travle-loss": [travleLoss], "globle-win": [globleWin], "globle-partial": [globlePartial] } as const;
   for (const [name, records] of Object.entries(CASES)) {
-    test(`${name}: no clipped ink, the map fills the card width, labels stay apart and inside the card`, async ({ page }, info) => {
+    test(`${name}: no clipped ink, the map fills its column of the card, labels stay apart and inside the card`, async ({ page }, info) => {
       await openCards(page, [...records]);
       const game = records[0].game;
       const c = card(page, game);
       await ready(c);
       expect(await audit(page)).toEqual(CLEAN);
+      // Since main's two-column card (#15), the map fills its column: the whole card at 390, about half from 1024 up.
       const fit = await c.evaluate((el) => {
         const cs = getComputedStyle(el);
         const content = el.getBoundingClientRect().width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-        const map = el.querySelector("svg[data-map]")!.getBoundingClientRect();
-        return { content, map: map.width };
+        const svg = el.querySelector("svg[data-map]")!;
+        const column = svg.closest("[data-result], [data-side]")!.getBoundingClientRect().width;
+        return { content, column, map: svg.getBoundingClientRect().width };
       });
-      expect(Math.abs(fit.map - fit.content)).toBeLessThan(1);
+      expect(Math.abs(fit.map - fit.column)).toBeLessThan(1);
+      expect(fit.map).toBeGreaterThan(fit.content * (info.project.name.startsWith("390") ? 0.99 : 0.45));
       const { labels, box } = await c.evaluate((el) => ({
         labels: [...el.querySelectorAll("[data-label], svg[data-map] text")].map((l) => {
           const r = l.getBoundingClientRect();
