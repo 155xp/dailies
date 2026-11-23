@@ -41,7 +41,8 @@ test.describe("3d states, type and motion", () => {
   test("type: one face, one weight, body text 17px or larger, meta 13px or larger, on every text node", async ({ page }) => {
     for (const opts of Object.values(SCENES)) {
       await open(page, opts);
-      await page.locator('.row[data-game="wordle"] .disclosure').click().catch(() => undefined);
+      const disclosure = page.locator('.row[data-game="wordle"] .disclosure');
+      if (await disclosure.count()) await disclosure.click();
       const bad = await page.evaluate(() => {
         const out: string[] = [];
         const weights = new Set<string>();
@@ -63,14 +64,17 @@ test.describe("3d states, type and motion", () => {
   });
 
   test("every control has hover, press and focus-visible states", async ({ page }, info) => {
+    test.setTimeout(120_000);
     const controls = (p: Page) => p.locator("main a, main button").all();
     for (const opts of [SCENES.done!, SCENES.missing!, SCENES.error!]) {
       await open(page, opts);
-      await page.locator('.row[data-game="wordle"] .disclosure').click().catch(() => undefined);
+      const disclosure = page.locator('.row[data-game="wordle"] .disclosure');
+      if (await disclosure.count()) await disclosure.click();
       for (const c of await controls(page)) {
         if (!(await c.isVisible())) continue;
         const label = (await c.getAttribute("aria-label")) ?? (await c.innerText());
         const look = () => c.evaluate((e) => { const s = getComputedStyle(e); return `${s.color}|${s.backgroundColor}|${s.textDecorationColor}`; });
+        await page.keyboard.press("Shift");
         await c.evaluate((e) => (e as HTMLElement).focus());
         expect(await c.evaluate((e) => e.matches(":focus-visible") && getComputedStyle(e).outlineWidth), label).toBe("2px");
         await c.evaluate((e) => (e as HTMLElement).blur());

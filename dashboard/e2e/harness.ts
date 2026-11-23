@@ -124,7 +124,10 @@ export interface OpenOptions {
 
 export async function open(page: Page, { ext, clock = "fixed" }: OpenOptions) {
   const external = await serve(page);
-  if (clock === "frozen") await page.clock.install({ time: NOW });
+  if (clock === "frozen") {
+    await page.clock.install({ time: NOW });
+    await page.clock.pauseAt(NOW);
+  }
   else await page.clock.setFixedTime(NOW);
   if (ext !== "none") await page.addInitScript(fakeExtension, ext);
   await page.goto(BASE);

@@ -2,7 +2,6 @@ import { expect, test, type Page } from "@playwright/test";
 import { open, STATES, withState } from "./harness";
 
 type Ext = { __ext: { requests: number; detach(): void; swap(m: unknown): void } };
-const ext = <T>(page: Page, fn: (e: Ext["__ext"]) => T) => page.evaluate(fn as never) as Promise<T>;
 const requests = (page: Page) => page.evaluate(() => (window as never as Ext).__ext.requests);
 
 test.describe("3b extension states", () => {
@@ -32,7 +31,7 @@ test.describe("3b extension states", () => {
     const settled = await requests(page);
     await page.waitForTimeout(1500);
     expect(await requests(page)).toBe(settled);
-    await ext(page, (e) => e.detach());
+    await page.evaluate(() => (window as never as Ext).__ext.detach());
     await page.evaluate(() => window.dispatchEvent(new Event("focus")));
     await expect(page.locator(".pill")).toHaveText("Extension not found", { timeout: 600 });
   });
