@@ -1,4 +1,3 @@
-import "@fontsource/schibsted-grotesk/latin-600.css";
 import type { RecordOf } from "../../../src/record";
 import { Card, Figure, fmt, plural, type CardProps } from "./frame";
 import { hive } from "./hive";

@@ -414,9 +414,11 @@
   color: var(--ink-11);
 }
 
+/* One weight: a pangram is marked by ink and a thin underline. */
 .card .bee-words > [data-pangram] {
   color: var(--ink-12);
-  font-weight: 600;
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
 }
 
 /* Mini: the 5 by 5 outline only, since the record holds no letters. */
