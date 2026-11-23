@@ -9,6 +9,8 @@ import { BASE, NOW, open, serve, STATES, withState } from "./harness";
 
 /** The lazy geo chunk: world-atlas data, topojson-client and d3-geo. */
 const GEO = /\/assets\/geo-[\w-]+\.js$/;
+/** The globe chunk; a won Globle card draws the globe, so the flat map tests block it. */
+const GLOBE = /\/assets\/globe-[\w-]+\.js$/;
 const DIST = join(import.meta.dirname, "..", "dist");
 const SHOTS = join(import.meta.dirname, "..", "test-results", "screens", "geo");
 const HEAT = ["correct", "hot", "warm", "mild", "cold"];
@@ -179,7 +181,8 @@ test.describe("Travle map", () => {
 });
 
 test.describe("Globle map", () => {
-  test("a pin per guess, a line from each guess to the answer labelled in km, closer guesses hotter", async ({ page }) => {
+  test("a pin per guess, a line from each guess to the answer labelled in km, closer guesses hotter (globe blocked)", async ({ page }) => {
+    await page.route(GLOBE, (route) => route.abort());
     await openCards(page, [globleWin]);
     const c = card(page, "globle");
     await ready(c);
@@ -353,7 +356,8 @@ function marksVsCard(cards: Element[]) {
 }
 
 test.describe("contrast", () => {
-  test("fills, pins and lines reach 3:1 and labels 4.5:1 against the card in this color scheme", async ({ page }, info) => {
+  test("fills, pins and lines reach 3:1 and labels 4.5:1 against the card in this color scheme (globe blocked)", async ({ page }, info) => {
+    await page.route(GLOBE, (route) => route.abort());
     await openCards(page, [travleWin, globleWin]);
     for (const g of ["travle", "globle"] as const) await ready(card(page, g));
     const all = await page.locator('.card[data-geo="ready"]').evaluateAll(marksVsCard);
@@ -422,6 +426,7 @@ test.describe("390 and 1440", () => {
   const CASES = { "travle-win": [travleWin], "travle-loss": [travleLoss], "globle-win": [globleWin], "globle-partial": [globlePartial] } as const;
   for (const [name, records] of Object.entries(CASES)) {
     test(`${name}: no clipped ink, the map fills its column of the card, labels stay apart and inside the card`, async ({ page }, info) => {
+      if (name === "globle-win") await page.route(GLOBE, (route) => route.abort());
       await openCards(page, [...records]);
       const game = records[0].game;
       const c = card(page, game);

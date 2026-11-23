@@ -597,3 +597,71 @@
   stroke-width: 3px;
   paint-order: stroke;
 }
+
+/* Globle globe: a square box up to 400px, centered; the circle holds its place while the chunks load. */
+:root {
+  --globe-ocean: var(--ink-3);
+  --globe-land: var(--ink-6);
+  --globe-grid: var(--ink-5);
+}
+.card .globe-box {
+  position: relative;
+  width: min(100%, 400px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+.card .globe-box > .geo-hold,
+.card .globe {
+  border-radius: 50%;
+}
+.card .globe-in,
+.card .globe,
+.card .globe svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.card .globe {
+  touch-action: pan-y;
+  cursor: grab;
+}
+.card .globe:active {
+  cursor: grabbing;
+}
+.card .globe path {
+  stroke: var(--globe-ocean);
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+}
+.card .globe [data-ocean] {
+  fill: var(--globe-ocean);
+  stroke: var(--line);
+}
+.card .globe [data-graticule] {
+  fill: none;
+  stroke: var(--globe-grid);
+}
+.card .globe [data-land] {
+  fill: var(--globe-land);
+}
+.card .globe [data-mark="outline"] {
+  fill: none;
+  stroke: var(--ink-12);
+  stroke-width: 1.5px;
+  pointer-events: none;
+}
+.card .globe-reset {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.card .globe-reset::after {
+  content: "";
+  position: absolute;
+  inset: -13px -8px;
+}
+.card .globe-tip {
+  position: absolute;
+}
