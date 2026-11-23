@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { GAMES } from "../src/games";
 import { open, STATES, withState } from "./harness";
 
 type Ext = { __ext: { requests: number; detach(): void; swap(m: unknown): void } };
@@ -13,7 +14,7 @@ test.describe("3b extension states", () => {
     await expect(install.getByRole("link", { name: "Download the extension" })).toHaveAttribute("href", /dailies-extension\.zip$/);
     await expect(page.locator(".primary")).toHaveCount(1);
     await expect(install).toContainText("Load unpacked");
-    await expect(page.locator(".rows > .row")).toHaveCount(9);
+    await expect(page.locator(".rows > .row")).toHaveCount(GAMES.length);
     await expect(page.locator(".rows .status, .rows [data-tiles], .rows .result")).toHaveCount(0);
     await expect(page.locator(".history")).toHaveCount(0);
     expect(await page.locator("body").innerText()).not.toMatch(/[{}[\]]|"\w+":/);
@@ -47,7 +48,7 @@ test.describe("3b extension states", () => {
 
   test("empty: connected with nothing logged shows plain Not played yet rows, no hero", async ({ page }) => {
     await open(page, { ext: withState(STATES.empty) });
-    await expect(page.locator(".rows .status")).toHaveText(Array(9).fill("Not played yet"));
+    await expect(page.locator(".rows .status")).toHaveText(Array(GAMES.length).fill("Not played yet"));
     await expect(page.locator(".pill")).toHaveText("Extension connected");
     await expect(page.locator("h2")).toHaveText(["Today", "History"]);
   });

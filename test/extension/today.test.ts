@@ -13,7 +13,7 @@ const travle = PARSERS.travle(loadCapture("travle", "win-2026-11-22"))!;
 const state = (s: Partial<State> = {}): State => ({ records: {}, misses: {}, loggedAt: {}, ...s });
 
 describe("today's rows", () => {
-  it("lists the 9 games in the fixed order, none played", () => {
+  it("lists the 10 games in the fixed order, none played", () => {
     const rows = todayRows(state(), now);
     expect(rows.map((r) => r.game.id)).toEqual(GAMES.map((g) => g.id));
     expect(rows.every((r) => r.status === "none")).toBe(true);
@@ -30,7 +30,7 @@ describe("today's rows", () => {
     );
     expect(rows.find((r) => r.game.id === "wordle")).toMatchObject({ status: "logged", at: morning });
     expect(rows.find((r) => r.game.id === "connections")).toMatchObject({ status: "missed", reason: "Could not read it" });
-    expect(rows.filter((r) => r.status === "none")).toHaveLength(7);
+    expect(rows.filter((r) => r.status === "none")).toHaveLength(GAMES.length - 2);
   });
 
   it("counts a record logged today even when the game's own day differs (Travle's day is UTC)", () => {

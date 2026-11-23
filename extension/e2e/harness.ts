@@ -16,6 +16,8 @@ export interface Fixture {
   dom: string;
   share?: string;
   gameData?: unknown;
+  /** Page-memory values the case captured (`page.json`), rebuilt on the fixture page as the game declares them. */
+  page?: Json;
 }
 
 /** Every fixture case as `game/dir`. */
@@ -53,7 +55,8 @@ export function loadFixture(id: string): Fixture {
     : "";
   const shareFile = join(base, "share.txt");
   const share = existsSync(shareFile) ? readFileSync(shareFile, "utf8") : undefined;
-  return { url: new URL(meta.sourceUrl).href, ...(share !== undefined && { share }), storage, responses, idb: (store.indexedDB ?? {}) as Json, dom, ...(gameData ? { gameData } : {}) };
+  const page = existsSync(join(base, "page.json")) ? (readJson(join(base, "page.json")) as Json) : undefined;
+  return { url: new URL(meta.sourceUrl).href, ...(share !== undefined && { share }), storage, responses, idb: (store.indexedDB ?? {}) as Json, dom, ...(gameData ? { gameData } : {}), ...(page ? { page } : {}) };
 }
 
 /** Hosts a fixture page may talk to: the game page and the game's own API hosts. */
@@ -79,10 +82,23 @@ export async function serveFixture(context: BrowserContext, f: Fixture) {
   });
 }
 
+/**
+ * Spamle keeps prompt text, answer names and targets in top-level page bindings (`const P`, `function targets`),
+ * not in storage. The fixture page declares the same names, holding just what the captured snapshot shows.
+ */
+function spamleBindings(f: Fixture): string {
+  const snap = f.page?.spamle as { prompts: Record<string, { q: string; possible: number; targets: unknown; names: Record<string, string> }> } | undefined;
+  if (!snap) return "";
+  const P = Object.fromEntries(
+    Object.entries(snap.prompts).map(([id, p]) => [id, { q: p.q, ans: { length: p.possible }, by: Object.fromEntries(Object.entries(p.names).map(([k, name]) => [k, { name }])), _t: p.targets }]),
+  );
+  return `\nconst P = ${JSON.stringify(P).replace(/</g, "\\u003c")};\nfunction targets(p) { return p._t; }\n`;
+}
+
 export function fixturePage(f: Fixture): string {
   const data = JSON.stringify({ share: f.share, storage: f.storage, idb: f.idb, dom: f.dom, responses: f.responses.map((r) => ({ url: r.url, method: r.method, requestBody: r.requestBody })) });
   return `<!doctype html><meta charset="utf-8"><title>fixture</title><body><main id="game">Playing</main>
-<script>${f.gameData ? `window.gameData = ${JSON.stringify(f.gameData)};` : ""}
+<script>${f.gameData ? `window.gameData = ${JSON.stringify(f.gameData)};` : ""}${spamleBindings(f)}
 const FIX = ${data.replace(/</g, "\\u003c")};
 function writeIdb(name, info) {
   return new Promise((resolve, reject) => {

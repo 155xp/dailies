@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { GAMES } from "../src/games";
 import { audit, CLEAN } from "./guards";
 import { open, shoot, STATES, withState, type OpenOptions } from "./harness";
 
@@ -35,7 +36,7 @@ test.describe("3d states, type and motion", () => {
   test("loading: reserved space with no data, then an answer with today's results within 300ms, without moving rows", async ({ page }, info) => {
     await open(page, { ext: { kind: "silent" }, clock: "frozen" });
     await expect(page.locator("main")).toHaveAttribute("data-status", "loading");
-    await expect(page.locator(".rows .skel")).toHaveCount(9);
+    await expect(page.locator(".rows .skel")).toHaveCount(GAMES.length);
     await expect(page.locator(".pill.skel")).toHaveCount(1);
     expect(await page.locator("main").innerText()).not.toMatch(/Played|Not played|Extension|Streak/);
     expect(await audit(page)).toEqual(CLEAN);

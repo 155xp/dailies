@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
  * string must be on this list (a listed domain also covers its subdomains).
  */
 const ALLOWED_DOMAINS = [
-  // the nine games
+  // the ten games
   "krillion.io",
   "travle.earth",
   "enclose.horse",
@@ -15,6 +15,9 @@ const ALLOWED_DOMAINS = [
   "nyt.com",
   "globle-game.com",
   "lessgames.com",
+  "spamle.com",
+  // Spamle's own leaderboard API host, which its page calls
+  "supabase.co",
   // linked from the game pages saved in fixtures/
   "teuteuf.fr",
   "globle-capitals.com",

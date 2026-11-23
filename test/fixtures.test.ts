@@ -21,6 +21,7 @@ const GAMES: Record<string, { needs: string[]; why?: string }> = {
   mini: { needs: ["gated"], why: "signed out players cannot open the board" },
   globle: { needs: ["win", "partial"], why: "unlimited guesses, no loss state" },
   songless: { needs: ["win", "loss"] },
+  spamle: { needs: ["win", "partial"], why: "no win or loss: win is all 5 rounds of the Daily, partial is fewer" },
 };
 
 interface Meta {
@@ -99,7 +100,7 @@ describe("fixture privacy", () => {
   }
 
   it("redacts player and device ids in storage snapshots", () => {
-    const idKeys = /"(fencing_player_id|teuteuf-anonymous-id|anonymousId|playerId|runId|krillion:player:v1)"\s*:\s*"([^"]*)"/g;
+    const idKeys = /"(fencing_player_id|teuteuf-anonymous-id|anonymousId|playerId|runId|krillion:player:v1|spamle-player|spamle-dev|spamle-leagues|p_player|player_id)"\s*:\s*"([^"]*)"/g;
     for (const f of files.filter((p) => p.endsWith(".json"))) {
       for (const m of readFileSync(f, "utf8").matchAll(idKeys)) {
         expect([f, m[2]]).toEqual([f, "REDACTED"]);

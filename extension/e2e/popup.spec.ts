@@ -5,7 +5,7 @@ import { loadCapture } from "../../test/capture";
 import { checkGuards } from "./guards";
 import { expect, loadFixture, readStore, serveFixture, test } from "./harness";
 
-const NAMES = ["Krillion", "Travle", "enclose.horse", "Wordle", "Connections", "Spelling Bee", "Mini Crossword", "Globle", "Songless"];
+const NAMES = ["Krillion", "Travle", "enclose.horse", "Wordle", "Connections", "Spelling Bee", "Mini Crossword", "Globle", "Songless", "Spamle"];
 
 const fixture = (game: keyof typeof PARSERS, dir: string) => PARSERS[game](loadCapture(game, dir))!;
 const ALL: DailyRecord[] = [
@@ -18,6 +18,7 @@ const ALL: DailyRecord[] = [
   { game: "mini", date: "2026-11-22", puzzleNo: null, status: "won", score: 41, detail: { timeSeconds: 41 } },
   fixture("globle", "win-2026-11-22"),
   fixture("songless", "win-2026-11-22"),
+  fixture("spamle", "win-2026-11-23"),
 ];
 
 /** Seed storage as if these games were logged (or missed) today, at fixed local times. */
@@ -74,7 +75,7 @@ for (const scheme of ["light", "dark"] as const) {
           await expect(page.getByText(/^Logged \d{1,2}:\d{2}\s?[AP]M$/)).toHaveCount(s.logged.length);
           await expect(page.getByText("Played, not logged")).toHaveCount(s.missed?.length ?? 0);
           await expect(page.getByRole("button", { name: "Retry" })).toHaveCount(s.missed?.length ?? 0);
-          await expect(page.getByText("Not played yet")).toHaveCount(9 - s.logged.length - (s.missed?.length ?? 0));
+          await expect(page.getByText("Not played yet")).toHaveCount(NAMES.length - s.logged.length - (s.missed?.length ?? 0));
         }
       }
       // Body 17px or more, meta 13px or more, one weight.
@@ -95,7 +96,7 @@ for (const scheme of ["light", "dark"] as const) {
 test("game names are links that open the game in a new tab, with hover and focus states", async ({ extPage: page }) => {
   await page.setViewportSize({ width: 360, height: 640 });
   const links = page.getByRole("link");
-  await expect(links).toHaveCount(9);
+  await expect(links).toHaveCount(NAMES.length);
   for (const link of await links.all()) {
     await expect(link).toHaveAttribute("target", "_blank");
     await expect(link).toHaveAttribute("rel", /noopener/);

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { GAMES } from "../src/games";
 import { audit, CLEAN } from "./guards";
 import { open, shoot, STATES } from "./harness";
 
@@ -78,7 +79,7 @@ test.describe("5a install steps", () => {
     await expect(page.locator("main")).toHaveAttribute("data-status", "connected");
     await expect(page.locator(".install")).toHaveCount(0);
     await expect(page.locator('.row[data-game="wordle"] .status')).toHaveText("Played");
-    await expect(page.locator(".rows .status")).toHaveCount(9);
+    await expect(page.locator(".rows .status")).toHaveCount(GAMES.length);
     expect(await page.evaluate(() => (window as unknown as { sameDocument?: number }).sameDocument)).toBe(1);
   });
 
@@ -87,7 +88,7 @@ test.describe("5a install steps", () => {
     await expect(steps(page)).toHaveCount(4);
     await page.evaluate((s) => window.postMessage({ source: "dailies-extension", type: "state", version: "0.1.0", ...s }, location.origin), STATES.empty);
     await expect(page.locator(".install")).toHaveCount(0);
-    await expect(page.locator(".rows .status")).toHaveText(Array(9).fill("Not played yet"));
+    await expect(page.locator(".rows .status")).toHaveText(Array(GAMES.length).fill("Not played yet"));
   });
 
   test("coming back to the tab after installing asks again and connects", async ({ page }) => {

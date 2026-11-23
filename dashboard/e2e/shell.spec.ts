@@ -7,7 +7,7 @@ test("the built site loads from a nested path on any host, with no other request
   await page.goto(BASE);
   await expect(page.getByRole("heading", { level: 1, name: "Dailies" })).toBeVisible();
   const links = page.locator(".row a.link");
-  await expect(links).toHaveCount(9);
+  await expect(links).toHaveCount(GAMES.length);
   expect(await links.allTextContents()).toEqual(GAMES.map((g) => g.name));
   for (const g of GAMES) {
     const a = page.locator(`.row[data-game="${g.id}"] a.link`);

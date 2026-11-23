@@ -8,6 +8,7 @@ import {
   globleRecord,
   krillionRecord,
   songlessRecord,
+  spamleRecord,
   spellingBeeRecord,
   travleRecord,
   wordleRecord,
@@ -18,6 +19,7 @@ import { parseGloble } from "../src/parsers/globle";
 import { parseKrillion } from "../src/parsers/krillion";
 import { parseMini } from "../src/parsers/mini";
 import { parseSongless } from "../src/parsers/songless";
+import { parseSpamle } from "../src/parsers/spamle";
 import { parseSpellingBee } from "../src/parsers/spelling-bee";
 import { parseTravle } from "../src/parsers/travle";
 import { parseWordle } from "../src/parsers/wordle";
@@ -259,6 +261,20 @@ describe("songless record", () => {
       status: "lost",
       detail: { topPercent: null, distribution: null },
     });
+  });
+});
+
+describe("spamle record", () => {
+  schemaTest("spamle", parseSpamle, spamleRecord);
+
+  it("holds words and numbers per round, and rejects a sixth round or an unknown rarity", () => {
+    const r = spamleRecord.parse(parseSpamle(loadCapture("spamle", "win-2026-11-23")));
+    expect(r.detail.rounds).toHaveLength(5);
+    expect(r.detail.rarities.reduce((a, b) => a + b, 0)).toBe(r.detail.gumballs);
+    expect(spamleRecord.safeParse({ ...r, detail: { ...r.detail, rounds: [...r.detail.rounds, r.detail.rounds[0]] } }).success).toBe(false);
+    const odd = structuredClone(r);
+    (odd.detail.rounds[0]!.answers[0] as { rarity: string }).rarity = "mythic";
+    expect(spamleRecord.safeParse(odd).success).toBe(false);
   });
 });
 
