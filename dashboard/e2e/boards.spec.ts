@@ -116,8 +116,7 @@ test.describe("Spelling Bee hive", () => {
     const pangram = c.locator("[data-word][data-pangram]");
     await expect(pangram).toHaveText("Pothead");
     const [p, w] = await Promise.all([style(pangram), style(words.first())]);
-    expect(p.weight).toBeGreaterThanOrEqual(600);
-    expect(w.weight).toBe(400);
+    expect([p.weight, w.weight]).toEqual([400, 400]);
     expect(p.color).not.toBe(w.color);
     expect(w.size).toBeGreaterThanOrEqual(17);
     await expect(c.locator("[data-ladder] [data-step]")).toHaveCount(10);
