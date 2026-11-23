@@ -32,6 +32,14 @@ pnpm test
 `fixtures/<game>/<case>/` holds real results captured from each live game, with a `meta.json` naming the source
 URL and capture date. Parsers in `src/parsers/` are tested against them.
 
+## Data and credits
+
+The Travle and Globle cards draw maps from [world-atlas](https://github.com/topojson/world-atlas)
+`countries-110m` (ISC), built from Natural Earth data (public domain), using
+[topojson-client](https://github.com/topojson/topojson-client) and [d3-geo](https://github.com/d3/d3-geo)
+(both ISC). They ship inside the dashboard and load only when one of those cards opens. Full notices are in
+[NOTICE](NOTICE).
+
 ## License
 
 MIT

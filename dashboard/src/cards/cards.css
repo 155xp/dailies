@@ -466,3 +466,112 @@
 .card .mini-grid > i {
   background: var(--surface);
 }
+
+/* Geo cards (Travle, Globle): map colors per theme, each at least 3:1 on the card. */
+:root {
+  --geo-land: var(--ink-4);
+  --travle-perfect: #3a8f45;
+  --travle-near-perfect: #6b8714;
+  --travle-good: #bd6407;
+  --travle-poor: #d0392f;
+  --heat-correct: #1f7a35;
+  --heat-hot: #d1242f;
+  --heat-warm: #c2500f;
+  --heat-mild: #8f6300;
+  --heat-cold: #4f6d8f;
+  --heat-none: var(--ink-11);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --travle-perfect: #3f9b4a;
+    --travle-near-perfect: #a3d977;
+    --travle-good: #f5a142;
+    --travle-poor: #e5534b;
+    --heat-correct: #3fb950;
+    --heat-hot: #ff6b5e;
+    --heat-warm: #f0883e;
+    --heat-mild: #d4a72c;
+    --heat-cold: #8fa8c4;
+  }
+}
+.card .geo-answer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 88px;
+}
+.card .geo-sil {
+  flex: none;
+  width: 88px;
+  height: 88px;
+}
+.card .geo-sil svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--ink-12);
+}
+.card .geo-words {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.card .geo-hold {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background: var(--ink-3);
+}
+.card .geo-hold.geo-line {
+  width: 120px;
+  height: 26px;
+}
+.card .geo-map {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+.card .geo-map svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Land and filled countries are split by hairlines in the card color; marks sit on top in ink. */
+.card .geo-map path,
+.card .geo-map circle,
+.card .geo-map text {
+  stroke: var(--surface);
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+}
+.card .geo-land path {
+  fill: var(--geo-land);
+}
+.card .geo-map .geo-route-land {
+  fill: var(--ink-6);
+}
+.card .geo-map circle {
+  fill: var(--ink-12);
+  stroke-width: 1.5px;
+}
+.card .geo-map [data-route],
+.card .geo-map line {
+  fill: none;
+  stroke: var(--ink-11);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+.card .geo-map line {
+  stroke-width: 1px;
+}
+.card .geo-map .geo-leader {
+  stroke: var(--ink-10);
+  stroke-dasharray: 2 2;
+}
+.card .geo-map text {
+  font-size: 13px;
+  fill: var(--ink-12);
+  stroke-width: 3px;
+  paint-order: stroke;
+}

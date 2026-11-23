@@ -8,11 +8,11 @@ import "./cards.css";
 export type CardProps = { record: DailyRecord; history: DailyRecord[] };
 
 /** The shared frame: the title links to the game, then the card's figure and drawing, with its chart beside them. */
-export function Card({ game, children }: { game: GameId; children: ReactNode }) {
+export function Card({ game, geo, children }: { game: GameId; geo?: string; children: ReactNode }) {
   const g = gameById(game);
   const [result, side] = split(children);
   return (
-    <article className="card" data-panel data-game={game}>
+    <article className="card" data-panel data-game={game} data-geo={geo}>
       <h3 className="card-title">
         <a className="link" href={g.url} target="_blank" rel="noopener">
           {g.name}
