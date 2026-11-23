@@ -33,10 +33,14 @@ function install(game: GameDef) {
 
   if (game.responses) {
     const original = window.fetch;
+    let next = 0;
     window.fetch = function (this: unknown, input: RequestInfo | URL, init?: RequestInit) {
       const promise = original.call(this, input, init);
       const url = new URL(input instanceof Request ? input.url : String(input), location.href).href;
       if (allowResponse(game, url)) {
+        // Announce the request so the content script waits for its answer before reading storage.
+        const id = ++next;
+        post({ kind: "request", id });
         const method = (init?.method ?? (input instanceof Request ? input.method : "GET")).toUpperCase();
         let requestBody: unknown;
         try {
@@ -47,9 +51,9 @@ function install(game: GameDef) {
         promise
           .then((res) => res.clone().json().then((body: unknown) => {
             const response = { url: res.url || url, method, status: res.status, body, ...(requestBody !== undefined && { requestBody }) };
-            post({ kind: "response", response });
+            post({ kind: "response", id, response });
           }))
-          .catch(() => {});
+          .catch(() => post({ kind: "response", id }));
       }
       return promise;
     } as typeof fetch;

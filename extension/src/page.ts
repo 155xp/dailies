@@ -6,14 +6,15 @@ import { localDay } from "./store";
 
 /** Content script to service worker. */
 export type ContentMessage =
-  | { type: "record"; record: DailyRecord }
+  | { type: "record"; record: DailyRecord; atLoad?: boolean }
   | { type: "miss"; game: Game; date: string; reason: string }
   | { type: "seen" };
 
 /** MAIN-world hook to content script, through `window.postMessage`. */
 export type HookMessage = { source: "dailies-hook"; page?: Record<string, unknown> } & (
   | { kind: "storage"; key: string }
-  | { kind: "response"; response: CapturedResponse }
+  | { kind: "request"; id: number }
+  | { kind: "response"; id: number; response?: CapturedResponse }
   | { kind: "share"; text: string }
   | { kind: "page" }
 );
@@ -49,7 +50,7 @@ async function readAll(win: Window, name: string, store: string): Promise<unknow
 /**
  * Capture on one game page. Every read is triggered by an event: a hook message (the page wrote its own
  * storage or got an allowlisted response), the one read at load, Spelling Bee's rank node changing, or a
- * click while a result screen shows. The only timer is the one-shot "played, not logged" check.
+ * click or tab switch while a result screen shows. The only timer is the one-shot "played, not logged" check.
  */
 export function startCapture({ game, win, send }: { game: GameDef; win: Window; send: (m: ContentMessage) => void }) {
   const doc = win.document;
@@ -58,6 +59,9 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
   let share: string | undefined;
   let indexedDB: Record<string, unknown[]> = {};
   let lastSent = "";
+  /** Allowlisted requests still in flight. Reads wait for them, so a record never misses the game's own data. */
+  const inFlight = new Set<number>();
+  let waiting: { atLoad: boolean } | undefined;
   let logged = false;
   let disposed = false;
   let timer: ReturnType<typeof setTimeout> | "fired" | undefined;
@@ -85,8 +89,12 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
   };
 
   /** Parse what the page holds now; send the record if it is new. */
-  const read = (): boolean => {
+  const read = (atLoad = false, force = false): boolean => {
     if (disposed) return false;
+    if (inFlight.size && !force) {
+      waiting = { atLoad: (waiting?.atLoad ?? true) && atLoad };
+      return false;
+    }
     const record = captureFrom(game, { ...(share !== undefined && { share }), storage: storage(), responses, page, indexedDB });
     if (!record) return false;
     logged = true;
@@ -94,7 +102,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     const json = JSON.stringify(record);
     if (json !== lastSent) {
       lastSent = json;
-      send({ type: "record", record });
+      send({ type: "record", record, ...(atLoad && { atLoad }) });
     }
     return true;
   };
@@ -105,7 +113,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     timer = setTimeout(async () => {
       timer = "fired";
       await readIndexedDB();
-      if (read() || disposed) return;
+      if (read(false, true) || disposed) return;
       const saved = Object.keys(storage()).length > 0 || Object.keys(indexedDB).length > 0;
       send({ type: "miss", game: game.id, date: localDay(new Date()), reason: saved ? NOT_READ : NOT_SAVED });
     }, MISS_AFTER_MS);
@@ -116,14 +124,24 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     if (e.source !== win || m?.source !== "dailies-hook") return;
     if (m.page) page = { ...page, ...m.page };
     if (m.kind === "share" && game.share) share = String(m.text);
+    if (m.kind === "request") {
+      inFlight.add(m.id);
+      return;
+    }
+    let atLoad = false;
     if (m.kind === "response") {
-      responses.push(m.response);
+      inFlight.delete(m.id);
+      if (m.response) responses.push(m.response);
+      if (inFlight.size === 0 && waiting) {
+        atLoad = waiting.atLoad;
+        waiting = undefined;
+      }
       if (game.indexedDB) {
-        void readIndexedDB().then(() => (read(), checkFinished()));
+        void readIndexedDB().then(() => (read(atLoad), checkFinished()));
         return;
       }
     }
-    read();
+    read(atLoad);
     checkFinished();
   };
 
@@ -137,7 +155,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
   const idle = () => {
     const afterRead = () => {
       if (disposed) return;
-      if (!read()) send({ type: "seen" });
+      if (!read(true)) send({ type: "seen" });
       checkFinished();
       watchRank();
     };
@@ -157,6 +175,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
   win.addEventListener("pagehide", onHide);
   win.addEventListener("pageshow", onShow);
   doc.addEventListener("click", checkFinished, { capture: true, passive: true });
+  doc.addEventListener("visibilitychange", checkFinished);
   if (doc.readyState === "complete") idle();
   else win.addEventListener("load", onLoad, { once: true });
 
@@ -164,7 +183,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     /** Re-read once, for the popup's Retry. */
     retry: async () => {
       await readIndexedDB();
-      return read();
+      return read(false, true);
     },
     dispose: () => {
       onHide();
@@ -174,6 +193,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
       win.removeEventListener("pageshow", onShow);
       win.removeEventListener("load", onLoad);
       doc.removeEventListener("click", checkFinished, { capture: true });
+      doc.removeEventListener("visibilitychange", checkFinished);
     },
   };
 }

@@ -1,0 +1,15 @@
+{
+  "idleSeconds": 60,
+  "secondsSinceLastLog": 65,
+  "scriptMs": 0,
+  "taskMs": 3.91,
+  "traceEventsTotal": 769,
+  "controlWorkEvents": [
+    "TimerInstall",
+    "TimerFire",
+    "FunctionCall"
+  ],
+  "workEvents": [],
+  "serviceWorkerTargetRunning": false,
+  "serviceWorkerInternalsStatus": "STOPPED"
+}

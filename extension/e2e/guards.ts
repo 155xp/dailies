@@ -35,7 +35,7 @@ export function checkGuards(page: Page): Promise<Violation[]> {
 
     const vw = document.documentElement.clientWidth;
     if (document.documentElement.scrollWidth > vw) add("clipped", null, `page scrolls sideways (${document.documentElement.scrollWidth} > ${vw})`);
-    for (const el of [...textEls, ...document.querySelectorAll('[data-guard="tiles"] > *')]) {
+    for (const el of [...textEls, ...[...document.querySelectorAll('[data-guard="tiles"] > *')].filter(visible)]) {
       const r = el.getBoundingClientRect();
       if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflowX !== "visible") add("clipped", el, "text overflows its box");
       if (r.left < -1 || r.right > vw + 1) add("clipped", el, "ink outside the viewport");

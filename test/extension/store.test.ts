@@ -53,3 +53,39 @@ describe("storing records", () => {
     expect(applyMiss(missed, { ...miss, at: new Date().toISOString() })).toBeNull();
   });
 });
+
+describe("replays after a storage round trip", () => {
+  it("treats a record with its keys in another order as the same record", () => {
+    const sortKeys = (v: unknown): unknown =>
+      Array.isArray(v) ? v.map(sortKeys) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => [k, sortKeys(x)])) : v;
+    const state = merge(empty(), applyRecord(empty(), win, at));
+    const stored = { ...state, records: sortKeys(state.records) as State["records"] };
+    expect(applyRecord(stored, win, new Date())).toBeNull();
+  });
+});
+
+describe("a reload that sees less", () => {
+  it("never erases detail an earlier capture saved", () => {
+    const connections = PARSERS.connections(loadCapture("connections", "win-2026-11-22"))!;
+    const state = merge(empty(), applyRecord(empty(), connections, at));
+    // Reloaded before sharing: no share text, so no public puzzle number.
+    expect(applyRecord(state, { ...connections, puzzleNo: null }, new Date())).toBeNull();
+    // Reloaded before the puzzle response: Wordle grades come back empty.
+    const wordle = merge(empty(), applyRecord(empty(), win, at));
+    expect(applyRecord(wordle, { ...win, detail: { ...win.detail, evaluations: win.detail.evaluations.map(() => []) } }, new Date())).toBeNull();
+  });
+});
+
+describe("a read at page load", () => {
+  it("only fills gaps in a stored record, so an early read cannot overwrite a full one", () => {
+    const connections = PARSERS.connections(loadCapture("connections", "win-2026-11-22"))!;
+    const state = merge(empty(), applyRecord(empty(), connections, at));
+    // Before the puzzle response, words are card positions.
+    const early = { ...connections, detail: { ...connections.detail, guesses: connections.detail.guesses.map((g) => ({ ...g, words: ["1", "2", "3", "4"] })) } };
+    expect(applyRecord(state, early, new Date(), true)).toBeNull();
+  });
+
+  it("still logs a game finished before the extension was installed", () => {
+    expect(applyRecord(empty(), win, at, true)?.records).toEqual({ "wordle:2026-11-22": win });
+  });
+});

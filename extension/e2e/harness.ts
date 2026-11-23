@@ -2,7 +2,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { test as base, chromium, type BrowserContext, type Page, type Worker } from "@playwright/test";
 
-const DIST = resolve(import.meta.dirname, "..", "dist");
+export const DIST = resolve(import.meta.dirname, "..", "dist");
 const FIXTURES = resolve(import.meta.dirname, "..", "..", "fixtures");
 
 type Json = Record<string, unknown>;
@@ -14,6 +14,7 @@ export interface Fixture {
   responses: { url: string; method: string; status: number; body: unknown; requestBody?: unknown }[];
   idb: Json;
   dom: string;
+  share?: string;
   gameData?: unknown;
 }
 
@@ -50,22 +51,25 @@ export function loadFixture(id: string): Fixture {
         .replace(/<(img|source|link|image|use)\b[^>]*>/gi, "")
         .replace(/url\([^)]*\)/gi, "none")
     : "";
-  return { url: meta.sourceUrl, storage, responses, idb: (store.indexedDB ?? {}) as Json, dom, ...(gameData ? { gameData } : {}) };
+  const shareFile = join(base, "share.txt");
+  const share = existsSync(shareFile) ? readFileSync(shareFile, "utf8") : undefined;
+  return { url: new URL(meta.sourceUrl).href, ...(share !== undefined && { share }), storage, responses, idb: (store.indexedDB ?? {}) as Json, dom, ...(gameData ? { gameData } : {}) };
 }
 
 /** Hosts a fixture page may talk to: the game page and the game's own API hosts. */
 export const fixtureHosts = (f: Fixture) => new Set([f.url, ...f.responses.map((r) => r.url)].map((u) => new URL(u).host));
 
 /**
- * Serve the fixture at the game's real URL. The page shows the game as playing; `window.__finish(viaSetItem)`
+ * Serve the fixture at the game's real URL. The page shows the game as playing; `window.__finish()`
  * replays what the game does at the end: IndexedDB writes, the game's own API calls, the result screen,
- * then the localStorage writes (through `setItem`, or by property assignment, which the hook cannot see).
+ * then the localStorage writes, then the player's share click when the case has share text.
  */
 export async function serveFixture(context: BrowserContext, f: Fixture) {
-  const responses = new Map(f.responses.map((r) => [`${r.method} ${r.url}`, r]));
+  const responses = new Map(f.responses.map((r) => [`${r.method} ${new URL(r.url).href}`, r]));
   await context.route("**/*", async (route) => {
     const req = route.request();
-    const url = req.url().replace(/#.*$/, "");
+    if (req.url().startsWith("chrome-extension://")) return route.continue();
+    const url = new URL(req.url().replace(/#.*$/, "")).href;
     if (req.resourceType() === "document" && url === f.url) {
       return route.fulfill({ contentType: "text/html", body: fixturePage(f) });
     }
@@ -75,8 +79,8 @@ export async function serveFixture(context: BrowserContext, f: Fixture) {
   });
 }
 
-function fixturePage(f: Fixture): string {
-  const data = JSON.stringify({ storage: f.storage, idb: f.idb, dom: f.dom, responses: f.responses.map((r) => ({ url: r.url, method: r.method, requestBody: r.requestBody })) });
+export function fixturePage(f: Fixture): string {
+  const data = JSON.stringify({ share: f.share, storage: f.storage, idb: f.idb, dom: f.dom, responses: f.responses.map((r) => ({ url: r.url, method: r.method, requestBody: r.requestBody })) });
   return `<!doctype html><meta charset="utf-8"><title>fixture</title><body><main id="game">Playing</main>
 <script>${f.gameData ? `window.gameData = ${JSON.stringify(f.gameData)};` : ""}
 const FIX = ${data.replace(/</g, "\\u003c")};
@@ -100,7 +104,12 @@ function writeIdb(name, info) {
     };
   });
 }
-window.__finish = async (viaSetItem = true) => {
+/** The game saves: through setItem, or by property assignment, which the hook cannot see. */
+window.__save = (viaSetItem = true) => {
+  for (const [k, v] of FIX.storage) viaSetItem ? localStorage.setItem(k, v) : (localStorage[k] = v);
+};
+/** save: false leaves the save out, for a game that saves late. */
+window.__finish = async ({ save = true } = {}) => {
   for (const [name, info] of Object.entries(FIX.idb)) if (info && info.stores) await writeIdb(name, info);
   for (const r of FIX.responses) {
     const init = { method: r.method };
@@ -108,7 +117,9 @@ window.__finish = async (viaSetItem = true) => {
     try { await (await fetch(r.url, init)).text(); } catch {}
   }
   document.getElementById("game").innerHTML = FIX.dom;
-  for (const [k, v] of FIX.storage) viaSetItem ? localStorage.setItem(k, v) : (localStorage[k] = v);
+  if (!save) return;
+  window.__save();
+  if (FIX.share) await navigator.clipboard.writeText(FIX.share).catch(() => {});
 };
 </script>`;
 }

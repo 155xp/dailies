@@ -1,0 +1,52 @@
+name: Extension
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck:ext
+      - name: Build (no dashboard origins)
+        run: pnpm build:ext
+        env:
+          DAILIES_DASHBOARD_ORIGINS: ""
+      - name: Grep the build for polling, alarms and request interception
+        run: |
+          if grep -nE "setInterval|chrome\.alarms|\balarms\b|webRequest|requestAnimationFrame" extension/dist/*.js extension/dist/manifest.json; then
+            echo "Found a banned API in the build"; exit 1
+          fi
+          echo "setTimeout uses per file (only content.js may have one, the 2s not-logged check):"
+          grep -o "setTimeout(" extension/dist/*.js | sort | uniq -c
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Capture, idle CPU, popup and visual guard suites
+        run: pnpm test:ext
+        env:
+          CI: "1"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dailies-extension
+          path: extension/dailies-extension.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: extension-evidence
+          path: |
+            extension/test-results/**/*.png
+            extension/test-results/**/*.webm
+            extension/test-results/**/*.json
+            extension/playwright-report/
+          if-no-files-found: ignore
