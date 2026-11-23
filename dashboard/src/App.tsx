@@ -10,6 +10,7 @@ import { Install } from "./Install";
 import { localDay, longDay } from "./history";
 import { PaletteSetting } from "./palette";
 import { usePresence } from "./presence";
+import { HINT, shellState, useSnapshot, WHAT } from "./shell";
 import { result, tiles } from "./summary";
 
 /** Everything logged so far, grouped by game, oldest first. */
@@ -31,18 +32,23 @@ export function App() {
   const today = localDay(new Date());
   const log = useMemo(() => group(ext), [ext]);
   const connected = ext.status === "connected";
+  const loading = ext.status === "loading";
+  // While the extension is asked, keep the room the static shell reserved from the last visit (shell.ts).
+  const [shell] = useState(shellState);
+  useSnapshot(ext.status, ext.records, ext.misses, today);
   const install = usePresence(ext.status === "missing");
-  const hint = usePresence(connected && !ext.records.some((r) => r.date === today));
+  const hint = usePresence(connected ? !ext.records.some((r) => r.date === today) : loading && shell === "empty");
 
   return (
     <main className="page" data-status={ext.status} aria-busy={ext.status === "loading"}>
       <header className="head">
         <h1 className="title">Dailies</h1>
         <Pill status={ext.status} lastLogAt={ext.lastLogAt} today={today} onClick={ext.request} />
-        <p className="what quiet">Logs your daily word and map games from their own sites, in this browser only, with no sign-in and no upload.</p>
+        <p className="what quiet">{WHAT}</p>
       </header>
 
       {install.mounted && <Install check={ext.request} checking={ext.waiting} leaving={install.leaving} />}
+      {loading && shell === "missing" && <Install check={ext.request} checking={false} leaving={false} placeholder />}
 
       <section className="today" aria-labelledby="today-title">
         <div className="today-head">
@@ -53,7 +59,7 @@ export function App() {
         </div>
         {hint.mounted && (
           <p className="hint quiet enter" data-leaving={hint.leaving || undefined}>
-            Play any game below. Your result shows up here when you finish.
+            {HINT}
           </p>
         )}
         <ul className="rows">

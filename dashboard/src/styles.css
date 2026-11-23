@@ -30,7 +30,8 @@
   --line: var(--ink-6);
   --focus-ring: var(--ink-10);
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
-  --font: "Schibsted Grotesk", system-ui, sans-serif;
+  /* The fallback face is sized to Schibsted's widths (shell.css), so lines don't rewrap when the font lands. */
+  --font: "Schibsted Grotesk", "Schibsted Grotesk Fallback", system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -713,6 +714,22 @@ button {
   pointer-events: none;
 }
 
+/* The page's own content arriving in place of the shell's still placeholders (dailies#16): opacity only. */
+.line > :not(.name, .skel),
+.pill:not(.skel),
+.page:not(.shell) .today-head .meta,
+.history {
+  animation: fade 180ms var(--ease);
+}
+
+/* What the shell already showed (the hint) is there at once when the app takes over. */
+main[aria-busy="true"] .enter {
+  @starting-style {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Hover: color only, fine pointers only. */
 @media (hover: hover) and (pointer: fine) {
   .line:has(.disclosure):hover {
@@ -812,8 +829,8 @@ button {
     grid-column: 2 / -1;
   }
 
-  /* Not played yet has nothing for a second line, so the row is one line. */
-  .line:has(> .status.idle) {
+  /* A row with nothing for a second line (not played yet, not found, loading) is one line. */
+  .line:not(:has(> .strip, > .reason)) {
     grid-template-rows: 26px;
     grid-template-areas: "name status disc";
     min-height: 44px;
@@ -932,8 +949,16 @@ button {
 
   .enter {
     @starting-style {
+      opacity: 1;
       transform: none;
     }
+  }
+
+  .line > :not(.name, .skel),
+  .pill:not(.skel),
+  .page:not(.shell) .today-head .meta,
+  .history {
+    animation: none;
   }
 
   .pill:active,
