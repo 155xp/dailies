@@ -128,6 +128,10 @@ export async function open(page: Page, { ext, clock = "fixed" }: OpenOptions) {
   const external = await serve(page);
   if (clock === "frozen") {
     await page.clock.install({ time: NOW });
+    // On a page an earlier open() already clocked, install() unpins the time and it runs on in the
+    // current document before pauseAt(NOW) lands, which then throws "Cannot fast-forward to the past".
+    // Pinning it at NOW first leaves nothing to rewind.
+    await page.clock.setFixedTime(NOW);
     await page.clock.pauseAt(NOW);
   }
   else await page.clock.setFixedTime(NOW);
