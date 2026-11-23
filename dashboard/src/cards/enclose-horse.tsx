@@ -15,7 +15,7 @@ const kind = (glyph: string, wall: boolean, inside: boolean) =>
 
 /** Board pixels per cell; sprites are drawn on this 16 by 16 grid. */
 const U = 16;
-const GRASS = "#186b3b";
+const GRASS = "#1b6b3a";
 const TUFT = "#24804a";
 const WATER = "#062f48";
 const RIM = "#2a6f98";
