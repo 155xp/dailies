@@ -97,12 +97,14 @@ interface BarsProps {
   label: string;
   /** A 2px rule at this fraction of the width, in place of a marked bar. */
   rule?: number;
+  /** The least value that fills the plot, so a short history draws at its count rather than full height. */
+  floor?: number;
 }
 
 /** A bar chart that paints whole on the first frame and scrubs by pointer and arrow keys. */
-export function Bars({ bars, own, rest = "var(--bar)", ownColor, readout, label, rule }: BarsProps) {
+export function Bars({ bars, own, rest = "var(--bar)", ownColor, readout, label, rule, floor = 0 }: BarsProps) {
   const [active, setActive] = useState(Math.max(0, own));
-  const max = Math.max(...bars.map((b) => b.height ?? b.value), 1e-9);
+  const max = Math.max(...bars.map((b) => b.height ?? b.value), floor, 1e-9);
   const last = bars.length - 1;
   const move = (i: number) => setActive(Math.min(last, Math.max(0, i)));
   const keys: Record<string, () => void> = {

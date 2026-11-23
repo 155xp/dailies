@@ -34,6 +34,8 @@ export function Wordle({ record, history }: CardProps) {
           bars={counts.map((n, i) => ({ label: i === 6 ? "X" : plural(i + 1, "guess", "guesses"), value: n }))}
           own={slot(r)}
           ownColor="var(--wordle-correct)"
+          // Under 3 games a full-height bar would read as a whole distribution: each game is a third of the plot.
+          floor={counts.reduce((a, b) => a + b, 0) < 3 ? 3 : 0}
           readout={(b) => `${b.label}: ${plural(b.value, "game")}`}
         />
       )}
