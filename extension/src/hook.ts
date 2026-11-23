@@ -1,7 +1,7 @@
 import { allowResponse, gameForUrl, type GameDef } from "./games";
 
 /**
- * MAIN world, document_start, on the 9 game pages only. Wraps `Storage.prototype.setItem` and `fetch` so the
+ * MAIN world, document_start, on the 9 game pages only. Wraps `Storage.prototype.setItem`, `fetch` and `XMLHttpRequest` so the
  * game's own writes and allowlisted responses post one message each. Nothing runs unless the page acts.
  */
 function install(game: GameDef) {
@@ -57,6 +57,46 @@ function install(game: GameDef) {
       }
       return promise;
     } as typeof fetch;
+
+    // Wordle loads its solution through XMLHttpRequest. Same messages as fetch, posted on `loadend`.
+    const xhr = XMLHttpRequest.prototype;
+    const { open, send } = xhr;
+    const allowed = new WeakMap<XMLHttpRequest, { url: string; method: string }>();
+    xhr.open = function (this: XMLHttpRequest, method: string, url: string | URL, ...rest: unknown[]) {
+      allowed.delete(this);
+      try {
+        const href = new URL(String(url), location.href).href;
+        if (allowResponse(game, href)) allowed.set(this, { url: href, method: String(method).toUpperCase() });
+      } catch {
+        // An invalid URL: the original open throws for the page as it always did.
+      }
+      return (open as (...a: unknown[]) => void).call(this, method, url, ...rest);
+    } as typeof xhr.open;
+    xhr.send = function (this: XMLHttpRequest, body?: Document | XMLHttpRequestBodyInit | null) {
+      const req = allowed.get(this);
+      if (req) {
+        const id = ++next;
+        post({ kind: "request", id });
+        let requestBody: unknown;
+        try {
+          requestBody = typeof body === "string" ? JSON.parse(body) : undefined;
+        } catch {
+          requestBody = body;
+        }
+        this.addEventListener("loadend", () => {
+          let json: unknown;
+          try {
+            json = this.responseType === "json" ? this.response : !this.responseType || this.responseType === "text" ? JSON.parse(this.responseText) : undefined;
+          } catch {
+            json = undefined;
+          }
+          if (!this.status || json == null) return post({ kind: "response", id });
+          const response = { url: this.responseURL || req.url, method: req.method, status: this.status, body: json, ...(requestBody !== undefined && { requestBody }) };
+          post({ kind: "response", id, response });
+        }, { once: true });
+      }
+      return send.call(this, body);
+    };
   }
 
   if (game.share) {

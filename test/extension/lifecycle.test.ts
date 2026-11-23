@@ -11,6 +11,9 @@ const flush = async () => {
   for (let i = 0; i < 5; i++) await Promise.resolve();
 };
 
+/** The day's solution response, as the hook posts it once the page has loaded it. Wordle's tile marks need it. */
+const wordleSolution = () => hook({ kind: "response", id: 1, response: loadCapture("wordle", "win-2026-11-22").responses?.find((r) => r.url.includes("/svc/wordle/")) });
+
 function storeFixture(name: string, dir: string) {
   const storage = loadCapture(name, dir).localStorage ?? {};
   for (const [k, v] of Object.entries(storage)) localStorage.setItem(k, typeof v === "string" ? v : JSON.stringify(v));
@@ -101,6 +104,7 @@ describe("'played, not logged' check", () => {
   it("is cleared when the result is captured within 2s", async () => {
     const clear = vi.spyOn(globalThis, "clearTimeout");
     start("wordle");
+    wordleSolution();
     storeFixture("wordle", "win-2026-11-22");
     hook({ kind: "storage", key: "games-state-wordleV2/ANON" });
     await flush();
@@ -142,6 +146,7 @@ describe("'played, not logged' check", () => {
 describe("retry", () => {
   it("re-reads once and logs a result the hooks missed", async () => {
     const ctl = start("wordle");
+    wordleSolution();
     await flush();
     expect(sent.some((m) => m.type === "record")).toBe(false);
     storeFixture("wordle", "win-2026-11-22");

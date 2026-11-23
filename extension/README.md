@@ -19,7 +19,7 @@ To let a hosted dashboard read your results, build with its origin:
 
 Content scripts are matched only to the 9 game pages (`src/games.ts`) and the dashboard origins. On a game page:
 
-- `hook.js` (page world, `document_start`) wraps `Storage.prototype.setItem`, `fetch` and, for Wordle and
+- `hook.js` (page world, `document_start`) wraps `Storage.prototype.setItem`, `fetch`, `XMLHttpRequest` and, for Wordle and
   Connections, the clipboard and share sheet. It posts one message when the game writes one of its own result
   keys, receives an allowlisted response, or shares. Nothing else is touched.
 - `content.js` reads once at page load, and again on each hook message. Spelling Bee also has one

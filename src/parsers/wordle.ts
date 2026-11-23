@@ -29,6 +29,9 @@ export function grade(guess: string, solution: string): LetterMark[] {
   return marks;
 }
 
+/** Wordle No. 0 was 2021-06-19; the public number counts days from it. */
+const numberForDay = (day: string) => Math.round((Date.parse(`${day}T00:00:00Z`) - Date.parse("2021-06-19T00:00:00Z")) / 86_400_000);
+
 function shareRows(share: string | undefined): LetterMark[][] {
   return (share ?? "")
     .split("\n")
@@ -52,7 +55,7 @@ export const parseWordle: RecordParser<"wordle"> = (capture) => {
   return {
     game: "wordle",
     date: state.printDate,
-    puzzleNo: puzzle?.days_since_launch ?? (shareNumber ? Number(shareNumber) : null),
+    puzzleNo: puzzle?.days_since_launch ?? (shareNumber ? Number(shareNumber) : numberForDay(state.printDate)),
     status: status === "WIN" ? "won" : status === "FAIL" ? "lost" : "partial",
     score: guesses.length,
     detail: { guesses, evaluations, hardMode: hardMode ?? false },
