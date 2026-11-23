@@ -16,6 +16,8 @@ const WORDS: Record<Rating, string> = { perfect: "On the route", "near-perfect":
 const T_LABELS = ["Lost", "Perfect", "+0", "+1", "+2", "+3", "+4"];
 /** A guess this far from every route country is named under the map rather than stretching it. */
 const REACH_KM = 4000;
+/** A start or end country drawn smaller than this, in pixels on its longer side, is ringed. */
+const RING_BELOW = 12;
 
 let ctx: CanvasRenderingContext2D | null = null;
 const textWidth = (s: string) => {
@@ -63,10 +65,14 @@ function TravleMap({ geo, view, w, h, active, onActive }: { geo: Geo; view: View
     const pin = (c: Country) => m.pin(c) ?? ([-99, -99] as [number, number]);
     const pts = view.path.map((code) => pin(view.at(code)));
     const missing = new Set(view.missing);
-    const ends = [view.start, view.end].map((c) => ({ c, at: pin(c), w: textWidth(c.name) + 2 }));
+    // A start or end too small to see gets a ring in its own color.
+    const ends = (["start", "end"] as const).map((role) => {
+      const c = view[role];
+      return { role, c, at: pin(c), w: textWidth(c.name) + 2, ring: m.size(c) < RING_BELOW };
+    });
     const spots = geo.placeLabels(
       ends.map((e) => ({ key: e.c.name, at: e.at, w: e.w, h: 16 })),
-      pts.map((p) => ({ x: p[0] - 5, y: p[1] - 5, w: 10, h: 10 })),
+      [...pts.map((p) => ({ x: p[0] - 5, y: p[1] - 5, w: 10, h: 10 })), ...ends.filter((e) => e.ring).map((e) => ({ x: e.at[0] - 10, y: e.at[1] - 10, w: 20, h: 20 }))],
       w,
       h,
     );
@@ -78,6 +84,10 @@ function TravleMap({ geo, view, w, h, active, onActive }: { geo: Geo; view: View
   const tip = hot && `${hot.c.name}, ${WORDS[hot.rating].toLowerCase()}`;
   const tipAt = hot && pin(hot.c);
   const tipW = tip ? textWidth(tip) : 0;
+  // The label on a card-colored backing beside its country, kept wholly inside the map.
+  const clamp = (v: number, hi: number) => Math.min(Math.max(v, 2), hi - 2);
+  const tipX = tipAt ? clamp(tipAt[0] < w / 2 ? tipAt[0] + 10 : tipAt[0] - 22 - tipW, w - tipW - 12) : 0;
+  const tipY = tipAt ? clamp(tipAt[1] - 11, h - 22) : 0;
   const over = (e: PointerEvent) => {
     const el = (e.target as Element).closest("[data-role=guess]");
     onActive(el?.getAttribute("data-country") ?? null);
@@ -97,15 +107,25 @@ function TravleMap({ geo, view, w, h, active, onActive }: { geo: Geo; view: View
         const [x, y] = pin(g.c);
         return <circle key={g.country} data-pin={g.country} data-mark="pin" cx={x} cy={y} r={3} />;
       })}
-      {ends.map((e) => <circle key={e.c.name} data-pin={e.c.name} data-mark="pin" cx={e.at[0]} cy={e.at[1]} r={4.5} />)}
+      {ends.map(({ role, c, at: [x, y], ring }) => (
+        <g key={role}>
+          {ring && <circle className="travle-halo" cx={x} cy={y} r={8} />}
+          {ring && <circle data-ring={role} data-marker={role} data-mark={`${role} ring`} cx={x} cy={y} r={8} />}
+          <circle className="travle-halo" cx={x} cy={y} r={4.5} />
+          <circle data-pin={c.name} data-end-dot={role} data-marker={ring ? undefined : role} data-mark={`${role} pin`} cx={x} cy={y} r={3.5} />
+        </g>
+      ))}
       {ends.map((e) => {
         const b = spots.get(e.c.name);
         return b && <text key={e.c.name} data-place x={b.x + 1} y={b.y + 12.5}>{e.c.name}</text>;
       })}
       {tip && tipAt && (
-        <text data-hover-label x={Math.min(Math.max(tipAt[0] < w / 2 ? tipAt[0] + 10 : tipAt[0] - 10 - tipW, 4), w - tipW - 4)} y={Math.min(Math.max(tipAt[1] + 4, 16), h - 6)}>
-          {tip}
-        </text>
+        <g>
+          <rect data-hover-backing x={tipX} y={tipY} width={tipW + 12} height={22} rx={4} />
+          <text data-hover-label x={tipX + 6} y={tipY + 15.5}>
+            {tip}
+          </text>
+        </g>
       )}
     </g>
   );

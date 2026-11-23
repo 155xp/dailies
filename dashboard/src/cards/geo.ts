@@ -100,6 +100,11 @@ export function mapView(w: number, h: number, fit: Country[], lon?: number) {
       return d ? [{ key: String(f.id ?? i), d }] : [];
     }),
     shape: (c: Country) => path(c.feature) ?? "",
+    /** The longer side of the country's drawn box, in pixels. */
+    size: (c: Country) => {
+      const [[x0, y0], [x1, y1]] = path.bounds(c.feature);
+      return Math.max(x1 - x0, y1 - y0);
+    },
     /** The country's center in the frame, else the center of the part that shows, else null (off the map). */
     pin: (c: Country) => {
       const p = proj(c.center);

@@ -650,7 +650,33 @@
   stroke-linecap: butt;
   stroke-dasharray: 4 3;
 }
-.card[data-game="travle"] .geo-map :is(circle, text, .travle-outline, .travle-casing, [data-route], [data-gap]) {
+.card .geo-map .travle-halo {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 4px;
+}
+.card .geo-map [data-ring],
+.card .geo-map [data-end-dot] {
+  fill: none;
+  stroke: var(--travle-start);
+  stroke-width: 2px;
+}
+.card .geo-map [data-end-dot] {
+  fill: var(--travle-start);
+}
+.card .geo-map [data-ring="end"] {
+  stroke: var(--travle-end);
+}
+.card .geo-map [data-end-dot="end"] {
+  fill: var(--travle-end);
+  stroke: var(--travle-end);
+}
+.card .geo-map [data-hover-backing] {
+  fill: var(--surface);
+  stroke: var(--line);
+  stroke-width: 0.5px;
+}
+.card[data-game="travle"] .geo-map :is(rect, circle, text, .travle-outline, .travle-casing, [data-route], [data-gap]) {
   pointer-events: none;
 }
 .card .travle-legend {
