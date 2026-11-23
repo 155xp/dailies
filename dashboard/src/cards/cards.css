@@ -693,8 +693,8 @@
   grid-template-columns: 10px minmax(0, 1fr) auto;
   align-items: center;
   gap: 8px;
-  height: 28px;
-  padding: 0 8px;
+  min-height: 28px;
+  padding: 1px 8px;
   border-radius: 6px;
 }
 .card .travle-legend li::before {
