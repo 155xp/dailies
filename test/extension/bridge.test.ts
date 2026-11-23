@@ -36,7 +36,8 @@ describe("dashboard bridge", () => {
     expect(changed).toHaveLength(1);
 
     states.length = 0;
-    window.postMessage({ source: "dailies-page", type: "request" }, location.origin);
+    // happy-dom's postMessage leaves source and origin unset; Chrome sets both (see e2e/install.spec.ts).
+    window.dispatchEvent(new MessageEvent("message", { data: { source: "dailies-page", type: "request" }, source: window, origin: location.origin }));
     await flush();
     await flush();
     expect(states).toHaveLength(1);

@@ -25,7 +25,7 @@ export function buildManifest({ version, dashboardOrigins }: { version: string; 
     name: "Dailies",
     version,
     description: "Logs your daily web game results as you finish them. Results stay in your browser.",
-    permissions: ["storage"],
+    permissions: ["storage", "scripting"],
     host_permissions: [...games, ...dashboards],
     background: { service_worker: "background.js", type: "module" as const },
     action: { default_title: "Dailies", default_popup: "popup.html", default_icon: ICONS },

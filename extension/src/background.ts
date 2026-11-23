@@ -31,4 +31,19 @@ chrome.runtime.onMessage.addListener((msg: ContentMessage, sender) => {
   queue = queue.then(() => handle(msg, sender)).catch(() => {});
 });
 chrome.runtime.onStartup.addListener(() => void loadState().then((s) => showBadge(s)));
-chrome.runtime.onInstalled.addListener(() => void loadState().then((s) => showBadge(s)));
+/**
+ * Chrome injects declared content scripts only into pages loaded after install, so on install or update
+ * (a one-shot event) the bridge is injected into dashboard tabs that were already open.
+ */
+async function injectBridge() {
+  const bridge = chrome.runtime.getManifest().content_scripts?.find((c) => c.js?.includes("bridge.js"));
+  if (!bridge?.matches) return;
+  for (const tab of await chrome.tabs.query({ url: bridge.matches })) {
+    if (tab.id !== undefined) await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["bridge.js"] }).catch(() => {});
+  }
+}
+
+chrome.runtime.onInstalled.addListener(({ reason }) => {
+  void loadState().then((s) => showBadge(s));
+  if (reason === "install" || reason === "update") void injectBridge();
+});

@@ -88,7 +88,7 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     timer = undefined;
   };
 
-  /** Parse what the page holds now; send the record if it is new. */
+  /** Parse what the page holds now; send the record if it is new. True when it is today's result. */
   const read = (atLoad = false, force = false): boolean => {
     if (disposed) return false;
     if (inFlight.size && !force) {
@@ -97,14 +97,18 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     }
     const record = captureFrom(game, { ...(share !== undefined && { share }), storage: storage(), responses, page, indexedDB });
     if (!record) return false;
-    logged = true;
-    stopTimer();
+    // A game can keep an earlier day's result (Krillion's last dive, Songless sessions). Only a result for today
+    // or later (Travle's day is UTC) counts as this game's capture; an older one leaves the 2s check armed.
+    if (record.date >= localDay(new Date())) {
+      logged = true;
+      stopTimer();
+    }
     const json = JSON.stringify(record);
     if (json !== lastSent) {
       lastSent = json;
       send({ type: "record", record, ...(atLoad && { atLoad }) });
     }
-    return true;
+    return logged;
   };
 
   /** A result screen with no record starts the single one-shot check. */
@@ -155,7 +159,8 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
   const idle = () => {
     const afterRead = () => {
       if (disposed) return;
-      if (!read(true)) send({ type: "seen" });
+      const before = lastSent;
+      if (!read(true) && lastSent === before) send({ type: "seen" });
       checkFinished();
       watchRank();
     };
@@ -183,7 +188,8 @@ export function startCapture({ game, win, send }: { game: GameDef; win: Window; 
     /** Re-read once, for the popup's Retry. */
     retry: async () => {
       await readIndexedDB();
-      return read(false, true);
+      const before = lastSent;
+      return read(false, true) || lastSent !== before;
     },
     dispose: () => {
       onHide();

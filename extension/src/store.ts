@@ -75,10 +75,16 @@ export function applyRecord(state: State, captured: DailyRecord, now: Date, atLo
   };
 }
 
-/** The storage patch for a miss, or null when that game and day is already logged or already missed. */
+/**
+ * The storage patch for a miss, or null when that game and day is already missed, or the game already has a
+ * record for that day or one logged that day (a game's own day can lag the local one).
+ */
 export function applyMiss(state: State, miss: Miss): Partial<State> | null {
   const key = recordKey(miss.game, miss.date);
-  if (state.records[key] || state.misses[key]) return null;
+  const loggedThatDay = Object.entries(state.records).some(
+    ([k, r]) => r.game === miss.game && (r.date === miss.date || (!!state.loggedAt[k] && localDay(new Date(state.loggedAt[k])) === miss.date)),
+  );
+  if (loggedThatDay || state.misses[key]) return null;
   return { misses: { ...state.misses, [key]: miss } };
 }
 
