@@ -58,7 +58,7 @@ export function Install({ check, checking, leaving }: { check: () => void; check
             <button type="button" className="secondary" onClick={copyAddress} aria-live="polite">
               {COPY[copy]}
             </button>
-            <p className="meta">Chrome won't open this address from a link, so paste it into a new tab's address bar.</p>
+            <p className="quiet">Chrome won't open this address from a link, so paste it into a new tab's address bar.</p>
           </div>
           <Shot name="devmode" alt="The Developer mode switch, turned on, in Chrome's extensions page" />
         </li>

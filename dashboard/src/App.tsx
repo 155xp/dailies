@@ -1,6 +1,6 @@
 import { LinkSquare02Icon, Plug01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type MouseEvent } from "react";
 import type { DailyRecord } from "../../src/record";
 import { useExtension, type ExtensionState, type Miss } from "./bridge";
 import { CARDS } from "./cards";
@@ -116,10 +116,12 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
   const miss = (log.misses.get(game.id) ?? []).find((m) => m.date === today);
   const Card = CARDS[game.id];
   const slot = `card-${game.id}`;
+  // A played row opens from a click anywhere but its link and button; the Details button stays its one keyboard control.
+  const onLine = (e: MouseEvent) => !(e.target as Element).closest("a, button") && setOpen(!open);
 
   return (
     <li className="row" data-game={game.id}>
-      <div className="line">
+      <div className="line" onClick={status === "connected" && record ? onLine : undefined}>
         <a className="link name" href={game.url} target="_blank" rel="noopener">
           {game.name}
           <HugeiconsIcon icon={LinkSquare02Icon} size={16} strokeWidth={1.5} aria-hidden="true" />
@@ -128,13 +130,16 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
         {status === "connected" && record && (
           <>
             <span className="status">Played</span>
-            <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
-              {tiles(record).map((color, i) => (
-                <span key={i} className="tile" style={{ background: color }} />
-              ))}
-            </span>
+            {/* An unfinished Globle has no distances yet, so no tiles: leave the strip out rather than draw it empty. */}
+            {tiles(record).length > 0 && (
+              <span className="strip" data-tiles role="img" aria-label={`${game.name} tiles, ${result(record)}`}>
+                {tiles(record).map((color, i) => (
+                  <span key={i} className="tile" style={{ background: color }} />
+                ))}
+              </span>
+            )}
             <span className="result">{result(record)}</span>
-            <button type="button" className="disclosure" aria-expanded={open} aria-controls={slot} onClick={() => setOpen(!open)}>
+            <button type="button" className="disclosure" aria-expanded={open} aria-controls={open ? slot : undefined} onClick={() => setOpen(!open)}>
               Details
             </button>
           </>

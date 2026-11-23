@@ -7,10 +7,13 @@ import "./cards.css";
 
 export type CardProps = { record: DailyRecord; history: DailyRecord[] };
 
-/** The shared frame: the title links to the game, then the card's figure and drawing, with its chart beside them. */
-export function Card({ game, geo, children }: { game: GameId; geo?: string; children: ReactNode }) {
+/**
+ * The shared frame: the title links to the game, then the card's figure and drawing, with its chart beside them.
+ * `single` keeps everything in one column, for a card with nothing to put on the left of its drawing.
+ */
+export function Card({ game, geo, single, children }: { game: GameId; geo?: string; single?: boolean; children: ReactNode }) {
   const g = gameById(game);
-  const [result, side] = split(children);
+  const [result, side] = single ? [Children.toArray(children), []] : split(children);
   return (
     <article className="card" data-panel data-game={game} data-geo={geo}>
       <h3 className="card-title">
