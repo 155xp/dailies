@@ -1,0 +1,194 @@
+/*
+ * Spamle: the day's gumballs as original pixel-art balls in the game's rarity colors (`RAR` body, `BALL` shade),
+ * one row per round. Light mode outlines each ball in its shade, darkened for Legendary, so every ball reaches 3:1
+ * on the card; dark mode needs no outline, the bodies already do.
+ */
+:root {
+  --spam-beat: #7cc8ff;
+  --spam-own: #ffd23f;
+}
+
+.card .spam-ball {
+  display: block;
+  flex: none;
+  --r: var(--s);
+}
+
+.card .spam-ball[data-rarity="common"] {
+  --b: #b8b4c8;
+  --s: #7d7894;
+}
+
+.card .spam-ball[data-rarity="uncommon"] {
+  --b: #5ddc6a;
+  --s: #2f9a3c;
+}
+
+.card .spam-ball[data-rarity="rare"] {
+  --b: #7cc8ff;
+  --s: #3484c4;
+}
+
+.card .spam-ball[data-rarity="epic"] {
+  --b: #b06cff;
+  --s: #6e34b8;
+}
+
+.card .spam-ball[data-rarity="legendary"] {
+  --b: #ffd23f;
+  --s: #d9a400;
+  --r: #a37a00;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card .spam-ball[data-rarity] {
+    --r: var(--b);
+  }
+}
+
+.card .spam-ball .ring {
+  fill: var(--r);
+}
+
+.card .spam-ball .body {
+  fill: var(--b);
+}
+
+.card .spam-ball .shade {
+  fill: var(--s);
+}
+
+.card .spam-ball .shine {
+  fill: #fff;
+}
+
+/* The rarity breakdown, which is also the key to the balls. */
+.card .spam-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.card .spam-legend > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card .spam-legend .spam-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.card .spam-legend [data-zero] .spam-count {
+  color: var(--ink-10);
+}
+
+.card .spam-legend [data-zero] .spam-ball {
+  opacity: 0.45;
+}
+
+.card .spam-tray-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card .spam-tray {
+  border-radius: 6px;
+  outline-offset: 4px;
+  touch-action: pan-y;
+}
+
+.card .spam-rounds {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card .spam-rounds > li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card .spam-head,
+.card .spam-rounds > li[data-open] {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card .spam-q {
+  min-width: 0;
+}
+
+.card .spam-score {
+  flex: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.card .spam-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+}
+
+/* The round's rating dot, in the game's rating color with a ring that reads on the card. */
+.card .spam-rating > i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--tile-ring);
+}
+
+.card .spam-open {
+  color: var(--ink-10);
+}
+
+/* Each ball sits in a slot one ball tall plus room to lift; the slot is the pointer's hit area. */
+.card .spam-balls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  min-height: 26px;
+}
+
+.card .spam-slot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+  cursor: crosshair;
+}
+
+/* The answer in hand: set 2px higher, with a short ink tick under it. Nothing animates; it follows pointer and keys. */
+.card .spam-ball[data-active] {
+  position: relative;
+  top: -2px;
+}
+
+.card .spam-slot:has(> [data-active])::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 6px;
+  height: 2px;
+  margin-left: -3px;
+  border-radius: 1px;
+  background: var(--ink-12);
+}
+
+.card .spam-readout {
+  min-height: 18px;
+}

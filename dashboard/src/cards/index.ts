@@ -7,6 +7,7 @@ import { Globle } from "./globle";
 import { Krillion } from "./krillion";
 import { Mini } from "./mini";
 import { Songless } from "./songless";
+import { Spamle } from "./spamle";
 import { SpellingBee } from "./spelling-bee";
 import { Travle } from "./travle";
 import { Wordle } from "./wordle";
@@ -24,4 +25,5 @@ export const CARDS: Record<GameId, (props: CardProps) => JSX.Element> = {
   mini: Mini,
   globle: Globle,
   songless: Songless,
+  spamle: Spamle,
 };

@@ -21,6 +21,7 @@ export const GAMES: readonly Game[] = [
   { id: "mini", name: "Mini Crossword", url: "https://www.nytimes.com/crosswords/game/mini", color: "#95befa" },
   { id: "globle", name: "Globle", url: "https://globle-game.com/", color: "#008000" },
   { id: "songless", name: "Songless", url: "https://lessgames.com/songless", color: "#55b725" },
+  { id: "spamle", name: "Spamle", url: "https://spamle.com/", color: "#ffd23f" },
 ];
 
 export const gameById = (id: GameId): Game => GAMES.find((g) => g.id === id)!;
