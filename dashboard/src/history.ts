@@ -12,7 +12,8 @@ export const dayDate = (day: string) => {
 /** "Sunday, November 22" in the reader's locale. */
 export const longDay = (day: string) => dayDate(day).toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
 
-const shift = (day: string, by: number) => {
+/** The day `by` days after `day` (negative for before). */
+export const shift = (day: string, by: number) => {
   const d = dayDate(day);
   d.setDate(d.getDate() + by);
   return localDay(d);

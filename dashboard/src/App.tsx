@@ -1,13 +1,15 @@
 import { LinkSquare02Icon, Plug01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useMemo, useState, type MouseEvent } from "react";
+import { useCallback, useMemo, useRef, useState, type MouseEvent } from "react";
 import type { DailyRecord } from "../../src/record";
 import { useExtension, type ExtensionState, type Miss } from "./bridge";
 import { CARDS } from "./cards";
+import { dayMeta, dayTitle, useDay } from "./day";
+import { DayNav } from "./DayNav";
 import { GAMES, type Game } from "./games";
 import { History } from "./HistoryGrid";
 import { Install } from "./Install";
-import { localDay, longDay } from "./history";
+import { localDay } from "./history";
 import { PaletteSetting } from "./palette";
 import { usePresence } from "./presence";
 import { result, tiles } from "./summary";
@@ -33,6 +35,18 @@ export function App() {
   const connected = ext.status === "connected";
   const install = usePresence(ext.status === "missing");
   const hint = usePresence(connected && !ext.records.some((r) => r.date === today));
+  const { day, go, step } = useDay(today);
+  const heading = useRef<HTMLHeadingElement>(null);
+  // A day picked in History opens above it: bring the day into view and put focus on its title.
+  const openDay = useCallback(
+    (picked: string) => {
+      go(picked, "push");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      heading.current?.focus({ preventScroll: true });
+      heading.current?.closest("section")?.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+    },
+    [go],
+  );
 
   return (
     <main className="page" data-status={ext.status} aria-busy={ext.status === "loading"}>
@@ -46,25 +60,28 @@ export function App() {
 
       <section className="today" aria-labelledby="today-title">
         <div className="today-head">
-          <h2 className="section-title" id="today-title">
-            Today
-          </h2>
-          <p className="meta">{longDay(today)}</p>
+          <div aria-live="polite">
+            <h2 className="section-title" id="today-title" ref={heading} tabIndex={-1}>
+              {dayTitle(day, today)}
+            </h2>
+            <p className="meta">{dayMeta(day, today)}</p>
+          </div>
+          {ext.status !== "missing" && <DayNav day={day} today={today} step={step} go={go} />}
         </div>
-        {hint.mounted && (
+        {day === today && hint.mounted && (
           <p className="hint quiet enter" data-leaving={hint.leaving || undefined}>
             Play any game below. Your result shows up here when you finish.
           </p>
         )}
         <ul className="rows">
           {GAMES.map((g) => (
-            <Row key={g.id} game={g} status={ext.status} today={today} log={log} />
+            <Row key={g.id} game={g} status={ext.status} day={day} today={today} log={log} />
           ))}
         </ul>
       </section>
 
       {ext.status === "loading" && <div className="history-skel skel" aria-hidden="true" />}
-      {connected && <History log={log} today={today} />}
+      {connected && <History log={log} today={today} day={day} onOpen={openDay} />}
       {ext.status === "error" && (
         <section className="notice" data-panel>
           <p>Couldn't read today's results</p>
@@ -109,11 +126,12 @@ function Pill({ status, lastLogAt, today, onClick }: { status: string; lastLogAt
   );
 }
 
-function Row({ game, status, today, log }: { game: Game; status: string; today: string; log: Log }) {
+function Row({ game, status, day, today, log }: { game: Game; status: string; day: string; today: string; log: Log }) {
   const [open, setOpen] = useState(false);
-  const history = log.records.get(game.id) ?? [];
-  const record = history.find((r) => r.date === today);
-  const miss = (log.misses.get(game.id) ?? []).find((m) => m.date === today);
+  // A past day's card reads its history as it stood that day.
+  const history = (log.records.get(game.id) ?? []).filter((r) => r.date <= day);
+  const record = history.find((r) => r.date === day);
+  const miss = (log.misses.get(game.id) ?? []).find((m) => m.date === day);
   const Card = CARDS[game.id];
   const slot = `card-${game.id}`;
   // A played row opens from a click anywhere but its link and button; the Details button stays its one keyboard control.
@@ -153,12 +171,13 @@ function Row({ game, status, today, log }: { game: Game; status: string; today: 
               <span className="reason meta">{miss.reason}</span>
             </>
           )}
-          {status === "connected" && !record && !miss && <span className="status idle">Not played yet</span>}
+          {status === "connected" && !record && !miss && <span className="status idle">{day === today ? "Not played yet" : "Not played"}</span>}
         </div>
       </div>
       {open && record && (
         <div className="card-slot" id={slot}>
-          <Card record={record} history={history} />
+          {/* Keyed by day, so a chart's scrub starts over on each day's own result. */}
+          <Card key={record.date} record={record} history={history} />
         </div>
       )}
     </li>
