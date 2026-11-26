@@ -84,13 +84,20 @@ test.describe("3d states, type and motion", () => {
 
   test("every control has hover, press and focus-visible states", async ({ page }, info) => {
     test.setTimeout(120_000);
-    const controls = (p: Page) => p.locator("main a, main button").all();
+    // Handles, not nth locators: pressing Previous day opens yesterday and adds a Today pill, which would shift every index after it.
+    // History's 300 day squares share one recipe: a played one and yesterday's unplayed one (both in view at 390) stand for them.
+    const controls = async (p: Page) => [
+      ...(await p.$$("main a:not(.sq), main button")),
+      ...(await p.$$(".sq[data-played]")).slice(0, 1),
+      ...(await p.$$('[data-history-row="krillion"] .sq')).slice(28, 29),
+    ];
     for (const opts of [SCENES.done!, SCENES.missing!, SCENES.error!]) {
       await open(page, opts);
       const disclosure = page.locator('.row[data-game="wordle"] .disclosure');
       if (await disclosure.count()) await disclosure.click();
       for (const c of await controls(page)) {
-        if (!(await c.isVisible())) continue;
+        // A disabled control (Next on today) has hover and press off by design.
+        if (!(await c.isVisible()) || (await c.isDisabled())) continue;
         const label = (await c.getAttribute("aria-label")) ?? (await c.innerText());
         const look = () => c.evaluate((e) => { const s = getComputedStyle(e); return `${s.color}|${s.backgroundColor}|${s.textDecorationColor}`; });
         await page.keyboard.press("Shift");
@@ -113,6 +120,18 @@ test.describe("3d states, type and motion", () => {
         await page.mouse.up();
         await page.keyboard.press("Escape");
         await page.mouse.move(0, 0);
+        // A day square opens its day and scrolls up to it; let the page come to rest before measuring the next control.
+        await page.evaluate(() => new Promise<void>((done) => {
+          let last = -1;
+          let still = 0;
+          const tick = () => {
+            still = scrollY === last ? still + 1 : 0;
+            last = scrollY;
+            if (still >= 3) done();
+            else setTimeout(tick, 50);
+          };
+          tick();
+        }));
       }
     }
   });

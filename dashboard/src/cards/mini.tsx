@@ -1,4 +1,5 @@
 import type { RecordOf } from "../../../src/record";
+import { localDay } from "../history";
 import { Bars, Card, Figure, type CardProps } from "./frame";
 
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -10,7 +11,8 @@ export function Mini({ record, history }: CardProps) {
   const week = [6, 5, 4, 3, 2, 1, 0].map((back) => {
     const date = day(r.date, back);
     const time = (history.find((h) => h.date === date) as RecordOf<"mini"> | undefined)?.detail.timeSeconds ?? null;
-    return { label: back === 0 ? "Today" : short(date), value: time ?? 0, time };
+    // The last bar is the card's own day: "Today" only when it is today, its date on a past day.
+    return { label: back === 0 && date === localDay(new Date()) ? "Today" : short(date), value: time ?? 0, time };
   });
   return (
     <Card game="mini">

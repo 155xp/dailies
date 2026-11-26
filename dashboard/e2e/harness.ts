@@ -73,6 +73,38 @@ export const STATES = {
   },
 } satisfies Record<string, ExtState>;
 
+/**
+ * Five days ending on the harness's day, for the day view: the real fixtures, re-filed on earlier days with
+ * their puzzle numbers stepped back to match. Nov 19 has nothing logged, so it is the empty day.
+ */
+export const WEEK: ExtState = {
+  records: [
+    ...STATES.done.records,
+    on(fixture("wordle", "loss-2026-11-22"), 1),
+    on(fixture("travle", "loss-2026-11-22"), 1),
+    on(fixture("connections", "loss-2026-11-22"), 1),
+    on(fixture("krillion", "partial-2026-11-22"), 1),
+    on(fixture("enclose-horse", "partial-2026-11-22"), 1),
+    on(fixture("globle", "partial-2026-11-22"), 1),
+    on(fixture("songless", "loss-2026-11-22"), 1),
+    on(fixture("wordle", "win-2026-11-22"), 2),
+    on(fixture("krillion", "win-2026-11-22"), 2),
+    on(fixture("travle", "win-2026-11-22"), 2),
+    on(fixture("songless", "win-2026-11-22"), 2),
+    on(fixture("spelling-bee", "partial-paywall-2026-11-22"), 2),
+    on(fixture("connections", "win-2026-11-22"), 4),
+    on(fixture("globle", "win-2026-11-22"), 4),
+  ],
+  misses: [...STATES.done.misses, { ...miss("spelling-bee", "The result screen changed. Open Spelling Bee once more to retry"), date: "2026-11-21" }],
+  lastLogAt: LAST_LOG,
+};
+
+/** A 2026-11-22 record re-filed `back` days earlier, its puzzle number stepped back to match. */
+function on(record: DailyRecord, back: number): DailyRecord {
+  const d = new Date(Date.UTC(2026, 10, 22 - back));
+  return { ...record, date: d.toISOString().slice(0, 10), puzzleNo: record.puzzleNo === null ? null : record.puzzleNo - back };
+}
+
 export type FakeMode = { kind: "state"; state: ExtState } | { kind: "invalid" } | { kind: "silent" };
 
 /**
@@ -124,9 +156,11 @@ export interface OpenOptions {
   ext: FakeMode | "none";
   /** "frozen" stops timers so the loading state can be held for a screenshot. */
   clock?: "fixed" | "frozen";
+  /** A query string to open the page with, such as `?day=2026-11-21`. */
+  search?: string;
 }
 
-export async function open(page: Page, { ext, clock = "fixed" }: OpenOptions) {
+export async function open(page: Page, { ext, clock = "fixed", search = "" }: OpenOptions) {
   const external = await serve(page);
   if (clock === "frozen") {
     await page.clock.install({ time: NOW });
@@ -139,7 +173,7 @@ export async function open(page: Page, { ext, clock = "fixed" }: OpenOptions) {
   else await page.clock.setFixedTime(NOW);
   if (ext !== "none") await page.addInitScript(fakeExtension, ext);
   else await page.addInitScript(() => (window as unknown as { __ext?: { detach(): void } }).__ext?.detach());
-  await page.goto(BASE);
+  await page.goto(BASE + search);
   if (clock === "fixed") await page.locator("main[data-status]:not([data-status=loading])").waitFor();
   await page.evaluate(() => document.fonts.ready.then(() => undefined));
   return { external };
